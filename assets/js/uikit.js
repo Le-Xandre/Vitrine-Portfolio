@@ -10955,6 +10955,7 @@
       return path.match(
       new RegExp("^" +
       pattern.
+      replace(/\\/g, '\\\\').
       replace(/\//g, '\\/').
       replace(/\*\*/g, '(\\/[^\\/]+)*').
       replace(/\*/g, '[^\\/]+').
