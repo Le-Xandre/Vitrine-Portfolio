@@ -1,0 +1,29 @@
+body.dark-mode {
+    background-color: #333333; /* Gris plus clair pour le fond sombre */
+    color: #f0f0f0; /* Texte clair sur fond sombre */
+}
+
+.dark-mode .header, .dark-mode .footer {
+    background-color: #444444; /* Fond encore plus clair pour les en-têtes et pieds de page */
+}
+
+.dark-mode .section {
+    background-color: #555555; /* Gris plus clair pour les sections */
+    color: #ffffff; /* Texte clair */
+}
+
+.dark-mode .section-title, .dark-mode .section-text {
+    color: #222222; /* Titre et texte en couleur sombre */
+}
+
+.dark-mode .hero-title {
+    color: #f0f0f0; /* Titre principal en clair */
+}
+
+.dark-mode .hero-text {
+    color: #cccccc; /* Texte secondaire en gris clair */
+}
+
+.dark-mode .wrapper strong {
+    color: #cccccc; /* Gris clair pour les éléments en surbrillance */
+}

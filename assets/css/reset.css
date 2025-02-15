@@ -1,0 +1,200 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, main {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+
+
+.container
+{
+width: 600px;
+display:flex;
+flex-wrap:wrap;
+text-decoration:none;
+justify-content:space-around;
+letter-spacing:4px;
+text-transform:uppercase;
+}
+
+.container .btn
+{
+    position:relative;
+    width:155px;
+    height:50px;
+    margin:20px;
+    border-radius:20px;
+}
+
+.container .btn a
+{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:rgba(255, 255, 255, 0.034);
+    box-shadow: 0 15px 35px 0 rgba(0, 0, 0, 0.486);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-radius:20px;
+    border: 1px solid rgba(255, 255, 255, 0.40);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    color:#fff;
+    text-shadow:#000000 1px 1px,#000000 -1px 1px,#000000 -1px -1px,#000000 1px -1px;
+    font-weight:400;
+    letter-spacing:1px;
+    text-decoration:none;
+    z-index:1;
+    overflow:hidden;
+    transition:0.5s;
+}
+
+.container .btn:hover a
+{
+    letter-spacing:3px;
+}
+
+.container .btn a::before
+{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    width:45%;
+    height:100%;
+    background: linear-gradient(to left, rgba(165, 166, 167, 0.513), transparent);
+    transform:skewX(45deg) translateX(10px);
+    transition:0.5s;
+}
+
+.container .btn:hover a::before
+{
+    transform:skewX(45deg) translateX(200%);
+}
+
+.container .btn::before
+{
+    content:'';
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    bottom:-5px;
+    width:10px;
+    height:5px;
+    background:#f00;
+    border-radius:10px;
+    transition:0.5s;
+    transition-delay:0s;
+}
+
+.container .btn:hover::before
+{
+    bottom:0;
+    height:10%;
+    width:70%;
+    border-radius:2px;
+    transition-delay:0.5s;
+}
+
+.container .btn::after
+{
+    content:'';
+    position:absolute;
+    top:-5px;
+    left:50%;
+    width:10px;
+    height:5px;
+    background:#f00;
+    transform:translateX(-50%);
+    border-radius:10px;
+    transition:0.5s;
+    transition-delay:0s;
+}
+
+.container .btn:hover::after
+{
+    top:0;
+    height:10%;
+    width:70%;
+    border-radius:2px;
+    transition-delay:0.5s;
+}
+
+.container .btn:nth-child(1)::before,
+.container .btn:nth-child(1)::after
+{
+background:#ff1f71;
+box-shadow: 0 0 5px #ff1f7185, 
+0 0 15px #ff1f71, 
+0 0 30px #ff1f71, 
+0 0 60px #ff1f71;
+}
+
+.container .btn:nth-child(2)::before,
+.container .btn:nth-child(2)::after
+{
+background:#2bd2ff;
+box-shadow: 0 0 5px #2bd1ff75, 
+0 0 15px #2bd2ff, 
+0 0 30px #2bd2ff, 
+0 0 60px #2bd2ff; 
+}
+
+.container .btn:nth-child(3)::before,
+.container .btn:nth-child(3)::after
+{
+background:#1eff45;
+box-shadow: 0 0 5px #1eff446c, 
+0 0 15px #1eff45, 
+0 0 30px #1eff45, 
+0 0 60px #1eff45; 
+}

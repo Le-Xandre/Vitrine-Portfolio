@@ -1,0 +1,61 @@
+:root {
+  
+    --color_body:rgba(46, 142, 226, 0.787);
+    --color_header:rgb(240, 150, 34);
+    --color_footer:rgb(224, 29, 29);  
+    --color_button:rgb(51, 190, 16);
+    --color_lien:rgb(142, 228, 223);
+    --color_h1:rgba(251, 191, 79, 0.87);
+    --color_h2:rgba(212, 107, 36, 0.87);
+    --color_h3:rgba(60, 51, 184, 0.87);
+
+    --height_header01:90px;
+    --height_header02:150px;
+    --height_header03:300px;
+    --height_header04:480px;
+
+
+
+    --blanc: #fbfbfb;
+    --noir: #02071d;
+    --gris-transparent: #caffffde;
+    --body-color: #1d0c07f8;
+
+    --premiere-color:rgb(0, 0, 0);
+    --seconde-color:rgba(225, 253, 242, 0.952);
+    --third-color:rgba(255, 238, 205, 0.972);
+
+    --text-color-light-01: rgb(255, 251, 245);
+    --text-color-light-02: rgb(37, 28, 14);
+    --text-color-light-03: rgb(0, 255, 85);
+    --text-color-light-04: rgb(0, 76, 255);
+    --text-color-light-05: rgb(255, 0, 43);
+    --text-color-light-06: rgb(0, 0, 0);
+
+
+    --smaller-font-size: .50rem;
+    --normal-font-size: 1rem;
+    --biggest-font-size: 2rem;
+
+    --h1-font-size:1.50rem;
+    --h2-font-size: 1.25rem;
+    --h3-font-size: 1rem;
+    --h4-font-size: .75rem;
+    --h5-font-size: .50rem;
+    --h6-font-size: .25rem;
+
+
+    --font-family-01: 'Lato', sans-serif;
+    --font-family-02: 'Dancing', sans-serif;
+    --font-family-03: 'Oswald', sans-serif;
+    --font-family-04: 'Muli', sans-serif;
+    --font-family-05: 'Poppins', sans-serif;
+    --font-family-06: 'Oswald', sans-serif;
+    --font-family-07: 'Josefin', sans-serif;
+    --font-family-08: 'Raleway', sans-serif;
+    --font-family-09: 'Goudy+Bookletter+1911', sans-serif;
+    --font-family-10: 'Amaranth', sans-serif;
+    
+    --filter-blur: blur(100px);
+    --filter-blur02: blur(200px);
+}
