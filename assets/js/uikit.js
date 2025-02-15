@@ -1,4 +1,5 @@
 /*! UIkit 3.13.10 | https://www.getuikit.com | (c) 2014 - 2022 YOOtheme | MIT License */
+import DOMPurify from 'dompurify';
 
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
@@ -6594,7 +6595,8 @@
           }
 
           fastdom.read(() => {
-            const targetOffset = offset($(location.hash));
+            const sanitizedHash = DOMPurify.sanitize(location.hash);
+            const targetOffset = offset($(sanitizedHash));
             const elOffset = offset(this.$el);
 
             if (this.isFixed && intersectRect(targetOffset, elOffset)) {
