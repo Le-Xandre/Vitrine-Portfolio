@@ -62,15 +62,26 @@
             <section class="left-column">
                 <h2>📍 Informations<i> (au survol & cliquable)</i></h2>
 
-                <div class="collapsible-content">
-                    <br />
-                    <p><strong>Email :</strong> Lexandre81@orange.fr</p><br />
-                    <p><strong>Téléphone :</strong> 06 79 42 84 80</p><br />
-                    <p><strong>Localisation :</strong> Rennes (proche gare), Bretagne, France</p>
-                    <br />
-                    <p><strong>Langues :</strong> Français / Anglais (int.) / Espagnol (not.)</p>
-                </div>
+                <div class="collapsible-content" onmouseover="showInfo()" onmouseout="hideInfo()">
+                     <br />
+        <p><strong>Email :</strong> <span id="email">[Masqué]</span></p><br />
+        <p><strong>Téléphone :</strong> <span id="phone">[Masqué]</span></p><br />
+        <p><strong>Localisation :</strong> Rennes (proche gare), Bretagne, France</p>
+        <br />
+        <p><strong>Langues :</strong> Français / Anglais (int.) / Espagnol (not.)</p>
+    </div>
             </section>
+
+<script>
+function showInfo() {
+    document.getElementById('email').textContent = 'Lexandre81@orange.fr';
+    document.getElementById('phone').textContent = '06 79 42 84 80';
+}
+function hideInfo() {
+    document.getElementById('email').textContent = '[Masqué]';
+    document.getElementById('phone').textContent = '[Masqué]';
+}
+</script>
 
             <section class="right-column">
                 <h2>🧘 Savoir-faire & Savoir-être</h2>
