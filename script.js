@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const accrocheText = [
         "En recherche d’opportunités innovantes...",
         "Passionné par le design et le développement web...",
+"Passionné par les arts & les technologies",
         "Toujours prêt à relever de nouveaux défis !"
     ];
 
