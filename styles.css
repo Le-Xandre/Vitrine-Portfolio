@@ -99,7 +99,7 @@ header p {
     margin: 5px auto;
     padding: 5px;
     text-align: center;
-    font-size: 0.85rem;
+    font-size: 0.80rem;
     color: #7f8c8d;
 }
 
@@ -150,7 +150,7 @@ body.dark-theme {
 }
     body.dark-theme .accroche,
     body.dark-theme #accroche-professionnelle {
-        color: #d1d1d1; /* Gris clair pour une meilleure lisibilité */
+        color: #d1d1d1; /* Gris clair pour une meilleure lisibilitÃ© */
     }
 
     body.dark-theme .container {
@@ -220,19 +220,19 @@ align-items:center;
 
     flex-direction: column;
     font-family: Arial, sans-serif;
-    margin: 15px;
+    margin: 10px;
     flex: 1;
     min-width: 300px;
-    padding: 15px;
+    padding: 10px;
     background-color: #f9f9f9;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Ombre légèrement plus marquée */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Ombre lÃ©gÃ¨rement plus marquÃ©e */
     transition: background-color 0.3s;
     animation: fadeInUp 1s ease-out;
 }
 
 h2 {
-    font-size: 18px; /* Un poil plus grand pour une meilleure hiérarchie */
+    font-size: 16px; /* Un poil plus grand pour une meilleure hiÃ©rarchie */
     margin-bottom: 5px;
 
     color: #2980b9;
@@ -243,7 +243,7 @@ h2 {
         transform: translateX(5px);
     }
 h3 {
-    font-size: 14px; /* Un poil plus grand pour une meilleure hiérarchie */
+    font-size: 14px; /* Un poil plus grand pour une meilleure hiÃ©rarchie */
     margin-bottom: 5px;
     color: #2980b9;
     transition: color 0.3s, transform 0.3s ease-in-out;
@@ -255,7 +255,7 @@ h3 {
     }
 
 
-/* Général */
+/* GÃ©nÃ©ral */
 
 .formation {
     margin-bottom: 10px;
@@ -267,19 +267,19 @@ h3 {
 
     .formation h3 {
         margin: 0;
-        font-size: 0.60rem;
+        font-size: 0.7rem;
         font-weight: bold;
         color: #2980b9;
     }
 
     .formation p {
         margin: 5px 0;
-        font-size: 0.55rem;
+        font-size: 0.65rem;
         color: #555;
     }
 
 .formation h3::before {
-    content: ""; /* Icône pour chaque expérience */
+    content: ""; /* IcÃ´ne pour chaque expÃ©rience */
 }
 
 .experience {
@@ -292,19 +292,19 @@ h3 {
 
     .experience h3 {
         margin: 0;
-        font-size: 0.60rem;
+        font-size: 0.7rem;
         font-weight: bold;
         color: #2980b9;
     }
 
     .experience p {
         margin: 5px 0;
-        font-size: 0.55rem;
+        font-size: 0.65rem;
         color: #555;
     }
 
     .experience h3::before {
-        content: ""; /* Icône pour chaque expérience */
+        content: ""; /* IcÃ´ne pour chaque expÃ©rience */
     }
 
 
@@ -352,7 +352,7 @@ ul {
     color: #fff;
     padding: 5px 10px;
     border-radius: 20px;
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     margin: 5px 5px 0 0;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
@@ -364,6 +364,7 @@ ul {
 
 /* Footer */
 footer {
+    font-size: 0.85rem;
     text-align: center;
     margin-top: 20px;
     padding: 10px;
@@ -430,7 +431,7 @@ body, header, .container, .left-column, .right-column {
     }
 
     #accroche-professionnelle {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 
     .main-content {
@@ -444,7 +445,7 @@ body, header, .container, .left-column, .right-column {
 
     .left-column, .right-column {
         width: 95%; /* Utilise toute la largeur */
-        padding: 20px; /* Ajout d'un padding pour éviter que le texte colle aux bords */
+        padding: 20px; /* Ajout d'un padding pour Ã©viter que le texte colle aux bords */
         align-items: center;
     }
     .container {
@@ -466,14 +467,14 @@ body, header, .container, .left-column, .right-column {
     }
 
     #accroche-professionnelle {
-        font-size: 0.75rem; /* Texte légèrement plus petit */
+        font-size: 0.75rem; /* Texte lÃ©gÃ¨rement plus petit */
         padding: 5px;
         width: 90%; /* Ne pas coller aux bords */
     }
     .theme-toggle {
         width: 40px;
         height: 40px;
-        font-size: 1rem;
+        font-size: 0.9rem;
         top: 10px;
         right: 10px;
     }
@@ -483,7 +484,7 @@ body, header, .container, .left-column, .right-column {
 
     .left-column, .right-column {
         width: 95%; /* Utilise toute la largeur */
-        padding: 10px; /* Ajout d'un padding pour éviter que le texte colle aux bords */
+        padding: 10px; /* Ajout d'un padding pour Ã©viter que le texte colle aux bords */
         align-items: center;
     }
 
@@ -493,10 +494,13 @@ body, header, .container, .left-column, .right-column {
         align-items: center;
     }
     .h2 {
-        font-size:0.65rem;
+        font-size:0.7rem;
     }
     .h3 {
-        font-size: 0.65rem;
+        font-size: 0.7rem;
+    }
+    .p {
+        font-size: 0.7rem;
     }
 }
 
