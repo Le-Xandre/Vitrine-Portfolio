@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "Toujours prêt à relever de nouveaux défis !",
         "Bonnes connaissances en communication visuelle 👀",
         "Un bon sens relationnel 🤝",
-        "De bonnes capacités d'adaptation & différentes compétences utiles 🌞"
+        "De bonnes capacités d'adaptation & compétences utiles 🌞"
     ];
 
     let index = 0;
