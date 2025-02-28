@@ -437,7 +437,24 @@ header p {
     #accroche-professionnelle {
         font-size: 0.8rem;
     }
-
+header p {
+    font-size: 0.8rem;
+    color: #7f8c8d;
+}
+    .container {
+        margin: 4vw auto;
+        padding: 3vw;
+        align-items: center;
+    }
+    .h2 {
+        font-size:0.75rem;
+    }
+    .h3 {
+        font-size: 0.65rem;
+    }
+    .p {
+        font-size: 0.6rem;
+    }
     .main-content {
         flex-direction: column;
     }
@@ -501,13 +518,13 @@ header p {
         align-items: center;
     }
     .h2 {
-        font-size:0.75rem;
+        font-size:0.65rem;
     }
     .h3 {
-        font-size: 0.6rem;
+        font-size: 0.55rem;
     }
     .p {
-        font-size: 0.65rem;
+        font-size: 0.5rem;
     }
 }
 
