@@ -430,7 +430,10 @@ body, header, .container, .left-column, .right-column {
         grid-template-columns: 1fr;
         text-align: center;
     }
-
+header p {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+}
     #accroche-professionnelle {
         font-size: 0.8rem;
     }
@@ -488,7 +491,10 @@ body, header, .container, .left-column, .right-column {
         padding: 10px; /* Ajout d'un padding pour éviter que le texte colle aux bords */
         align-items: center;
     }
-
+header p {
+    font-size: 0.8rem;
+    color: #7f8c8d;
+}
     .container {
         margin: 4vw auto;
         padding: 3vw;
@@ -498,7 +504,7 @@ body, header, .container, .left-column, .right-column {
         font-size:0.75rem;
     }
     .h3 {
-        font-size: 0.7rem;
+        font-size: 0.6rem;
     }
     .p {
         font-size: 0.65rem;
