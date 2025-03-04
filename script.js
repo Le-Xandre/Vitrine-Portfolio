@@ -41,11 +41,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     displayAccroche();
     setInterval(displayAccroche, 3500);
+
 });
 
 // Fermer les autres sections ouvertes
 sections.forEach(otherSection => {
+
+    const header = section.querySelector("h2");
+    const content = section.querySelector(".collapsible-content");
+
+    if (header && content) {
+        header.style.cursor = "pointer";
+        header.addEventListener("click", function () {
+            section.classList.toggle("active");
+        });
     if (otherSection !== section) {
         otherSection.classList.remove("active");
+        }
     }
 });
+
+

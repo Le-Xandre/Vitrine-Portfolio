@@ -7,15 +7,21 @@
 
 /* Styles de base */
 body {
-    
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', Arial, sans-serif;
     background: linear-gradient(to right, #f4f4f9, #eef2f3);
     color: #333;
     line-height: 1.2;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+    body.dark-theme {
+        background-color: #333;
+        color: #fff;
+    }
 
 .container {
     display: grid;
@@ -34,12 +40,20 @@ body {
 /* Header */
 header {
     display: grid;
+    justify-content: space-between;
     grid-template-columns: 1fr 2fr;
     align-items: center;
     text-align: center;
-    padding: 5px;
+    padding: 1rem;
     animation: fadeInDown 1s ease-out;
 }
+
+    header button {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
 
 .photo-container img {
     width: 180px;
@@ -107,11 +121,12 @@ header p {
 /* Sections principales */
 main {
     display: grid;
+    padding: 1rem;
     grid-template-columns: 1fr 1fr;
     gap: 5px;
 }
 section {
-    margin-bottom: 5px; /* Augmentation de l'espace entre sections */
+    margin-bottom: 1rem; /* Augmentation de l'espace entre sections */
     gap: 5px;
     align-items: center;
     text-align: center;
@@ -235,7 +250,7 @@ align-items:center;
 h2 {
     font-size: 18px; /* Un poil plus grand pour une meilleure hiérarchie */
     margin-bottom: 5px;
-
+    cursor: pointer;
     color: #2980b9;
     transition: color 0.3s, transform 0.3s ease-in-out;
 }
@@ -255,7 +270,12 @@ h3 {
         transform: translateX(5px);
     }
 
-
+.collapsible-content {
+    display:  inherit;
+}
+section.active .collapsible-content {
+    display: block;
+}
 /* Général */
 
 .formation {
@@ -392,6 +412,34 @@ footer img {
     cursor: pointer;
     transition: .3s;
 }
+
+
+.contact-form {
+    display: grid;
+    flex-direction: column;
+    gap: 10px;
+}
+
+    .contact-form input,
+    .contact-form textarea {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .contact-form button {
+        background-color: #007BFF;
+        color: gray;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+        .contact-form button:hover {
+            background-color: #0056b3;
+        }
 
 
 /* Animations */
