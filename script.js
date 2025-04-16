@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "En recherche d’opportunités, souhaitant vous intéressez ! 🐱",
         "Passionné par le design et le développement web 🌐",
         "Passionné par les arts & les technologies 💫",
+        "Passionné par l'Histoire, les Sciences et la Philosophie ♫",
         "Toujours prêt à relever de nouveaux défis !",
         "Bonnes connaissances en communication visuelle 👀",
         "Un bon sens relationnel 🤝",
