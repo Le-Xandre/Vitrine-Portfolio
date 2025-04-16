@@ -21,12 +21,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const accrocheElement = document.getElementById("accroche-professionnelle");
     const accrocheText = [
         "En recherche d’opportunités, souhaitant vous intéressez ! 🐱",
-        "Passionné par le design et le développement web 🌐",
-        "Passionné par les arts & les technologies 💫",
-        "Passionné par l'Histoire, les Sciences et la Philosophie ♫",
-        "Toujours prêt à relever de nouveaux défis !",
-        "Bonnes connaissances en communication visuelle 👀",
         "Un bon sens relationnel 🤝",
+        "Passionné par le design et le développement web 🌐",
+        "Bonnes connaissances en communication visuelle 👀",
+        "Passionné par les arts & les technologies 💫",        
+        "Toujours prêt à relever de nouveaux défis !",        
+        "Passionné par l'Histoire, les Sciences et la Philosophie ♫",
         "De bonnes capacités d'adaptation & compétences utiles 🌞"
     ];
 
