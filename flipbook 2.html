@@ -409,13 +409,23 @@
             integrity="sha512-DZ5UspHt6hnMkIrFMPfyN4kt4JtgrZcU/ijTj7qY+nXvuVx4Mu8lP83yYImFwvnFsJgmM8QjXQoY1AIkgh5LPA=="
             crossorigin="anonymous" defer></script>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/turn.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.13.216/pdf.min.js" defer></script>
 </head>
 
 <body>
 
     <header>
         <h1>📖 Feuilletage interactif d’un PDF</h1>
-        <a href="slideshow.html" class="button" aria-label="Flipbook">Retour au slide</a>
+        <a href="slideshow.html" class="button" aria-label="Flipbook">Retour au slide</a>   
+ <div id="toolbar">
+        <button id="prev">⬅</button>
+        <button id="next">➡</button>
+        <button id="fullscreen-toggle">🖵</button>
+        <button id="upload-btn">📂 PDF</button>
+        <input type="file" id="pdf-input" accept="application/pdf" hidden />
+    </div>
     </header>
 
     <div class="controls">
@@ -602,7 +612,80 @@
     </script>
     <div id="pdf-loader" onclick="document.getElementById('pdf-input').click()">📂 Charger un PDF</div>
     <input type="file" id="pdf-input" accept="application/pdf" />
+>
+    <script src="jquery.js"></script>
+    <script src="turn.js"></script>
+    <script>
+        $(".flipbook").turn();
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const pdfInput = document.getElementById('pdf-input');
+            const uploadBtn = document.getElementById('upload-btn');
+            const fullscreenToggle = document.getElementById('fullscreen-toggle');
+            const flipbook = document.getElementById('flipbook');
 
+            function initFlipbook() {
+                $('#flipbook').turn({
+                    width: flipbook.clientWidth,
+                    height: flipbook.clientHeight,
+                    autoCenter: true,
+                    gradients: true,
+                    acceleration: true
+                });
+            }
+
+            async function loadPDF(source) {
+                const loadingTask = pdfjsLib.getDocument(source);
+                const pdf = await loadingTask.promise;
+                const container = document.getElementById('flipbook');
+                container.innerHTML = '';
+
+                for (let i = 1; i <= pdf.numPages; i++) {
+                    const page = await pdf.getPage(i);
+                    const canvas = document.createElement('canvas');
+                    const context = canvas.getContext('2d');
+                    const viewport = page.getViewport({ scale: 1.5 });
+                    canvas.width = viewport.width;
+                    canvas.height = viewport.height;
+                    await page.render({ canvasContext: context, viewport }).promise;
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'page';
+                    wrapper.appendChild(canvas);
+                    container.appendChild(wrapper);
+                }
+                initFlipbook();
+            }
+
+            uploadBtn.addEventListener('click', () => pdfInput.click());
+
+            pdfInput.addEventListener('change', (event) => {
+                const file = event.target.files[0];
+                if (file && file.type === "application/pdf") {
+                    const reader = new FileReader();
+                    reader.onload = () => {
+                        const typedArray = new Uint8Array(reader.result);
+                        loadPDF({ data: typedArray });
+                    };
+                    reader.readAsArrayBuffer(file);
+                }
+            });
+
+            document.getElementById('prev').onclick = () => $('#flipbook').turn('previous');
+            document.getElementById('next').onclick = () => $('#flipbook').turn('next');
+
+            fullscreenToggle.onclick = () => {
+                if (!document.fullscreenElement) {
+                    document.documentElement.requestFullscreen();
+                } else {
+                    document.exitFullscreen();
+                }
+            };
+
+            // Charger le PDF par défaut
+            loadPDF("manifeste.pdf");
+        });
+    </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/turn.min.js"></script>
     <script>
