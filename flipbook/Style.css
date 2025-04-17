@@ -1,0 +1,74 @@
+﻿body {
+    margin: 0;
+    background-color: #000;
+    font-family: sans-serif;
+    color: white;
+    overflow: hidden; /* Empêche le défilement, si ce n'est pas nécessaire */
+}
+
+.grid-container {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-auto-rows: 150px;
+    gap: 12px;
+    padding: 12px;
+}
+
+.grid-item {
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 1; /* Assure que les éléments sont cliquables et au-dessus du fond */
+}
+
+    .grid-item:hover {
+        transform: scale(1.05);
+        z-index: 2; /* Augmente le z-index lors du survol pour donner une priorité visuelle */
+    }
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Assure que la modale est au-dessus de tout */
+    opacity: 0;
+    pointer-events: none;
+}
+
+    .modal.active {
+        pointer-events: auto;
+    }
+
+.modal-content {
+    background: #111;
+    padding: 24px;
+    border-radius: 16px;
+    max-width: 500px;
+    color: white;
+    text-align: center;
+}
+
+    .modal-content img {
+        width: 100%;
+        border-radius: 12px;
+        margin-bottom: 16px;
+    }
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+}
