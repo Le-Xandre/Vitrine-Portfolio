@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Flipbook PDF – Interactif</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Feuilletage interactif d’un PDF avec un flipbook élégant et facile à utiliser.">
+    <meta name="keywords" content="PDF, flipbook, interactif, feuilletage, HTML, JavaScript">
+    <meta name="author" content="Le Xandre">
+
+    <style>
+        body {
+            margin: 0;
+            background: #f0f0f0;
+            font-family: Georgia, serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        header, footer {
+            background: #2f2f2f;
+            color: white;
+            padding: 1em;
+            width: 100%;
+            text-align: center;
+        }
+
+        #container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        #flipbook {
+            width: 90vw;
+            height: 90vh;
+            margin: 1em auto;
+        }
+
+        .page canvas {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .controls {
+            margin: 1em;
+            display: flex;
+            gap: 1em;
+            justify-content: center;
+        }
+
+        .controls button {
+            background: #444;
+            color: white;
+            border: none;
+            padding: 0.5em 1em;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .controls button:hover {
+            background: #666;
+        }
+
+        @media (max-width: 768px) {
+            #flipbook {
+                width: 100vw;
+                height: 80vh;
+            }
+
+            .controls button {
+                padding: 0.5em;
+                font-size: 0.9em;
+            }
+        }
+
+        #pdf-loader {
+            position: fixed;
+            bottom: 1em;
+            left: 1em;
+            z-index: 10;
+            background: #444;
+            color: white;
+            padding: 0.4em 0.8em;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        #pdf-loader:hover {
+            background: #666;
+            opacity: 1;
+        }
+
+        #pdf-input {
+            display: none;
+        }
+    </style>
+
+    <!-- Dépendances -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/turn.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.13.216/pdf.min.js" defer></script>
+</head>
+<body>
+
+<header>
+    <h1>📖 Feuilletage interactif d’un PDF</h1>
+</header>
+
+<div class="controls">
+    <button onclick="prevPage()" aria-label="Page précédente">⬅ Précédent</button>
+    <button onclick="nextPage()" aria-label="Page suivante">Suivant ➡</button>
+    <button onclick="toggleFullscreen()" aria-label="Activer/désactiver le plein écran">🖵 Plein écran</button>
+</div>
+
+<div id="container">
+    <div id="flipbook"></div>
+</div>
+<div id="loading" style="display: none;">Chargement en cours...</div>
+
+<div id="pdf-loader" onclick="document.getElementById('pdf-input').click()">📂 Charger un PDF</div>
+<input type="file" id="pdf-input" accept="application/pdf" />
+
+<footer>
+    <p>© 2025 – Flipbook interactif d’images PDF</p>
+</footer>
+
+<script>
+    const pdfURL = "livret.pdf"; // PDF par défaut (si aucun fichier sélectionné)
+
+    async function renderPDFToFlipbook(source) {
+        const loadingIndicator = document.getElementById('loading');
+        loadingIndicator.style.display = 'block';
+
+        try {
+            const loadingTask = pdfjsLib.getDocument(source);
+            const pdf = await loadingTask.promise;
+            const flipbook = document.getElementById('flipbook');
+            flipbook.innerHTML = '';
+
+            for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                const page = await pdf.getPage(pageNum);
+                const viewport = page.getViewport({ scale: 1.5 });
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+
+                await page.render({ canvasContext: context, viewport }).promise;
+
+                const pageDiv = document.createElement('div');
+                pageDiv.className = 'page';
+                pageDiv.appendChild(canvas);
+                flipbook.appendChild(pageDiv);
+            }
+
+            $('#flipbook').turn({
+                width: $('#flipbook').width(),
+                height: $('#flipbook').height(),
+                autoCenter: true,
+                acceleration: true,
+                gradients: true
+            });
+        } catch (error) {
+            alert(`Erreur lors du chargement du PDF : ${error.message}`);
+        } finally {
+            loadingIndicator.style.display = 'none';
+        }
+    }
+
+    function prevPage() {
+        $('#flipbook').turn('previous');
+    }
+
+    function nextPage() {
+        $('#flipbook').turn('next');
+    }
+
+    function toggleFullscreen() {
+        const elem = document.getElementById("container");
+        if (!document.fullscreenElement) {
+            elem.requestFullscreen().catch(err => alert(`Erreur: ${err.message}`));
+        } else {
+            document.exitFullscreen();
+        }
+    }
+
+    $(document).ready(function () {
+        renderPDFToFlipbook(pdfURL);
+
+        $(document).keydown(function (e) {
+            if (e.key === "ArrowLeft") prevPage();
+            if (e.key === "ArrowRight") nextPage();
+        });
+
+        document.getElementById('pdf-input').addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file && file.type === "application/pdf") {
+                const fileReader = new FileReader();
+                fileReader.onload = function () {
+                    const typedArray = new Uint8Array(this.result);
+                    renderPDFToFlipbook({ data: typedArray });
+                };
+                fileReader.readAsArrayBuffer(file);
+            } else {
+                alert("Veuillez sélectionner un fichier PDF.");
+            }
+        });
+
+        document.addEventListener("dragover", function (e) {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = "copy";
+        });
+
+        document.addEventListener("drop", function (e) {
+            e.preventDefault();
+            const file = e.dataTransfer.files[0];
+            if (file && file.type === "application/pdf") {
+                const reader = new FileReader();
+                reader.onload = function () {
+                    const typedArray = new Uint8Array(this.result);
+                    renderPDFToFlipbook({ data: typedArray });
+                };
+                reader.readAsArrayBuffer(file);
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
