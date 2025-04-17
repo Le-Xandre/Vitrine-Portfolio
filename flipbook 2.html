@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Flipbook PDF – Interactif</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Feuilletage interactif d’un PDF avec un flipbook élégant et facile à utiliser.">
+    <meta name="keywords" content="PDF, flipbook, interactif, feuilletage, HTML, JavaScript">
+    <meta name="author" content="Le Xandre">
+
+    <style>
+
+        body {
+            margin: 0;
+            background: #f0f0f0;
+            font-family: Georgia, serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        header, footer {
+            background: #2f2f2f;
+            color: white;
+            padding: 1em;
+            width: 100%;
+            text-align: center;
+        }
+
+        #container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        #flipbook {
+            width: 90vw;
+            height: 90vh;
+            margin: 1em auto;
+        }
+
+        .page canvas {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .controls {
+            margin: 1em;
+            display: flex;
+            gap: 1em;
+            justify-content: center;
+        }
+
+            .controls button {
+                background: #444;
+                color: white;
+                border: none;
+                padding: 0.5em 1em;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+                .controls button:hover {
+                    background: #666;
+                }
+
+        #pdf-loader {
+            position: fixed;
+            bottom: 1em;
+            left: 1em;
+            z-index: 10;
+            background: #444;
+            color: white;
+            padding: 0.4em 0.8em;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+            #pdf-loader:hover {
+                background: #666;
+                opacity: 1;
+            }
+
+        #pdf-input {
+            display: none;
+        }
+
+
+
+
+        @media (max-width: 768px) {
+            #flipbook {
+                width: 100vw;
+                height: 80vh;
+            }
+
+            .controls button {
+                padding: 0.5em;
+                font-size: 0.9em;
+            }
+        }
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Georgia', serif;
+            background: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Arrière-plan animé avec mosaïque d'images */
+        #background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.6); /* Opacité augmentée */
+            background-image: url('images/image (1).jpg'), url('images/image (2).jpg'), url('images/image (3).jpg'), url('images/image (4).jpg'), url('images/image (1).png');
+            background-size: 20% 20%; /* Taille des fragments d'image pour la mosaïque */
+            background-repeat: repeat;
+            animation: moveBackground 30s linear infinite, changeImages 15s infinite; /* Transition plus longue */
+            z-index: 0;
+        }
+
+        @keyframes moveBackground {
+            0% {
+                background-position: 0% 0%;
+            }
+
+            50% {
+                background-position: 50% 50%;
+            }
+
+            100% {
+                background-position: 100% 100%;
+            }
+        }
+
+        @keyframes changeImages {
+            0%, 100% {
+                background-image: url('images/image (1).jpg'), url('images/image (2).jpg'), url('images/image (3).jpg');
+            }
+
+            33% {
+                background-image: url('images/image (4).jpg'), url('images/image (1).png'), url('images/image (2).png');
+            }
+
+            66% {
+                background-image: url('images/image (1).jpg'), url('images/image (2).jpg'), url('images/image (3).png');
+            }
+        }
+
+        header {
+            background: #2f2f2f;
+            color: white;
+            padding: 1em 2em;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 2; /* Assure que le header est au-dessus du contenu */
+            border-radius: 10px; /* Ajout du border-radius */
+            margin-bottom: 2em; /* Espacement entre le titre et le recueil */
+        }
+
+        h1 {
+            font-size: 1.8em; /* Réduit légèrement la taille du titre */
+            margin: 0;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5em;
+            margin-top: 0.5em;
+        }
+
+            nav button, .accessibility button, #navigation-controls button {
+                background: #444;
+                border: none;
+                color: white;
+                padding: 0.5em 1em;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+                nav button:hover, .accessibility button:hover, #navigation-controls button:hover {
+                    background: #666;
+                }
+
+        .accessibility {
+            position: fixed;
+            left: 1em;
+            top: 60%; /* Positionné plus bas, presque centré par rapport au livret */
+            z-index: 3; /* Les boutons doivent être au-dessus du contenu */
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
+            background: rgba(255,255,255,0.9);
+            padding: 0.5em;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+
+        #container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            max-width: 100%;
+            z-index: 2;
+            padding-bottom: 40px; /* Réduit l'espace en bas pour intégrer le footer */
+        }
+
+        #flipbook {
+            width: 80vw;
+            max-width: 780px; /* Réduit la largeur pour que le contenu tienne mieux */
+            height: 475px; /* Ajuste la hauteur du flipbook */
+            z-index: 1; /* Le flipbook est derrière les boutons */
+            margin: 0 auto; /* Centrer le livret horizontalement */
+            padding: 5px; /* Espace autour du contenu */
+        }
+
+        .page {
+            background: white;
+            padding: 1.5em;
+            box-shadow: 0 0 10px rgba(0,0,0,0.25);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            user-select: none;
+        }
+
+            .page h1 {
+                text-align: center;
+                margin-bottom: 1em;
+                font-size: 1.2em; /* Ajuste la taille du titre des sections */
+            }
+
+            .page h2 {
+                text-align: center;
+                margin-bottom: 0.5em;
+                font-size: 1em; /* Ajuste la taille du titre des sections */
+            }
+
+            .page p {
+                text-align: justify;
+                line-height: 1.2;
+                font-size: 0.75em; /* Réduit légèrement la taille de la police */
+            }
+
+        #navigation-controls {
+            margin-top: 1em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1em;
+        }
+
+        #page-number {
+            margin: 0.4em;
+            padding: 0.4em;
+            font-weight: normal;
+            background: #f0f0f0;
+            border-radius: 5%;
+        }
+
+        #toggle-toc {
+            background: #444;
+            border: none;
+            color: white;
+            padding: 0.5em 1em;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #dynamic-toc-container {
+            display: none;
+            margin-top: 1em;
+        }
+
+            #dynamic-toc-container.open {
+                display: block;
+            }
+
+        #dynamic-toc li {
+            margin: 0.5em 0;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #2f2f2f;
+            color: white;
+            text-align: center;
+            padding: 1em;
+            font-size: 0.9em;
+            z-index: 0;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 1024px) {
+            #flipbook {
+                width: 95vw;
+                height: 450px;
+            }
+
+            .page p {
+                font-size: 0.85em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #flipbook {
+                width: 90vw;
+                height: 400px;
+            }
+
+            .page p {
+                font-size: 0.8em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #flipbook {
+                width: 100%;
+                height: auto;
+                max-width: 375px; /* Limite la largeur du livret */
+            }
+
+            .page {
+                padding: 1em;
+            }
+
+                .page p {
+                    font-size: 0.75em;
+                }
+
+            #container {
+                height: auto;
+            }
+        }
+
+        a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+        .button {
+            display: inline-block;
+            background: #1a73e8;
+            color: #fff;
+            padding: 0.6rem 1rem;
+            margin: 1rem 0;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .illustration {
+            width: 100%;
+            max-width: 800px;
+            margin: 2rem auto;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        hr {
+            margin: 2rem 0;
+        }
+    </style>
+
+    <!-- Dépendances -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJ+Y3eFzJx3MQYx0Bk2f9N6AeTf5Zp5pHEfzk="
+            crossorigin="anonymous" defer></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/turn.min.js"
+            integrity="sha512-Di3nR3spS7eN1Sxh8XHGH89D8cyXv3ZEXYXu0rZlvfTT6L7gbT/jHxXfn96zQ0LkLePY2W0NSjWmlc6T3G9dEw=="
+            crossorigin="anonymous" defer></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.13.216/pdf.min.js"
+            integrity="sha512-DZ5UspHt6hnMkIrFMPfyN4kt4JtgrZcU/ijTj7qY+nXvuVx4Mu8lP83yYImFwvnFsJgmM8QjXQoY1AIkgh5LPA=="
+            crossorigin="anonymous" defer></script>
+
+</head>
+
+<body>
+
+    <header>
+        <h1>📖 Feuilletage interactif d’un PDF</h1>
+        <a href="slideshow.html" class="button" aria-label="Flipbook">Retour au slide</a>
+    </header>
+
+    <div class="controls">
+        <button onclick="prevPage()" aria-label="Page précédente">⬅ Précédent</button>
+        <button onclick="nextPage()" aria-label="Page suivante">Suivant ➡</button>
+        <button onclick="toggleFullscreen()" aria-label="Activer/désactiver le plein écran">🖵 Plein écran</button>
+    </div>
+
+    <div id="container">
+        <div id="flipbook"></div>
+    </div>
+    <div id="loading" style="display: none;">Chargement en cours...</div>
+
+    <footer>
+        <p>© 2025 – Flipbook interactif d’images PDF</p>
+    </footer>
+
+    <script>
+        const pdfURL = "Manifeste du Vertige.pdf"; // Remplace par le nom de ton fichier si besoin
+
+        async function renderPDFToFlipbook(url) {
+            const loadingTask = pdfjsLib.getDocument(url);
+            const pdf = await loadingTask.promise;
+            const flipbook = document.getElementById('flipbook');
+            flipbook.innerHTML = '';
+
+            for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                const page = await pdf.getPage(pageNum);
+                const viewport = page.getViewport({ scale: 1.5 });
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+
+                await page.render({ canvasContext: context, viewport }).promise;
+
+                const pageDiv = document.createElement('div');
+                pageDiv.className = 'page';
+                pageDiv.appendChild(canvas);
+                flipbook.appendChild(pageDiv);
+            }
+
+            $('#flipbook').turn({
+                width: $('#flipbook').width(),
+                height: $('#flipbook').height(),
+                autoCenter: true,
+                acceleration: true,
+                gradients: true
+            });
+        }
+
+        function prevPage() {
+            $('#flipbook').turn('previous');
+        }
+
+        function nextPage() {
+            $('#flipbook').turn('next');
+        }
+
+        function toggleFullscreen() {
+            const elem = document.getElementById("container");
+            if (!document.fullscreenElement) {
+                elem.requestFullscreen().catch(err => alert(`Erreur: ${err.message}`));
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        $(document).ready(function () {
+            renderPDFToFlipbook(pdfURL);
+
+            $(document).keydown(function (e) {
+                if (e.key === "ArrowLeft") prevPage();
+                if (e.key === "ArrowRight") nextPage();
+            });
+        });
+
+        async function renderPDFToFlipbook(url) {
+            try {
+                const loadingTask = pdfjsLib.getDocument(url);
+                const pdf = await loadingTask.promise;
+                const flipbook = document.getElementById('flipbook');
+                flipbook.innerHTML = '';
+
+                for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                    const page = await pdf.getPage(pageNum);
+                    const viewport = page.getViewport({ scale: 1.5 });
+                    const canvas = document.createElement('canvas');
+                    const context = canvas.getContext('2d');
+                    canvas.width = viewport.width;
+                    canvas.height = viewport.height;
+
+                    await page.render({ canvasContext: context, viewport }).promise;
+
+                    const pageDiv = document.createElement('div');
+                    pageDiv.className = 'page';
+                    pageDiv.appendChild(canvas);
+                    flipbook.appendChild(pageDiv);
+                }
+
+                $('#flipbook').turn({
+                    width: $('#flipbook').width(),
+                    height: $('#flipbook').height(),
+                    autoCenter: true,
+                    acceleration: true,
+                    gradients: true
+                });
+            } catch (error) {
+                alert(`Erreur lors du chargement du PDF : ${error.message}`);
+            }
+        }
+        async function renderPDFToFlipbook(url) {
+            const loadingIndicator = document.getElementById('loading');
+            loadingIndicator.style.display = 'block';
+
+            try {
+                const loadingTask = pdfjsLib.getDocument(url);
+                const pdf = await loadingTask.promise;
+                const flipbook = document.getElementById('flipbook');
+                flipbook.innerHTML = '';
+
+                for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                    const page = await pdf.getPage(pageNum);
+                    const viewport = page.getViewport({ scale: 1.5 });
+                    const canvas = document.createElement('canvas');
+                    const context = canvas.getContext('2d');
+                    canvas.width = viewport.width;
+                    canvas.height = viewport.height;
+
+                    await page.render({ canvasContext: context, viewport }).promise;
+
+                    const pageDiv = document.createElement('div');
+                    pageDiv.className = 'page';
+                    pageDiv.appendChild(canvas);
+                    flipbook.appendChild(pageDiv);
+                }
+
+                $('#flipbook').turn({
+                    width: $('#flipbook').width(),
+                    height: $('#flipbook').height(),
+                    autoCenter: true,
+                    acceleration: true,
+                    gradients: true
+                });
+            } catch (error) {
+                alert(`Erreur lors du chargement du PDF : ${error.message}`);
+            } finally {
+                loadingIndicator.style.display = 'none';
+            }
+        }
+        document.getElementById('pdf-input').addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file && file.type === "application/pdf") {
+                const fileReader = new FileReader();
+                fileReader.onload = function () {
+                    const typedArray = new Uint8Array(this.result);
+                    renderPDFToFlipbook({ data: typedArray });
+                };
+                fileReader.readAsArrayBuffer(file);
+            } else {
+                alert("Veuillez sélectionner un fichier PDF.");
+            }
+        });
+
+        // Support glisser-déposer
+        document.addEventListener("dragover", function (e) {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = "copy";
+        });
+
+        document.addEventListener("drop", function (e) {
+            e.preventDefault();
+            const file = e.dataTransfer.files[0];
+            if (file && file.type === "application/pdf") {
+                const reader = new FileReader();
+                reader.onload = function () {
+                    const typedArray = new Uint8Array(this.result);
+                    renderPDFToFlipbook({ data: typedArray });
+                };
+                reader.readAsArrayBuffer(file);
+            }
+        });
+
+    </script>
+    <div id="pdf-loader" onclick="document.getElementById('pdf-input').click()">📂 Charger un PDF</div>
+    <input type="file" id="pdf-input" accept="application/pdf" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/turn.min.js"></script>
+    <script>
+        let currentFontSize = 1;
+
+        function adjustFontSize(delta) {
+            currentFontSize += delta * 0.05;
+            $('.page p').css('font-size', currentFontSize + 'em');
+        }
+
+        function resetZoom() {
+            currentFontSize = 1;
+            $('.page p').css('font-size', '1em');
+        }
+
+        function goToPage(num) {
+            $('#flipbook').turn('page', num);
+        }
+
+        function updatePageNumber(page) {
+            $('#page-number').text('Page ' + page);
+        }
+
+        function prevPage() {
+            $('#flipbook').turn('previous');
+        }
+
+        function nextPage() {
+            $('#flipbook').turn('next');
+        }
+
+        $(document).ready(function () {
+            if ($.isFunction($.fn.turn)) {
+                $('#flipbook').turn({
+                    width: $('#flipbook').width(),
+                    height: $('#flipbook').height(),
+                    autoCenter: true,
+                    acceleration: true,
+                    gradients: true,
+                    when: {
+                        turned: function (e, page) {
+                            updatePageNumber(page);
+                        }
+                    }
+                });
+
+                updatePageNumber($('#flipbook').turn('page'));
+
+                let isHolding = false;
+
+                $('#flipbook')
+                    .on('mousedown', function () {
+                        isHolding = true;
+                    })
+                    .on('mouseup mouseleave', function () {
+                        isHolding = false;
+                    })
+                    .on('mousemove', function (e) {
+                        if (isHolding) {
+                            e.preventDefault();
+                        }
+                    });
+            } else {
+                console.error('turn.js n\'a pas été correctement chargé.');
+            }
+
+            // Fonction pour basculer l'affichage du sommaire
+            document.getElementById('toggle-toc').addEventListener('click', function () {
+                const tocContainer = document.getElementById('dynamic-toc-container');
+                tocContainer.classList.toggle('open');
+            });
+
+            // Génération dynamique du sommaire
+            function buildTOC() {
+                const tocContainer = document.getElementById('dynamic-toc');
+                const pages = document.querySelectorAll('.page');
+                tocContainer.innerHTML = '';
+                pages.forEach((page, index) => {
+                    const tocItem = document.createElement('li');
+                    const pageTitle = page.querySelector('h2').innerText;
+                    tocItem.innerHTML = `<a href="javascript:void(0)" onclick="goToPage(${index + 1})">${pageTitle}</a>`;
+                    tocContainer.appendChild(tocItem);
+                });
+            }
+
+            buildTOC();
+        });
+    </script>
+</body>
+</html>

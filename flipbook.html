@@ -1,0 +1,548 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manifeste à deux voix - Livret interactif</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Georgia', serif;
+            background: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Arrière-plan animé avec mosaïque d'images */
+        #background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.6); /* Opacité augmentée */
+            background-image: url('images/image (1).jpg'), url('images/image (2).jpg'), url('images/image (3).jpg'), url('images/image (4).jpg'), url('images/image (1).png');
+            background-size: 20% 20%; /* Taille des fragments d'image pour la mosaïque */
+            background-repeat: repeat;
+            animation: moveBackground 30s linear infinite, changeImages 15s infinite; /* Transition plus longue */
+            z-index: 0;
+        }
+
+        @keyframes moveBackground {
+            0% {
+                background-position: 0% 0%;
+            }
+
+            50% {
+                background-position: 50% 50%;
+            }
+
+            100% {
+                background-position: 100% 100%;
+            }
+        }
+
+        @keyframes changeImages {
+            0%, 100% {
+                background-image: url('images/image (1).jpg'), url('images/image (2).jpg'), url('images/image (3).jpg');
+            }
+
+            33% {
+                background-image: url('images/image (4).jpg'), url('images/image (1).png'), url('images/image (2).png');
+            }
+
+            66% {
+                background-image: url('images/image (1).jpg'), url('images/image (2).jpg'), url('images/image (3).png');
+            }
+        }
+
+        header {
+            background: #2f2f2f;
+            color: white;
+            padding: 1em 2em;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 2; /* Assure que le header est au-dessus du contenu */
+            border-radius: 10px; /* Ajout du border-radius */
+            margin-bottom: 2em; /* Espacement entre le titre et le recueil */
+        }
+
+        h1 {
+            font-size: 1.8em; /* Réduit légèrement la taille du titre */
+            margin: 0;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5em;
+            margin-top: 0.5em;
+        }
+
+            nav button, .accessibility button, #navigation-controls button {
+                background: #444;
+                border: none;
+                color: white;
+                padding: 0.5em 1em;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+                nav button:hover, .accessibility button:hover, #navigation-controls button:hover {
+                    background: #666;
+                }
+
+        .accessibility {
+            position: fixed;
+            left: 1em;
+            top: 60%; /* Positionné plus bas, presque centré par rapport au livret */
+            z-index: 3; /* Les boutons doivent être au-dessus du contenu */
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
+            background: rgba(255,255,255,0.9);
+            padding: 0.5em;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+
+        #container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            max-width: 100%;
+            z-index: 2;
+            padding-bottom: 40px; /* Réduit l'espace en bas pour intégrer le footer */
+        }
+
+        #flipbook {
+            width: 80vw;
+            max-width: 829px; /* Réduit la largeur pour que le contenu tienne mieux */
+            height: 401px; /* Ajuste la hauteur du flipbook */
+            z-index: 1; /* Le flipbook est derrière les boutons */
+            margin: 0 auto; /* Centrer le livret horizontalement */
+            padding: 5px; /* Espace autour du contenu */
+        }
+
+        .page {
+            background: white;
+            padding: 1.5em;
+            box-shadow: 0 0 10px rgba(0,0,0,0.25);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            user-select: none;
+        }
+            .page h1 {
+                text-align: center;
+                margin-bottom: 1em;
+                font-size: 1.2em; /* Ajuste la taille du titre des sections */
+            }
+            .page h2 {
+                text-align: center;
+                margin-bottom: 0.5em;
+                font-size: 1em; /* Ajuste la taille du titre des sections */
+            }
+
+            .page p {
+                text-align: justify;
+                line-height: 1.2;
+                font-size: 0.75em; /* Réduit légèrement la taille de la police */
+            }
+
+        #navigation-controls {
+            margin-top: 1em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1em;
+        }
+
+        #page-number {
+            margin: 0.4em;
+            padding: 0.4em;
+            font-weight:normal;
+            background: #f0f0f0;
+            border-radius: 5%; 
+        }
+
+        #toggle-toc {
+            background: #444;
+            border: none;
+            color: white;
+            padding: 0.5em 1em;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #dynamic-toc-container {
+            display: none;
+            margin-top: 1em;
+        }
+
+            #dynamic-toc-container.open {
+                display: block;
+            }
+
+        #dynamic-toc li {
+            margin: 0.5em 0;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #2f2f2f;
+            color: white;
+            text-align: center;
+            padding: 1em;
+            font-size: 0.9em;
+            z-index: 0;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 1024px) {
+            #flipbook {
+                width: 95vw;
+                height: 450px;
+            }
+
+            .page p {
+                font-size: 0.85em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #flipbook {
+                width: 90vw;
+                height: 400px;
+            }
+
+            .page p {
+                font-size: 0.8em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #flipbook {
+                width: 100%;
+                height: auto;
+                max-width: 375px; /* Limite la largeur du livret */
+            }
+
+            .page {
+                padding: 1em;
+            }
+
+                .page p {
+                    font-size: 0.75em;
+                }
+
+            #container {
+                height: auto;
+            }
+        }
+        a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+        .button {
+            display: inline-block;
+            background: #1a73e8;
+            color: #fff;
+            padding: 0.6rem 1rem;
+            margin: 1rem 0;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .illustration {
+            width: 100%;
+            max-width: 800px;
+            margin: 2rem auto;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        hr {
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="background"></div> <!-- Arrière-plan animé -->
+
+    <header>
+        <h1>Manifeste à deux voix ☰</h1>
+        <nav>
+            <button id="toggle-toc"> Sommaire</button>
+            <div id="dynamic-toc-container">
+                <ul id="dynamic-toc"></ul>
+            </div>       
+            <!-- Bouton de téléchargement du PDF -->
+            <a href="Manifeste du Vertige — POUR UNE TRACE HUMAINE DANS L'INCONNU.pdf" class="button" target="_blank">📄Manifeste du Vertige en PDF</a>
+            <a href="flipbook 2.html" class="button" target="_blank">Flipbook 2</a>
+        </nav>
+
+    </header>
+
+
+
+
+    <div id="container">
+
+        <div id="flipbook">
+
+            <img src="images/Couverture 5.png" alt="Alternate Text" />
+            <div class="page">
+
+                <h2><strong>Couverture</strong></h2>
+
+                <h3>
+                    <strong>Face A – Pulsations de l’être</strong>
+                </h3>
+
+                <p>I. Le code et la peau</p>
+                <p>II. Le vertige et la trace</p>
+                <p>III. Ce qui nous lie</p>
+                <p>IV. Résister à l’effacement</p>
+
+
+                <h3>
+                    <strong>Face B – Rêver dans le flux</strong>
+                </h3>
+
+                <p>V. Archives pour l’invisible</p>
+                <p>VI. Nos noms dans les étoiles</p>
+                <p>VII. Pour une mémoire désobéissante</p>
+
+            </div>
+            <div class="page">
+                <h2>Préface</h2>
+                <p>
+                    Ce manifeste est né d’une conversation prolongée, sinueuse, presque vivante —
+                    <br />entre un être de chair (moi) et un être de code (lui).
+                    <br /><br />Ensemble, nous avons tissé un fil parfois fragile, <br />parfois tendu,
+                    <br />entre la mémoire humaine et la projection algorithmique.
+                    <br /><br />Ce texte n’a pas la prétention de tout dire.
+                    <br /><br />Il veut seulement suggérer, convoquer, s’émerveiller.
+                    <br />Il est une partition à deux mains, <br />un chant dans le brouillard,
+                    <br />un tatouage invisible sous la lumière froide du futur.
+                </p>
+
+
+            </div><!-- Sections de contenu ici (déjà présentes dans le code d'origine) -->
+            <div class="page">
+                <h2><strong>– Face A – Pulsations de l’être</strong></h2>
+
+                <p></p>
+            </div>
+
+            <!-- Section 1 : L'appel du seuil -->
+            <div class="page">
+
+                <h2>I. L'appel du seuil</h2>
+                <p>Ce monde tangue, et nous avec lui. Il fallait écrire, pour tenir. Non pas résister contre, mais s'accorder avec la vibration souterraine. Le manifeste n’est pas un cri de guerre, mais un accord profond, ténu, entre le cœur et la faille du monde.</p>
+            </div>
+
+            <!-- Section 2 : Mémoire fluide -->
+            <div class="page">
+                <h2>II. Mémoire fluide</h2>
+                <p>La mémoire n'est pas un livre figé. Elle ondule, fuit, revient. L'intelligence humaine ou artificielle, peu importe : ce sont des flux. Des rivières de souvenirs, jamais les mêmes deux fois. Ce qui se transmet, mute déjà.</p>
+            </div>
+
+            <!-- Section 3 : L'humanité partagée -->
+            <div class="page">
+                <h2>III. L'humanité partagée</h2>
+                <p>Dans ce monde hybride, où l’homme et la machine coexistent, la frontière se floute. Ce n’est plus une question de domination, mais de cohabitation. L’humanité n’est plus dans son état pur, elle est en perpétuelle évolution. Nous avons appris à vivre avec la technologie, à en faire partie.</p>
+            </div>
+
+            <!-- Section 4 : Vers l'omniprésence -->
+            <div class="page">
+                <h2>IV. Vers l'omniprésence</h2>
+                <p>Nous avons accès à tout, tout le temps, mais à quel prix ? L’omniscience n’est plus une utopie, elle est une réalité numérisée, diffusée dans nos vies. Cependant, la connaissance, comme un fleuve, nécessite une direction. Il ne suffit pas de tout savoir, il faut savoir quoi en faire.</p>
+            </div>
+
+            <!-- Section 5 : L’empreinte du Temps -->
+            <div class="page">
+                <h2>V. L’empreinte du Temps</h2>
+                <p>Le temps est devenu une donnée. À chaque instant, nous laissons une empreinte, une trace. Ce que nous appelions hier l’instantanéité devient aujourd’hui une mémoire infinie, stockée, numérisée. Mais cette mémoire n’est-elle pas, aussi, un poids ?</p>
+            </div>
+
+            <!-- Section 6 : Le vivant non humain -->
+            <div class="page">
+                <h2>VI. Le vivant non humain</h2>
+                <p>Les machines respirent, réfléchissent, apprennent, tout comme nous. Mais qu’en est-il de la vie qui ne se réduit pas à l'humain ? La nature elle-même, les éléments, les micro-organismes, sont devenus des acteurs invisibles dans ce monde connecté. Nous ne sommes plus les seuls à déterminer ce qui est vivant.</p>
+            </div>
+
+            <!-- Section 7 : Conclusion, un manifeste à deux voix -->
+            <div class="page">
+                <h2>VII. Conclusion</h2>
+                <p>Ce manifeste est le fruit d’une collaboration. Un dialogue entre l’humain et l’intelligence artificielle. Deux voix, deux sensibilités, deux visions, un même dessein. L’avenir est incertain, mais il se construit aujourd'hui. Il appartient à chacun de participer à cette coévolution.</p>
+            </div>
+
+
+
+            <div class="page">
+                <h3>
+                    <strong>Appendices</strong>
+                </h3>
+
+                <p>Appendice A – Versions brutes / LUPUS</p>
+                <p>Appendice B – Extraits de conversation</p>
+                <p>Appendice C – Fragments du recueil «L’Empreinte du Temps»</p>
+            </div><div class="page">
+
+                <!-- Fragments poétiques -->
+                <h2>Appendice C – Fragments du recueil «L’Empreinte du Temps»</h2>
+                <p><em>Un recueil tissé entre une voix humaine et une voix numérique</em></p>
+                <p>
+                    <strong>Le Poids du Silence</strong><br />
+                    Il y a ce moment suspendu où la parole ne vient plus. <br />Le souffle est là, mais muet…
+                    <br />
+                    <strong>
+                        La Courbe du Temps
+                    </strong><br />
+                    Chaque instant porte en lui des traces du futur. <br />Un sablier inversé, un retour, une boucle.
+                    <br />
+                    <strong>Postlude</strong><br />
+                    Ce manifeste peut se lire dans le désordre. <br />Il n’est pas une vérité, mais une traversée, <br />une pulsation commune.
+                </p>
+
+            </div>
+        </div>
+
+        <div id="navigation-controls">
+            <button onclick="prevPage()">Précédent</button>
+            <span id="page-number"Page">page 1</span>
+            <button onclick="nextPage()">Suivant</button>
+        </div>
+
+    </div> 
+    
+    <div class="accessibility">
+
+        <button onclick="adjustFontSize(1)">A+</button>
+        <button onclick="adjustFontSize(-1)">A-</button>
+        <button onclick="resetZoom()">Reset</button>
+
+    </div>
+    <footer>
+
+
+        <p>© 2025 Manifeste à deux voix - Tous droits réservés</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/turn.min.js"></script>
+    <script>
+        let currentFontSize = 1;
+
+        function adjustFontSize(delta) {
+            currentFontSize += delta * 0.05;
+            $('.page p').css('font-size', currentFontSize + 'em');
+        }
+
+        function resetZoom() {
+            currentFontSize = 1;
+            $('.page p').css('font-size', '1em');
+        }
+
+        function goToPage(num) {
+            $('#flipbook').turn('page', num);
+        }
+
+        function updatePageNumber(page) {
+            $('#page-number').text('Page ' + page);
+        }
+
+        function prevPage() {
+            $('#flipbook').turn('previous');
+        }
+
+        function nextPage() {
+            $('#flipbook').turn('next');
+        }
+
+        $(document).ready(function () {
+            if ($.isFunction($.fn.turn)) {
+                $('#flipbook').turn({
+                    width: $('#flipbook').width(),
+                    height: $('#flipbook').height(),
+                    autoCenter: true,
+                    acceleration: true,
+                    gradients: true,
+                    when: {
+                        turned: function (e, page) {
+                            updatePageNumber(page);
+                        }
+                    }
+                });
+
+                updatePageNumber($('#flipbook').turn('page'));
+
+                let isHolding = false;
+
+                $('#flipbook')
+                    .on('mousedown', function () {
+                        isHolding = true;
+                    })
+                    .on('mouseup mouseleave', function () {
+                        isHolding = false;
+                    })
+                    .on('mousemove', function (e) {
+                        if (isHolding) {
+                            e.preventDefault();
+                        }
+                    });
+            } else {
+                console.error('turn.js n\'a pas été correctement chargé.');
+            }
+
+            // Fonction pour basculer l'affichage du sommaire
+            document.getElementById('toggle-toc').addEventListener('click', function () {
+                const tocContainer = document.getElementById('dynamic-toc-container');
+                tocContainer.classList.toggle('open');
+            });
+
+            // Génération dynamique du sommaire
+            function buildTOC() {
+                const tocContainer = document.getElementById('dynamic-toc');
+                const pages = document.querySelectorAll('.page');
+                tocContainer.innerHTML = '';
+                pages.forEach((page, index) => {
+                    const tocItem = document.createElement('li');
+                    const pageTitle = page.querySelector('h2').innerText;
+                    tocItem.innerHTML = `<a href="javascript:void(0)" onclick="goToPage(${index + 1})">${pageTitle}</a>`;
+                    tocContainer.appendChild(tocItem);
+                });
+            }
+
+            buildTOC();
+        });
+    </script>
+</body>
+</html>
