@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8" />
@@ -35,6 +35,7 @@
             align-items: center;
             min-height: 100vh;
             padding: 1rem;
+            overflow-x: hidden;
         }
 
         .slideshow {
@@ -46,6 +47,7 @@
             border-radius: 16px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
             margin-bottom: 1rem;
+            z-index: 1;
         }
 
         .slide {
@@ -237,14 +239,58 @@
                 align-items: center;
             }
         }
+        .leaf-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1; /* Pour être derrière le contenu */
+        }
+
+        .leaf {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: url('feuille.png') no-repeat center/contain;
+            animation: fall linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
     <header>
-        <nav><a href="flipbook.html" class="button" target="_blank">flipbook</a></nav>
+        <nav>
+            
+            <div style="text-align: center; margin-top: 2rem; font-family: 'Georgia', serif;">
+                <p style="font-size: 1.1em; color: #444;">
+                    💛 Vous aimez mon univers ? <br>
+                    Offrez-moi un café, une clope, une étincelle :<br>
+                    <a href="https://ko-fi.com/hellxandre" target="_blank" style="display:inline-block; margin-top: 0.5rem; background-color: #eae3d2; padding: 0.6rem 1.2rem; color: #5a4334; border-radius: 12px; text-decoration: none; font-weight: bold; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+                        ☕ Me soutenir sur Ko-fi
+                    </a>
+                </p>
+            </div>
+            <h1>Slideshow 💛<span><em><a href="flipbook.html" class="button" target="_blank">Lien vers flipbook</a></em></span></h1>
+        </nav>
         
     </header>
-    <h1>Slideshow Moderne</h1>
+    <div class="leaf-container" id="leafContainer"></div>
+    
     <div class="slideshow" id="slideshow">
         <img class="slide active" src="images/image (1).jpg" alt="Image 1" data-title="Titre 1" data-desc="Description de l’image 1">
         <img class="slide" src="images/image (2).jpg" alt="Image 2" data-title="Titre 2" data-desc="Description de l’image 2">
@@ -275,7 +321,73 @@
         </div>
     </div>
 
+
     <script>
+        let current = 0;
+        const slides = document.querySelectorAll(".slide");
+        const title = document.getElementById("slideTitle");
+        const desc = document.getElementById("slideDesc");
+        const pagination = document.getElementById("paginationDots");
+        const progress = document.getElementById("progressBar");
+        let playing = true;
+        let interval = setInterval(nextSlide, 4000);
+
+        function resetProgress() {
+            progress.style.animation = 'none';
+            progress.offsetHeight;
+            progress.style.animation = null;
+        }
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle("active", i === index);
+                dots[i].classList.toggle("active", i === index);
+            });
+            title.textContent = slides[index].dataset.title;
+            desc.textContent = slides[index].dataset.desc;
+            resetProgress();
+        }
+
+        function nextSlide() {
+            current = (current + 1) % slides.length;
+            showSlide(current);
+        }
+
+        function prevSlide() {
+            current = (current - 1 + slides.length) % slides.length;
+            showSlide(current);
+        }
+
+        function togglePlay() {
+            const btn = document.getElementById("playPause");
+            if (playing) {
+                clearInterval(interval);
+                btn.textContent = "▶";
+                progress.style.animationPlayState = 'paused';
+            } else {
+                interval = setInterval(nextSlide, 4000);
+                btn.textContent = "⏸";
+                progress.style.animationPlayState = 'running';
+            }
+            playing = !playing;
+        }
+
+        // Navigation par clic sur image
+        slides.forEach(slide => {
+            slide.addEventListener("click", (e) => {
+                const rect = e.target.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+
+                if (x < rect.width / 2) {
+                    prevSlide();
+                } else {
+                    nextSlide();
+                }
+            });
+    </script>
+    <script>
+
+
         let current = 0;
         const slides = document.querySelectorAll(".slide");
         const title = document.getElementById("slideTitle");
@@ -344,6 +456,37 @@
             if (e.key === "Escape") closeModal();
         });
 
+        // Molette pour naviguer
+        document.getElementById("slideshow").addEventListener("wheel", (e) => {
+            if (e.deltaY > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+        });
+
+        // Création dynamique des feuilles
+        function createLeaves(count = 15) {
+            const container = document.getElementById("leafContainer");
+            for (let i = 0; i < count; i++) {
+                const leaf = document.createElement('div');
+                leaf.classList.add('leaf');
+
+                const duration = 8 + Math.random() * 5;
+                const delay = Math.random() * 10;
+                const size = 20 + Math.random() * 30;
+                const left = Math.random() * 100;
+
+                leaf.style.width = `${size}px`;
+                leaf.style.height = `${size}px`;
+                leaf.style.left = `${left}%`;
+                leaf.style.animationDuration = `${duration}s`;
+                leaf.style.animationDelay = `${delay}s`;
+
+                container.appendChild(leaf);
+            }
+        }
+        createLeaves(20);
         // Pagination dots
         let dots = [];
         slides.forEach((_, i) => {
@@ -357,6 +500,7 @@
             pagination.appendChild(dot);
             dots.push(dot);
         });
+
     </script>
 </body>
 </html>
