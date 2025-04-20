@@ -423,7 +423,7 @@
         <button id="prev">⬅</button>
         <button id="next">➡</button>
         <button id="fullscreen-toggle">🖵</button>
-        <button id="upload-btn">📂 PDF</button>
+        <div id="pdf-loader" onclick="document.getElementById('pdf-input').click()">📂 Charger un PDF</div>
         <input type="file" id="pdf-input" accept="application/pdf" hidden />
 
             
@@ -438,16 +438,17 @@ ou   <a href="Dark saoul" class="button" aria-label="Flipbook">Ender Pack 404</a
             </div>
     </header>
 
+    <div id="container">
+    <input type="file" id="pdf-input" accept="application/pdf" />
+        <div id="flipbook"></div>
+    <div id="loading" style="display: none;">Chargement en cours...</div></div>
+    
+
     <div class="controls">
         <button onclick="prevPage()" aria-label="Page précédente">⬅ Précédent</button>
         <button onclick="nextPage()" aria-label="Page suivante">Suivant ➡</button>
         <button onclick="toggleFullscreen()" aria-label="Activer/désactiver le plein écran">🖵 Plein écran</button>
     </div>
-
-    <div id="container">
-        <div id="flipbook"></div>
-    </div>
-    <div id="loading" style="display: none;">Chargement en cours...</div>
 
     <footer>
         <p>© 2025 – Flipbook interactif d’images PDF</p>
@@ -620,8 +621,7 @@ ou   <a href="Dark saoul" class="button" aria-label="Flipbook">Ender Pack 404</a
         });
 
     </script>
-    <div id="pdf-loader" onclick="document.getElementById('pdf-input').click()">📂 Charger un PDF</div>
-    <input type="file" id="pdf-input" accept="application/pdf" />
+    
 >
     <script src="jquery.js"></script>
     <script src="turn.js"></script>
