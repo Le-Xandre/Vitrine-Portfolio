@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Vous êtes mort - Ender Pack</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background: black;
+            overflow: hidden;
+            font-family: 'Arial Black', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: #1a1a1a;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        button {
+            background: #333;
+            border: 1px solid #fff;
+            color: #fff;
+            padding: 0.5em 0.5em;
+            font-size: 1em;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.4s;
+        }
+
+            button:hover {
+                background: #555;
+            }
+        a {
+            text-decoration: none;
+            color: red;
+        }
+        .subtitle {
+            margin-top: 1em;
+            font-size: 0.9em;
+            color: #aaa;
+            text-align:center;
+            
+        }
+        #deathText {
+            color: darkred;
+            font-size: 2.5em;
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out forwards;
+            text-shadow: 2px 2px 8px red;
+        }
+
+        #retryButton {
+            margin-top: 1em;
+            padding: 1em 1em;
+            font-size: 1em;
+            border: none;
+            background-color: #222;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            opacity: 0;
+            animation: fadeIn 3s ease-in-out 2s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+        #retry-btn {
+            margin-top: 5px;
+            padding: 5px 5px;
+            font-size: 0.8em;
+            background-color: transparent;
+            color: red;
+            border: 2px solid red;
+            border-radius: 5px;
+            cursor: pointer;
+            opacity: 0;
+            animation: fadeBtn 3s ease-in forwards;
+        }
+
+        @keyframes fadeBtn {
+            0% {
+                opacity: 0;
+            }
+
+            75% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>🎵 Ender Pack - Bouton de la dérision 404</h1>
+    </header>
+    <strong>Clique pour soupirer</strong>
+
+    (ou pour entendre la douce ironie d'une IA fatiguée)
+
+    
+
+
+    <button id="retry-btn" onclick="playSound()"><img src="ender_pack.png" alt="Ender Pack" style="width: 310px; margin-top: 2px;"></button>
+    <div class="subtitle">
+        <div id="deathText">Vous êtes mort</div><button id="retry-btn" onclick="playSound()">Réessayer ?</button><audio id="enderSound">
+    <source src="death_sound.mp3" type="audio/mpeg">
+</audio> ou <button id="retry-btn"> <a href="slideshow.html"> Retour au slide</a></button>
+</div>
+    <audio id="enderSound">
+        <source src="death_sound.mp3" type="audio/wav">
+        Ton navigateur ne supporte pas l'élément audio.
+    </audio>
+    <script>
+        const deathSound = document.getElementById("death-sound");
+        const retryBtn = document.getElementById("retry-btn");
+        const deathText = document.getElementById("death-text");
+
+        window.onload = () => {
+            deathSound.play();
+        }
+
+        retryBtn.addEventListener("click", () => {
+            deathText.style.animation = 'none';
+            retryBtn.style.animation = 'none';
+
+            void deathText.offsetWidth; // force reflow
+
+            deathText.style.opacity = 0;
+            retryBtn.style.opacity = 0;
+            deathText.style.animation = 'fadeIn 2s ease-in forwards';
+            retryBtn.style.animation = 'fadeBtn 4s ease-in forwards';
+            deathSound.currentTime = 0;
+            deathSound.play();
+        });
+    </script>
+
+
+
+    <script>
+        window.onload = function () {
+            const audio = document.getElementById('deathSound');
+            audio.volume = 0.7;
+            audio.play();
+        };
+
+        function restart() {
+            document.getElementById('deathText').style.opacity = 0;
+            document.getElementById('retryButton').style.opacity = 0;
+            const audio = document.getElementById('deathSound');
+            audio.currentTime = 0;
+            audio.play();
+            setTimeout(() => {
+                document.getElementById('deathText').style.animation = 'fadeIn 2s ease-in-out forwards';
+                document.getElementById('retryButton').style.animation = 'fadeIn 3s ease-in-out 2s forwards';
+            }, 100);
+        }</script>
+
+
+
+    <script>
+        function playSound() {
+            const sound = document.getElementById("enderSound");
+            sound.currentTime = 0;
+            sound.play();
+        }
+    </script>
+</body>
+</html>
