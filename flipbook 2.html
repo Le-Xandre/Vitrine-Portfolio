@@ -419,15 +419,7 @@
     <header>
         <h1>📖 Feuilletage interactif d’un PDF</h1>
         
- <div id="toolbar">
-        <button id="prev">⬅</button>
-        <button id="next">➡</button>
-        <button id="fullscreen-toggle">🖵</button>
-        <div id="pdf-loader" onclick="document.getElementById('pdf-input').click()">📂 Charger un PDF</div>
-        <input type="file" id="pdf-input" accept="application/pdf" hidden />
-
-            
-            </div><div style="text-align: center; margin-top: 2rem; font-family: 'Georgia', serif;">
+ <div style="text-align: center; margin-top: 2rem; font-family: 'Georgia', serif;">
                 <p style="font-size: 1.1em; color: #444;">
                     💛 Vous aimez mon univers ? Offrez-moi un café, une clope, une étincelle ♪<br>
                     <a href="https://ko-fi.com/hellxandre" target="_blank" style="display:inline-block; margin-top: 0.2rem; background-color: #eae3d2; padding: 0.3rem 1rem; color: #5a4334; border-radius: 12px; text-decoration: none; font-weight: bold; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
@@ -443,12 +435,20 @@ ou   <a href="Dark saoul" class="button" aria-label="Flipbook">Ender Pack 404</a
         <div id="flipbook"></div>
     <div id="loading" style="display: none;">Chargement en cours...</div></div>
     
+<div id="toolbar">
+        <button id="prev">⬅</button>
+        <button id="next">➡</button>
+        <button id="fullscreen-toggle">🖵</button>
+        <div id="pdf-loader" onclick="document.getElementById('pdf-input').click()">📂 Charger un PDF</div>
+        <input type="file" id="pdf-input" accept="application/pdf" hidden />
 
-    <div class="controls">
+           <div class="controls">
         <button onclick="prevPage()" aria-label="Page précédente">⬅ Précédent</button>
         <button onclick="nextPage()" aria-label="Page suivante">Suivant ➡</button>
         <button onclick="toggleFullscreen()" aria-label="Activer/désactiver le plein écran">🖵 Plein écran</button>
-    </div>
+    </div>  
+            </div>
+   
 
     <footer>
         <p>© 2025 – Flipbook interactif d’images PDF</p>
