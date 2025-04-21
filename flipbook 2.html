@@ -226,6 +226,56 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
+.btn-container {
+    position: relative;
+    display: inline-block;
+}
+
+.glow-btn {
+    position: relative;
+    padding: 18px 40px;
+    font-size: 18px;
+    border: none;
+    border-radius: 40px;
+    background: #333;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    transition: 0.5s ease;
+    z-index: 1;
+}
+
+    .glow-btn:hover {
+        background: #e50914;
+        box-shadow: 0 0 50px #e50914;
+        letter-spacing: 0.2em;
+    }
+
+.particles {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #e50914;
+    box-shadow: 0 0 20px #e50914, 0 0 50px #e50914;
+    pointer-events: none;
+    opacity: 0;
+    animation: animate 2s linear forwards;
+    z-index: 0;
+}
+
+@keyframes animate {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(var(--dx), var(--dy)) scale(0.5);
+        opacity: 0;
+    }
+}
 
     </style>
 
@@ -252,16 +302,16 @@
 
         </div>
         <div class="controls">
-            <button onclick="toggleOptions()">⚙️ Options</button>
-            <button onclick="exitFullscreen()" id="exitFS" style="display:none;">🔙 Quitter le plein écran</button>
+            
+            
             <button onclick="document.getElementById('pdf-input').click()">📂 Charger un PDF</button>
             <input type="file" id="pdf-input" accept="application/pdf" />
 
             <button onclick="prevPage()">⬅ Précédent</button>
             <button onclick="nextPage()">Suivant ➡</button>
             <button onclick="toggleFullscreen()">🖵 Plein écran</button>
-
-
+<button onclick="exitFullscreen()" id="exitFS" style="display:none;">🔙 Quitter le plein écran</button>
+<button onclick="toggleOptions()">⚙️ Options</button>
 
             <div id="options-menu">
                 <strong>🛠️ Rendu PDF :</strong>
