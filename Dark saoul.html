@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Vous êtes mort - Ender Pack</title>
+<link rel="stylesheet" href="style.css">
     <style>
         html, body {
             margin: 0;
@@ -121,9 +122,9 @@
 
     <button class="glow-btn" id="retry-btn" onclick="playSound()"><img src="ender_pack.png" alt="Ender Pack" style="width: 310px; margin-top: 2px;"></button>
     </div><div class="subtitle">
-        <div id="deathText">Vous êtes mort</div><button id="retry-btn" onclick="playSound()">Réessayer ?</button><audio id="enderSound">
+        <div id="deathText">Vous êtes mort</div><button id="retry-btn" class="glow-btn" onclick="playSound()">Réessayer ?</button><audio id="enderSound">
     <source src="death_sound.mp3" type="audio/mpeg">
-</audio> ou <button id="retry-btn"> <a href="slideshow.html"> Retour au slide</a></button>
+</audio> ou <button id="retry-btn" class="glow-btn"> <a href="slideshow.html"> Retour au slide</a></button>
 </div>
     <audio id="enderSound">
         <source src="death_sound.mp3" type="audio/wav">
@@ -153,7 +154,7 @@
         });
     </script>
 
-
+<script src="script.js"></script>
 
     <script>
         window.onload = function () {
