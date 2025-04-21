@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <title>Flipbook Interactif</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <style>
         html, body {
             margin: 0;
@@ -235,10 +236,13 @@
 <body>
     <header>
         <h1>📖 Flipbook PDF interactif</h1>
-        <a href="Catalogue_compressed.pdf" class="button" aria-label="Flipbook" target="_blank">Exemple à télécharger et charger ensuite</a>
-        ou <a href="slideshow.html" class="button" aria-label="Flipbook">Retour au slideshow précédent</a>
-        ou   <a href="Dark saoul" class="button" aria-label="Flipbook">Ender~Pack d'erreurs 404</a>
-
+    <div class="btn-container">
+        
+    
+        <a href="Catalogue_compressed.pdf" class="glow-btn aria-label="Flipbook" target="_blank">Exemple à télécharger et charger ensuite</a>
+        ou <a href="slideshow.html" class="glow-btn aria-label="Flipbook">Retour au slideshow précédent</a>
+        ou   <a href="Dark saoul" class="glow-btn aria-label="Flipbook">Ender~Pack d'erreurs 404</a>
+</div>
     </header>
         <div id="container">
             <div id="flipbook"></div>
@@ -275,7 +279,7 @@
             </a>
         </p>
     </footer>
-
+<script src="script.js"></script>
     <script>
         let pdfDoc = null;
         let currentScale = 2;
@@ -376,5 +380,6 @@
             }
         });
     </script>
+
 </body>
 </html>
