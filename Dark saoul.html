@@ -243,8 +243,13 @@ function updateButtonColor() {
     button.style.color = '#fff'; // Maintenir le texte en blanc pour une lisibilité optimale
 }
 
+
 function getRandomSize() {
-    return Math.floor(Math.random() * (8 - 4 + 1)) + 4;
+    return Math.floor(Math.random() * (8 - 4 + 1)) + 4; // Taille entre 4px et 8px
+}
+
+function getRandomPosition(max) {
+    return Math.random() * (max * 2) - max; // Génère des positions aléatoires dans un rayon large
 }
 
 function createParticles() {
@@ -276,7 +281,7 @@ function createParticles() {
     btnContainer.appendChild(particles);
     setTimeout(() => {
         particles.remove();
-    }, 2000);
+    }, 4000);
 }
 
 button.addEventListener('mouseenter', () => {
@@ -287,7 +292,6 @@ button.addEventListener('mouseenter', () => {
 button.addEventListener('mouseleave', () => {
     clearInterval(interval);
 });
- 
 </script>
 
     <script>
