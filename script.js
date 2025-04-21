@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", () => {
     const themeToggleButton = document.getElementById("theme-toggle");
     const body = document.body;
@@ -59,3 +58,8 @@ sections.forEach(otherSection => {
         });
     if (otherSection !== section) {
         otherSection.classList.remove("active");
+        }
+    }
+});
+
+
