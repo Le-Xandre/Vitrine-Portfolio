@@ -431,7 +431,6 @@
         });
     </script>
 <script>
-    
 let btnContainer = document.querySelector('.btn-container');
 let button = document.querySelector('.glow-btn');
 
@@ -447,7 +446,7 @@ function getRandomColor() {
 function updateButtonColor() {
     const randomColor = getRandomColor();
     button.style.background = randomColor;
-    button.style.boxShadow = `0 0 20px ${randomColor}, 0 0 50px ${randomColor}`;
+    button.style.boxShadow = `0 0 15px ${randomColor}, 0 0 45px ${randomColor}`;
     button.style.color = '#fff'; // Maintenir le texte en blanc pour une lisibilité optimale
 }
 
@@ -474,7 +473,7 @@ function createParticles() {
 
     const randomColor = getRandomColor();
     particles.style.background = randomColor;
-    particles.style.boxShadow = `0 0 20px ${randomColor}, 0 0 50px ${randomColor}`;
+    particles.style.boxShadow = `0 0 15px ${randomColor}, 0 0 45px ${randomColor}`;
 
     particles.style.left = `${x}px`;
     particles.style.top = `${y}px`;
