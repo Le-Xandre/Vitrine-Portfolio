@@ -59,7 +59,7 @@ sections.forEach(otherSection => {
     if (otherSection !== section) {
         otherSection.classList.remove("active");
 
-        let btnContainer = document.querySelector('.btn-container');
+let btnContainer = document.querySelector('.btn-container');
 let button = document.querySelector('.glow-btn');
 
 let spawnDistance = 20;
@@ -122,8 +122,3 @@ button.addEventListener('mouseenter', () => {
 button.addEventListener('mouseleave', () => {
     clearInterval(interval);
 });
-        }
-    }
-});
-
-
