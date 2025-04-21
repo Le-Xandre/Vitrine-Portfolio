@@ -227,7 +227,7 @@
 let btnContainer = document.querySelector('.btn-container');
 let button = document.querySelector('.glow-btn');
 
-let spawnDistance = 20;
+let spawnDistance = 120;
 
 function getRandomColor() {
     const r = Math.floor(Math.random() * 256);
@@ -281,7 +281,7 @@ function createParticles() {
     btnContainer.appendChild(particles);
     setTimeout(() => {
         particles.remove();
-    }, 4000);
+    }, 6000);
 }
 
 button.addEventListener('mouseenter', () => {
