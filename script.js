@@ -1,40 +1,3 @@
-let btnContainer = document.querySelector('.btn-container');
-let button = document.querySelector('.glow-btn');
-
-let spawnDistance = 20;
-
-function createParticles() {
-    let particles = document.createElement('div');
-    particles.classList.add('particles');
-    let btnWidth = button.offsetWidth;
-    let btnHeight = button.offsetHeight;
-
-    let angle = Math.random() * 2 * Math.PI;
-    let x = btnWidth / 2 + Math.cos(angle) * spawnDistance;
-    let y = btnHeight / 2 + Math.sin(angle) * spawnDistance;
-
-    let dx = Math.cos(angle) * 100;
-    let dy = Math.sin(angle) * 100;
-
-    particles.style.left = `${x}px`;
-    particles.style.top = `${y}px`;
-    particles.style.setProperty('--dx', `${dx}px`);
-    particles.style.setProperty('--dy', `${dy}px`);
-
-    btnContainer.appendChild(particles);
-    setTimeout(() => {
-        particles.remove();
-    }, 2000);
-}
-
-button.addEventListener('mouseenter', () => {
-    interval = setInterval(createParticles, 80);
-});
-
-button.addEventListener('mouseleave', () => {
-    clearInterval(interval);
-});
-
 document.addEventListener("DOMContentLoaded", () => {
     const themeToggleButton = document.getElementById("theme-toggle");
     const body = document.body;
@@ -95,6 +58,70 @@ sections.forEach(otherSection => {
         });
     if (otherSection !== section) {
         otherSection.classList.remove("active");
+
+        let btnContainer = document.querySelector('.btn-container');
+let button = document.querySelector('.glow-btn');
+
+let spawnDistance = 20;
+
+function getRandomColor() {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    return `rgb(${r}, ${g}, ${b})`;
+}
+
+function updateButtonColor() {
+    const randomColor = getRandomColor();
+    button.style.background = randomColor;
+    button.style.boxShadow = `0 0 20px ${randomColor}, 0 0 50px ${randomColor}`;
+    button.style.color = '#fff'; // Maintenir le texte en blanc pour une lisibilité optimale
+}
+
+function getRandomSize() {
+    return Math.floor(Math.random() * (8 - 4 + 1)) + 4;
+}
+
+function createParticles() {
+    let particles = document.createElement('div');
+    particles.classList.add('particles');
+    let btnWidth = button.offsetWidth;
+    let btnHeight = button.offsetHeight;
+
+    let angle = Math.random() * 2 * Math.PI;
+    let x = btnWidth / 2 + Math.cos(angle) * spawnDistance;
+    let y = btnHeight / 2 + Math.sin(angle) * spawnDistance;
+
+    let dx = Math.cos(angle) * 100;
+    let dy = Math.sin(angle) * 100;
+
+    const randomSize = getRandomSize();
+    particles.style.width = `${randomSize}px`;
+    particles.style.height = `${randomSize}px`;
+
+    const randomColor = getRandomColor();
+    particles.style.background = randomColor;
+    particles.style.boxShadow = `0 0 20px ${randomColor}, 0 0 50px ${randomColor}`;
+
+    particles.style.left = `${x}px`;
+    particles.style.top = `${y}px`;
+    particles.style.setProperty('--dx', `${dx}px`);
+    particles.style.setProperty('--dy', `${dy}px`);
+
+    btnContainer.appendChild(particles);
+    setTimeout(() => {
+        particles.remove();
+    }, 2000);
+}
+
+button.addEventListener('mouseenter', () => {
+    interval = setInterval(createParticles, 80);
+    updateButtonColor(); // Changer la couleur du bouton et de son halo au survol
+});
+
+button.addEventListener('mouseleave', () => {
+    clearInterval(interval);
+});
         }
     }
 });
