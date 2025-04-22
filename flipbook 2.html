@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <title>Flipbook Interactif</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style (2).css">
+   
     <style>
         html, body {
             margin: 0;
@@ -207,7 +207,7 @@
                 text-decoration: underline;
             }
 
-        .button {
+        .btn {
             display: inline-block;
             background: #1a73e8;
             color: #fff;
@@ -218,7 +218,7 @@
             font-weight: bold;
         }
 
-        .image {
+        .img {
             width: 90%;
             max-width: 800px;
             margin: 1rem auto;
@@ -278,23 +278,20 @@
 }
 
     </style>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/turn.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.13.216/pdf.min.js" defer></script>
+ <link rel="stylesheet" href="style (2).css">
 </head>
 <body>
     <header>
         <h1>📖 Flipbook PDF interactif</h1>
       <div class="btn-container">
-            <a class="glow-btn href="slideshow.html" aria-label="Flipbook">Retour au slideshow précédent</a>
-        </div>
+            <a href="slideshow.html" class="glow-btn" aria-label="Flipbook">Retour au slideshow précédent</a>
+        
         ou 
- <div class="btn-container">
-    <a href="Catalogue_compressed.pdf" class="glow-btn aria-label="Flipbook" target="_blank">Exemple à télécharger et charger ensuite</a>
-</div>     
-        ou   <div class="btn-container">
-            <a class="glow-btn href="Dark saoul" aria-label="Flipbook">Ender~Pack d'erreurs 404</a>
+ 
+    <a href="Catalogue_compressed.pdf" class="glow-btn" aria-label="Flipbook" target="_blank">Exemple à télécharger et charger ensuite</a>
+    
+        ou   
+            <a href="Dark saoul.html" class="glow-btn" aria-label="Flipbook">Ender~Pack d'erreurs 404</a>
 </div>
     </header>
         <div id="container">
@@ -499,5 +496,10 @@ button.addEventListener('mouseleave', () => {
 });
 
 </script>
+
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/turn.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.13.216/pdf.min.js" defer></script>
 </body>
 </html>
