@@ -20,7 +20,10 @@ body {
   display: none;
   position: absolute;
   width: 100%;
-  height: auto;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.4s ease-in-out;
+            cursor: pointer;
 }
 
 .slide img {
