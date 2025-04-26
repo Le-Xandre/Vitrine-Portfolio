@@ -23,5 +23,17 @@ document.querySelector('.slideshow-container').addEventListener('mouseleave', ()
   showSlides();
 });
 
+
+function openFullscreen() {
+  let elem = document.querySelector('.slideshow-container');
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) {
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) {
+    elem.msRequestFullscreen();
+  }
+}
+
 // Démarre le slideshow
 showSlides();
