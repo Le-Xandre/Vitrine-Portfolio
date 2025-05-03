@@ -63,7 +63,57 @@
                 background-image: url('images/image (1).jpg'), url('images/image (2).jpg'), url('images/image (3).png');
             }
         }
-
+header {
+  background: #333;
+  color: #fff;
+  padding: 10px 0;
+}
+nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+nav ul li {
+  margin: 0 15px;
+}
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+nav ul li a.active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+.flipbook-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 1000px;
+}
+#flipbook {
+  width: 100%;
+  height: 80vh;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+.controls {
+  margin-top: 10px;
+}
+.controls button {
+  margin: 0 10px;
+  padding: 5px 10px;
+  font-size: 18px;
+}
+@media (max-width: 768px) {
+  #flipbook {
+    height: 70vh;
+  }
+}
         header {
             background: #2f2f2f;
             color: white;
@@ -246,57 +296,7 @@
             z-index: 0;
             box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
         }
-header {
-  background: #333;
-  color: #fff;
-  padding: 10px 0;
-}
-nav ul {
-  display: flex;
-  justify-content: center;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-nav ul li {
-  margin: 0 15px;
-}
-nav ul li a {
-  color: #fff;
-  text-decoration: none;
-}
-nav ul li a.active {
-  font-weight: bold;
-  text-decoration: underline;
-}
-.flipbook-container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 20px auto;
-  width: 90%;
-  max-width: 1000px;
-}
-#flipbook {
-  width: 100%;
-  height: 80vh;
-  background: #fff;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-}
-.controls {
-  margin-top: 10px;
-}
-.controls button {
-  margin: 0 10px;
-  padding: 5px 10px;
-  font-size: 18px;
-}
-@media (max-width: 768px) {
-  #flipbook {
-    height: 70vh;
-  }
-}
+
         @media (max-width: 1024px) {
             #flipbook {
                 width: 95vw;
@@ -511,7 +511,7 @@ nav ul li a.active {
     </div>
     </div> 
     </main>
-<script src="flipbook.js"></script>
+
 
     <footer>
 
@@ -607,5 +607,6 @@ nav ul li a.active {
             buildTOC();
         });
     </script>
+    <script src="flipbook.js"></script>
 </body>
 </html>
