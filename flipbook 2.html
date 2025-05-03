@@ -300,10 +300,10 @@
 
     </div>
     <div class="controls">
-
+<a href="Catalogue_compressed.pdf" class="button" aria-label="Flipbook" target="_blank">Exemple à télécharger et charger ensuite</a>
         <button onclick="document.getElementById('pdf-input').click()">📂 Charger un PDF</button>
         <input type="file" id="pdf-input" accept="application/pdf" />
- <a href="Catalogue_compressed.pdf" class="button" aria-label="Flipbook" target="_blank">Exemple à télécharger et charger ensuite</a>
+ 
         <button onclick="prevPage()">⬅ Précédent</button>
         <button onclick="nextPage()">Suivant ➡</button>
 
@@ -327,7 +327,7 @@
         </a>
     </p>
 </footer>
-
+  <script src="flipbook.js"></script>
 <script>
     let pdfDoc = null;
     let currentScale = 2;
@@ -428,7 +428,7 @@
         }
     });
 </script>
-  <script src="flipbook.js"></script>
+
 </body>
 </html>
 
