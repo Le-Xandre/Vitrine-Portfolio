@@ -4,236 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Flipbook 2 – Intégration PDF</title>
-
-      <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            font-family: Georgia, serif;
-            background: #f0f0f0;
-            height: 100%;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        header, footer {
-            background: #2f2f2f;
-            color: white;
-            padding: 0.5em;
-            text-align: center;
-            font-size: 0.9em;
-        }
-        a {
-            color: #e8461a;
-            text-decoration: none;
-            text-align: center;
-            font-size: 0.8em;
-        }
-
-            a:hover {
-                text-decoration: underline;
-            }
-
-        #container {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-
-        #flipbook {
-            width: 90vw;
-            height: 70vh;
-        }
-
-        .page canvas {
-            width: 100%;
-            height: auto;
-            align-content: center;
-            -webkit-align-items: inherit;
-            align-items: inherit;
-            padding: 0.2em;
-            margin: 0 auto;
-            border-radius: 10px;
-            box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-        }
-        .page image {
-            align-content: center;
-            -webkit-align-items: inherit;
-            align-items: inherit;
-            padding: 0.2em;
-            margin: 0 auto;
-        }
-        .controls {
-            display: flex;
-            justify-content: center;
-            gap: 0.5em;
-            padding: 0.5em;
-            background: #eaeaea;
-            flex-wrap: wrap;
-            font-size: 0.9em;
-            position: relative;
-        }
-
-            .controls button {
-                background: #444;
-                color: white;
-                border: none;
-                padding: 0.4em 0.8em;
-                border-radius: 5px;
-                cursor: pointer;
-            }
-
-                .controls button:hover {
-                    background: #666;
-                }
-
-        input[type="file"] {
-            display: none;
-        }
-
-        #loading {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.1em;
-            background: rgba(255,255,255,0.9);
-            padding: 1em 2em;
-            border-radius: 10px;
-            display: none;
-        }
-
-        #options-menu {
-            position: absolute;
-            bottom: 2.5em;
-            right: 1em;
-            background: white;
-            border: 1px solid #ccc;
-            padding: 0.8em;
-            border-radius: 6px;
-            box-shadow: 0 0 5px rgba(0,0,0,0.15);
-            display: none;
-            z-index: 10;
-            font-size: 0.9em;
-        }
-
-            #options-menu label {
-                display: block;
-                margin-bottom: 0.5em;
-            }
-
-        .side-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 2.5em;
-            color: rgba(0, 0, 0, 0.4);
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            width: 1.5em;
-            height: 1.5em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 5;
-            transition: background 0.2s, color 0.2s;
-        }
-
-            .side-arrow:hover {
-                background: rgba(255, 255, 255, 0.9);
-                color: #000;
-            }
-
-        #left-arrow {
-            left: 1%;
-        }
-
-        #right-arrow {
-            right: 1%;
-        }
-
-        @media (max-width: 1024px) {
-            #flipbook {
-                width: 95vw;
-                height: 450px;
-            }
-
-            .page p {
-                font-size: 0.85em;
-            }
-        }
-
-        @media (max-width: 768px) {
-            #flipbook {
-                width: 90vw;
-                height: 400px;
-            }
-
-            .page p {
-                font-size: 0.8em;
-            }
-        }
-
-        @media (max-width: 480px) {
-            #flipbook {
-                width: 100%;
-                height: auto;
-                max-width: 375px; /* Limite la largeur du livret */
-            }
-
-            .page {
-                padding: 1em;
-            }
-
-                .page p {
-                    font-size: 0.75em;
-                }
-
-
-            #container {
-                height: auto;
-            }
-        }
-
-        a {
-            color: #1a73e8;
-            text-decoration: none;
-        }
-
-            a:hover {
-                text-decoration: underline;
-            }
-
-        .button {
-            display: inline-block;
-            background: #1a73e8;
-            color: #fff;
-            padding: 0.6rem 1rem;
-            margin: 1rem 0;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: bold;
-        }
-
-        .illustration {
-            width: 100%;
-            max-width: 800px;
-            margin: 2rem auto;
-            display: block;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-
-    </style>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/turn.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.13.216/pdf.min.js" defer></script>
-
-       
     <style>
         html, body {
             margin: 0;
@@ -507,14 +277,17 @@
 }
 
     </style>
-    
-  <link rel="stylesheet" href="styles.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/turn.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.13.216/pdf.min.js" defer></script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
 </head>
 <body>
 <header>
     <h1>📖 Flipbook PDF interactif</h1>
-    <a href="Catalogue_compressed.pdf" class="button" aria-label="Flipbook" target="_blank">Exemple à télécharger et charger ensuite</a>
+   
     ou <a href="slideshow.html" class="button" aria-label="Flipbook">Retour au slideshow précédent</a>
     ou   <a href="Dark saoul" class="button" aria-label="Flipbook">Ender~Pack d'erreurs 404</a>
 
@@ -527,16 +300,16 @@
 
     </div>
     <div class="controls">
-        <button onclick="toggleOptions()">⚙️ Options</button>
-        <button onclick="exitFullscreen()" id="exitFS" style="display:none;">🔙 Quitter le plein écran</button>
+
         <button onclick="document.getElementById('pdf-input').click()">📂 Charger un PDF</button>
         <input type="file" id="pdf-input" accept="application/pdf" />
-
+ <a href="Catalogue_compressed.pdf" class="button" aria-label="Flipbook" target="_blank">Exemple à télécharger et charger ensuite</a>
         <button onclick="prevPage()">⬅ Précédent</button>
         <button onclick="nextPage()">Suivant ➡</button>
+
+        <button onclick="toggleOptions()">⚙️ Options</button>
         <button onclick="toggleFullscreen()">🖵 Plein écran</button>
-
-
+        <button onclick="exitFullscreen()" id="exitFS" style="display:none;">🔙 Quitter le plein écran</button>
 
         <div id="options-menu">
             <strong>🛠️ Rendu PDF :</strong>
