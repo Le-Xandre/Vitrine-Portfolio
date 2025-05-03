@@ -19,9 +19,6 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            flex-direction: column;
-            position: relative;
-            overflow: hidden;
         }
 
         /* Arrière-plan animé avec mosaïque d'images */
@@ -304,24 +301,17 @@
         <nav>            
             <!-- Bouton de téléchargement du PDF -->
 <ul>
-    <a href="Manifeste du Vertige.pdf" class="glow-btn" target="_blank">📄 Codex du Vertige (PDF)</a>
-<a href="Affiche.pdf" class="glow-btn" target="_blank">📄 Illustration & Texte (PDF)</a>
-<a href="flipbook 2.html" class="glow-btn" target="_blank">📄 Lien vers Flipbook 2</a>
+   <li> <a href="Manifeste du Vertige.pdf" class="glow-btn" target="_blank">📄 Codex du Vertige (PDF)</a></li>
+<li><a href="Affiche.pdf" class="glow-btn" target="_blank">📄 Illustration & Texte (PDF)</a></li>
+<li><a href="flipbook 2.html" class="glow-btn" target="_blank">📄 Lien vers Flipbook 2</a></li>
 </ul>
 
-
-        
-           <!--   <button id="toggle-toc"> Sommaire</button>
-            <div id="dynamic-toc-container">
-              <ul id="dynamic-toc"></ul>
-            </div>       -->
-            
         </nav>
 
     </header>
 
 
-
+<main class="flipbook-container">
 
     <div id="container">
 
@@ -470,7 +460,8 @@
 
     </div>
     </div> 
-    
+    </main>
+<script src="flipbook.js"></script>
 
     <footer>
 
