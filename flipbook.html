@@ -67,6 +67,16 @@ header {
   background: #333;
   color: #fff;
   padding: 10px 0;
+                background: #2f2f2f;
+            color: white;
+            padding: 1em 2em;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 2; /* Assure que le header est au-dessus du contenu */
+            border-radius: 10px; /* Ajout du border-radius */
+            margin-bottom: 2em; /* Espacement entre le titre et le recueil */
 }
 nav ul {
   display: flex;
@@ -114,18 +124,6 @@ nav ul li a.active {
     height: 70vh;
   }
 }
-        header {
-            background: #2f2f2f;
-            color: white;
-            padding: 1em 2em;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 2; /* Assure que le header est au-dessus du contenu */
-            border-radius: 10px; /* Ajout du border-radius */
-            margin-bottom: 2em; /* Espacement entre le titre et le recueil */
-        }
 
         h1 {
             font-size: 1.8em; /* Réduit légèrement la taille du titre */
@@ -497,22 +495,20 @@ nav ul li a.active {
 
         </div>
 
-        <div id="navigation-controls">
-            <button onclick="prevPage()">Précédent</button>
+        <div id="navigation-controls" class="accessibility">
+            <button onclick="prevPage()">◀ Précédent</button>
             <span id="page-number"Page">page 1</span>
-            <button onclick="nextPage()">Suivant</button>
-        </div>
-    <div class="accessibility">
-
+            <button onclick="nextPage()">Suivant ▶</button>
+      <button onclick="toggleFullscreen()">⛶</button>
         <button onclick="adjustFontSize(1)">A+</button>
         <button onclick="adjustFontSize(-1)">A-</button>
         <button onclick="resetZoom()">Reset</button>
+        </div>
 
-    </div>
     </div> 
     </main>
 
-
+ <script src="flipbook.js"></script>
     <footer>
 
 
