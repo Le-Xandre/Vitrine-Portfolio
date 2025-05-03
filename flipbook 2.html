@@ -285,19 +285,19 @@
 </head>
 <body>
 
-    <header>
-  <div class="menu"><h1>📖 Flipbook PDF interactif </h1>
-         <a href="index.html">Accueil</a>   
-    <a href="portfolio.html">Portfolio</a>
-    <a href="flipbook.html">Flipbook 1</a>
-  </div>
-  
+    <header><h1>📖 Flipbook PDF interactif </h1>
   <div class="btn-container"> 
     <a href="Dark saoul.html" class="glow-btn" aria-label="Flipbook">Ender~Pack - Page erreur 404</a>
 
       <a href="Catalogue_compressed.pdf" class="glow-btn" aria-label="Flipbook" target="_blank">Exemple à télécharger et charger ensuite</a>
 
+  </div>  <div class="menu">
+         <a href="index.html">Accueil</a>   
+    <a href="portfolio.html">Portfolio</a>
+    <a href="flipbook.html">Flipbook 1</a>
   </div>
+  
+
 </header>
   <main>
     <div id="flipbook-container">
@@ -310,7 +310,24 @@
       </div>
       <canvas id="pdf-canvas"></canvas>
     </div>
+  <div class="controls">
+      <button onclick="toggleOptions()">⚙️ Options</button>
+      <button onclick="exitFullscreen()" id="exitFS" style="display:none;">🔙 Quitter le plein écran</button>
+      <button onclick="document.getElementById('pdf-input').click()">📂 Charger un PDF</button>
+      <input type="file" id="pdf-input" accept="application/pdf" />
 
+      <button onclick="prevPage()">⬅ Précédent</button>
+      <button onclick="nextPage()">Suivant ➡</button>
+      <button onclick="toggleFullscreen()">🖵 Plein écran</button>
+
+
+
+      <div id="options-menu">
+          <strong>🛠️ Rendu PDF :</strong>
+          <label><input type="radio" name="quality" value="1.5" checked> Standard (rapide)</label>
+          <label><input type="radio" name="quality" value="2.0"> Haute qualité (images nettes)</label>
+      </div>
+  </div>
       
   </main>
 
