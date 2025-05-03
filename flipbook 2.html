@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8" />
-    <title>Flipbook Interactif</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flipbook 2 – Intégration PDF</title>
+
+       
     <style>
         html, body {
             margin: 0;
@@ -278,44 +279,38 @@
 }
 
     </style>
-
+    
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
 </head>
 <body>
-    <header>
-        <h1>📖 Flipbook PDF interactif <a href="Catalogue_compressed.pdf" class="glow-btn" aria-label="Flipbook" target="_blank">Exemple à télécharger et charger ensuite</a></h1>
-      <div class="btn-container">
-            <a href="slideshow.html" class="glow-btn" aria-label="Flipbook">Retour au slideshow précédent</a>
-        
-        ou   
-            <a href="Dark saoul.html" class="glow-btn" aria-label="Flipbook">Ender~Pack d'erreurs 404</a>
-</div>
-    </header>
-        <div id="container">
-            <div id="flipbook"></div>
-            <div id="loading">Chargement du PDF...</div>
-            <div id="left-arrow" class="side-arrow" onclick="prevPage()">⬅</div>
-            <div id="right-arrow" class="side-arrow" onclick="nextPage()">➡</div>
 
-        </div>
-        <div class="controls">
-            
-            
-            <button onclick="document.getElementById('pdf-input').click()">📂 Charger un PDF</button>
-            <input type="file" id="pdf-input" accept="application/pdf" />
-
-            <button onclick="prevPage()">⬅ Précédent</button>
-            <button onclick="nextPage()">Suivant ➡</button>
-            <button onclick="toggleFullscreen()">🖵 Plein écran</button>
-<button onclick="exitFullscreen()" id="exitFS" style="display:none;">🔙 Quitter le plein écran</button>
-<button onclick="toggleOptions()">⚙️ Options</button>
-
-            <div id="options-menu">
-                <strong>🛠️ Rendu PDF :</strong>
-                <label><input type="radio" name="quality" value="1.5" checked> Standard (rapide)</label>
-                <label><input type="radio" name="quality" value="2.0"> Haute qualité (images nettes)</label>
-            </div>
-        </div>
     
+  <div class="menu"><h1>📖 Flipbook PDF interactif </h1>
+     <div class="btn-container"> <a href="Dark saoul.html" class="glow-btn" aria-label="Flipbook">Ender~Pack - Page erreur 404</a>
+    <a href="index.html">Accueil</a>
+      <a href="Catalogue_compressed.pdf" class="glow-btn" aria-label="Flipbook" target="_blank">Exemple à télécharger et charger ensuite</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="flipbook.html">Flipbook 1</a>
+    <a href="flipbook%202.html" class="active">Flipbook 2</a>
+    <a href="contact.html">Contact</a>
+  </div></div>
+
+  <main>
+    <div id="flipbook-container">
+      <div id="toolbar">
+        <input type="file" id="file-input" accept="application/pdf">
+        <button id="prev">&#8592; Précédent</button>
+        <span id="page-info">Page <span id="page-num">1</span> / <span id="page-count">1</span></span>
+        <button id="next">Suivant &#8594;</button>
+        <button id="fullscreen">⛶ Plein écran</button>
+      </div>
+      <canvas id="pdf-canvas"></canvas>
+    </div>
+
+      
+  </main>
+
 
     <footer>
         <p>
@@ -325,6 +320,8 @@
             </a>
         </p>
     </footer>
+
+
 
 <script>
 let btnContainer = document.querySelector('.btn-container');
@@ -497,5 +494,75 @@ button.addEventListener('mouseleave', () => {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/turn.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.13.216/pdf.min.js" defer></script>
+
+    
+  <script>
+    const fileInput = document.getElementById('file-input');
+    const canvas = document.getElementById('pdf-canvas');
+    const ctx = canvas.getContext('2d');
+    const pageNumSpan = document.getElementById('page-num');
+    const pageCountSpan = document.getElementById('page-count');
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
+    const fullscreenBtn = document.getElementById('fullscreen');
+
+    let pdfDoc = null;
+    let currentPage = 1;
+
+    function renderPage(num) {
+      pdfDoc.getPage(num).then(function(page) {
+        const viewport = page.getViewport({ scale: 1.5 });
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+        const renderContext = {
+          canvasContext: ctx,
+          viewport: viewport
+        };
+        page.render(renderContext);
+        pageNumSpan.textContent = num;
+      });
+    }
+
+    function queueRenderPage(num) {
+      if (num >= 1 && num <= pdfDoc.numPages) {
+        currentPage = num;
+        renderPage(currentPage);
+      }
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (currentPage > 1) queueRenderPage(currentPage - 1);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (currentPage < pdfDoc.numPages) queueRenderPage(currentPage + 1);
+    });
+
+    fullscreenBtn.addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        document.getElementById('flipbook-container').requestFullscreen();
+      } else {
+        document.exitFullscreen();
+      }
+    });
+
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file && file.type === 'application/pdf') {
+        const fileReader = new FileReader();
+        fileReader.onload = function() {
+          const typedarray = new Uint8Array(this.result);
+          pdfjsLib.getDocument(typedarray).promise.then(function(pdf) {
+            pdfDoc = pdf;
+            pageCountSpan.textContent = pdfDoc.numPages;
+            currentPage = 1;
+            renderPage(currentPage);
+          });
+        };
+        fileReader.readAsArrayBuffer(file);
+      }
+    });
+  </script>
 </body>
 </html>
+
