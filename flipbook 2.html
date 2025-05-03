@@ -284,310 +284,149 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
 </head>
 <body>
-
-    <header><h1>📖 Flipbook PDF interactif </h1>
-  <div class="btn-container"> 
-    <a href="Dark saoul.html" class="glow-btn" aria-label="Flipbook">Ender~Pack - Page erreur 404</a>
-
-      <a href="Catalogue_compressed.pdf" class="glow-btn" aria-label="Flipbook" target="_blank">Exemple à télécharger et charger ensuite</a>
-
-  </div>  <div class="menu">
-         <a href="index.html">Accueil</a>   
-    <a href="portfolio.html">Portfolio</a>
-    <a href="flipbook.html">Flipbook 1</a>
-  </div>
-  
+<header>
+    <h1>📖 Flipbook PDF interactif</h1>
+    <a href="Catalogue_compressed.pdf" class="button" aria-label="Flipbook" target="_blank">Exemple à télécharger et charger ensuite</a>
+    ou <a href="slideshow.html" class="button" aria-label="Flipbook">Retour au slideshow précédent</a>
+    ou   <a href="Dark saoul" class="button" aria-label="Flipbook">Ender~Pack d'erreurs 404</a>
 
 </header>
-  <main>
-    <div id="flipbook-container">
-        <div id="container">
-            <div id="flipbook"></div>
-            <div id="loading">Chargement du PDF...</div>
-            <div id="left-arrow" class="side-arrow" onclick="prevPage()">⬅</div>
-            <div id="right-arrow" class="side-arrow" onclick="nextPage()">➡</div>
-      <div id="toolbar" class="controls">
-        <input type="file" id="file-input" accept="application/pdf">
-      <button onclick="document.getElementById('pdf-input').click()">📂 Charger un PDF</button>
-        <button id="prev">&#8592; Précédent</button>
-        <span id="page-info">Page <span id="page-num">1</span> / <span id="page-count">1</span></span>
-        <button id="next">Suivant &#8594;</button>
-        <button id="fullscreen">⛶ Plein écran</button>
-      <button onclick="exitFullscreen()" id="exitFS" style="display:none;">🔙 Quitter le plein écran</button>      
-        <button onclick="toggleOptions()">⚙️ Options</button>      
+    <div id="container">
+        <div id="flipbook"></div>
+        <div id="loading">Chargement du PDF...</div>
+        <div id="left-arrow" class="side-arrow" onclick="prevPage()">⬅</div>
+        <div id="right-arrow" class="side-arrow" onclick="nextPage()">➡</div>
+
+    </div>
+    <div class="controls">
+        <button onclick="toggleOptions()">⚙️ Options</button>
+        <button onclick="exitFullscreen()" id="exitFS" style="display:none;">🔙 Quitter le plein écran</button>
+        <button onclick="document.getElementById('pdf-input').click()">📂 Charger un PDF</button>
+        <input type="file" id="pdf-input" accept="application/pdf" />
+
+        <button onclick="prevPage()">⬅ Précédent</button>
+        <button onclick="nextPage()">Suivant ➡</button>
+        <button onclick="toggleFullscreen()">🖵 Plein écran</button>
+
+
+
         <div id="options-menu">
-          <strong>🛠️ Rendu PDF :</strong>
-          <label><input type="radio" name="quality" value="1.5" checked> Standard (rapide)</label>
-          <label><input type="radio" name="quality" value="2.0"> Haute qualité (images nettes)</label>
-      </div>
-      </div>
+            <strong>🛠️ Rendu PDF :</strong>
+            <label><input type="radio" name="quality" value="1.5" checked> Standard (rapide)</label>
+            <label><input type="radio" name="quality" value="2.0"> Haute qualité (images nettes)</label>
         </div>
-
-      
-
-      
-    </div><canvas id="pdf-canvas"></canvas>
-  <div>
+    </div>
 
 
-
-
-  </div>
-      
-  </main>
-
-
-    <footer>
-        <p>
-            © 2025 – Flipbook PDF interactif 💛 Vous aimez mon univers ?
-            <a href="https://ko-fi.com/hellxandre" target="_blank" style="display:inline-block; margin-top: 0.2rem; background-color: #eae3d2; padding: 0.3rem 1rem; color: #5a4334; border-radius: 12px; text-decoration: none; font-weight: bold; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
-                ☕ Me soutenir sur Ko-fi
-            </a>
-        </p>
-    </footer>
-
-
+<footer>
+    <p>
+        © 2025 – Flipbook PDF interactif 💛 Vous aimez mon univers ?
+        <a href="https://ko-fi.com/hellxandre" target="_blank" style="display:inline-block; margin-top: 0.2rem; background-color: #eae3d2; padding: 0.3rem 1rem; color: #5a4334; border-radius: 12px; text-decoration: none; font-weight: bold; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+            ☕ Me soutenir sur Ko-fi
+        </a>
+    </p>
+</footer>
 
 <script>
-let btnContainer = document.querySelector('.btn-container');
-let button = document.querySelector('.glow-btn');
-
-let spawnDistance = 20;
-
-function getRandomColor() {
-    const r = Math.floor(Math.random() * 256);
-    const g = Math.floor(Math.random() * 256);
-    const b = Math.floor(Math.random() * 256);
-    return `rgb(${r}, ${g}, ${b})`;
-}
-
-function updateButtonColor() {
-    const randomColor = getRandomColor();
-    button.style.background = randomColor;
-    button.style.boxShadow = `0 0 15px ${randomColor}, 0 0 45px ${randomColor}`;
-    button.style.color = '#fff'; // Maintenir le texte en blanc pour une lisibilité optimale
-}
-
-function getRandomSize() {
-    return Math.floor(Math.random() * (8 - 4 + 1)) + 4;
-}
-
-function createParticles() {
-    let particles = document.createElement('div');
-    particles.classList.add('particles');
-    let btnWidth = button.offsetWidth;
-    let btnHeight = button.offsetHeight;
-
-    let angle = Math.random() * 2 * Math.PI;
-    let x = btnWidth / 2 + Math.cos(angle) * spawnDistance;
-    let y = btnHeight / 2 + Math.sin(angle) * spawnDistance;
-
-    let dx = Math.cos(angle) * 100;
-    let dy = Math.sin(angle) * 100;
-
-    const randomSize = getRandomSize();
-    particles.style.width = `${randomSize}px`;
-    particles.style.height = `${randomSize}px`;
-
-    const randomColor = getRandomColor();
-    particles.style.background = randomColor;
-    particles.style.boxShadow = `0 0 15px ${randomColor}, 0 0 45px ${randomColor}`;
-
-    particles.style.left = `${x}px`;
-    particles.style.top = `${y}px`;
-    particles.style.setProperty('--dx', `${dx}px`);
-    particles.style.setProperty('--dy', `${dy}px`);
-
-    btnContainer.appendChild(particles);
-    setTimeout(() => {
-        particles.remove();
-    }, 2000);
-}
-
-button.addEventListener('mouseenter', () => {
-    interval = setInterval(createParticles, 80);
-    updateButtonColor(); // Changer la couleur du bouton et de son halo au survol
-});
-
-button.addEventListener('mouseleave', () => {
-    clearInterval(interval);
-});
-
-</script>
-
-    
-    <script>
-        let pdfDoc = null;
-        let currentScale = 2;
-
-        function updateFlipbookSize() {
-            const width = Math.min(window.innerWidth * 0.8, 900);
-            const height = Math.min(window.innerHeight * 0.6, 700);
-            $('#flipbook').turn('size', width, height);
-        }
-
-        async function renderPDFToFlipbook(source) {
-            document.getElementById('loading').style.display = 'flex';
-            const loadingTask = pdfjsLib.getDocument(source);
-            pdfDoc = await loadingTask.promise;
-            const flipbook = document.getElementById('flipbook');
-            flipbook.innerHTML = '';
-
-            for (let i = 1; i <= pdfDoc.numPages; i++) {
-                const page = await pdfDoc.getPage(i);
-                const viewport = page.getViewport({ scale: currentScale });
-                const canvas = document.createElement('canvas');
-                const context = canvas.getContext('2d');
-                canvas.width = viewport.width;
-                canvas.height = viewport.height;
-                await page.render({ canvasContext: context, viewport }).promise;
-                const wrapper = document.createElement('div');
-                wrapper.className = 'page';
-                wrapper.appendChild(canvas);
-                flipbook.appendChild(wrapper);
-            }
-
-            $('#flipbook').turn({
-                width: flipbook.clientWidth,
-                height: flipbook.clientHeight,
-                autoCenter: true,
-                acceleration: true,
-                gradients: true
-            });
-
-            updateFlipbookSize();
-            document.getElementById('loading').style.display = 'none';
-        }
-
-        function prevPage() {
-            $('#flipbook').turn('previous');
-        }
-
-        function nextPage() {
-            $('#flipbook').turn('next');
-        }
-
-        function toggleFullscreen() {
-            const elem = document.documentElement;
-            if (!document.fullscreenElement) {
-                elem.requestFullscreen();
-                document.getElementById("exitFS").style.display = "inline-block";
-            }
-        }
-
-        function exitFullscreen() {
-            if (document.fullscreenElement) {
-                document.exitFullscreen();
-                document.getElementById("exitFS").style.display = "none";
-            }
-        }
-
-        function toggleOptions() {
-            const menu = document.getElementById("options-menu");
-            menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-        }
-
-        document.addEventListener("change", function (e) {
-            if (e.target.name === "quality") {
-                currentScale = parseFloat(e.target.value);
-                console.log("Nouveau mode de rendu :", currentScale);
-            }
-        });
-
-        document.addEventListener("fullscreenchange", () => {
-            updateFlipbookSize();
-        });
-
-        document.addEventListener("keydown", (e) => {
-            if (e.key === "ArrowLeft") prevPage();
-            if (e.key === "ArrowRight") nextPage();
-            if (e.key === "Escape") exitFullscreen();
-        });
-
-        document.getElementById('pdf-input').addEventListener('change', function (event) {
-            const file = event.target.files[0];
-            if (file && file.type === "application/pdf") {
-                const reader = new FileReader();
-                reader.onload = function () {
-                    const typedArray = new Uint8Array(this.result);
-                    renderPDFToFlipbook(typedArray);
-                };
-                reader.readAsArrayBuffer(file);
-            }
-        });
-    </script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/turn.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.13.216/pdf.min.js" defer></script>
-
-    
-  <script>
-    const fileInput = document.getElementById('file-input');
-    const canvas = document.getElementById('pdf-canvas');
-    const ctx = canvas.getContext('2d');
-    const pageNumSpan = document.getElementById('page-num');
-    const pageCountSpan = document.getElementById('page-count');
-    const prevBtn = document.getElementById('prev');
-    const nextBtn = document.getElementById('next');
-    const fullscreenBtn = document.getElementById('fullscreen');
-
     let pdfDoc = null;
-    let currentPage = 1;
+    let currentScale = 2;
 
-    function renderPage(num) {
-      pdfDoc.getPage(num).then(function(page) {
-        const viewport = page.getViewport({ scale: 1.5 });
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
-        const renderContext = {
-          canvasContext: ctx,
-          viewport: viewport
-        };
-        page.render(renderContext);
-        pageNumSpan.textContent = num;
-      });
+    function updateFlipbookSize() {
+        const width = Math.min(window.innerWidth * 0.8, 900);
+        const height = Math.min(window.innerHeight * 0.6, 700);
+        $('#flipbook').turn('size', width, height);
     }
 
-    function queueRenderPage(num) {
-      if (num >= 1 && num <= pdfDoc.numPages) {
-        currentPage = num;
-        renderPage(currentPage);
-      }
+    async function renderPDFToFlipbook(source) {
+        document.getElementById('loading').style.display = 'flex';
+        const loadingTask = pdfjsLib.getDocument(source);
+        pdfDoc = await loadingTask.promise;
+        const flipbook = document.getElementById('flipbook');
+        flipbook.innerHTML = '';
+
+        for (let i = 1; i <= pdfDoc.numPages; i++) {
+            const page = await pdfDoc.getPage(i);
+            const viewport = page.getViewport({ scale: currentScale });
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            canvas.width = viewport.width;
+            canvas.height = viewport.height;
+            await page.render({ canvasContext: context, viewport }).promise;
+            const wrapper = document.createElement('div');
+            wrapper.className = 'page';
+            wrapper.appendChild(canvas);
+            flipbook.appendChild(wrapper);
+        }
+
+        $('#flipbook').turn({
+            width: flipbook.clientWidth,
+            height: flipbook.clientHeight,
+            autoCenter: true,
+            acceleration: true,
+            gradients: true
+        });
+
+        updateFlipbookSize();
+        document.getElementById('loading').style.display = 'none';
     }
 
-    prevBtn.addEventListener('click', () => {
-      if (currentPage > 1) queueRenderPage(currentPage - 1);
+    function prevPage() {
+        $('#flipbook').turn('previous');
+    }
+
+    function nextPage() {
+        $('#flipbook').turn('next');
+    }
+
+    function toggleFullscreen() {
+        const elem = document.documentElement;
+        if (!document.fullscreenElement) {
+            elem.requestFullscreen();
+            document.getElementById("exitFS").style.display = "inline-block";
+        }
+    }
+
+    function exitFullscreen() {
+        if (document.fullscreenElement) {
+            document.exitFullscreen();
+            document.getElementById("exitFS").style.display = "none";
+        }
+    }
+
+    function toggleOptions() {
+        const menu = document.getElementById("options-menu");
+        menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+    }
+
+    document.addEventListener("change", function (e) {
+        if (e.target.name === "quality") {
+            currentScale = parseFloat(e.target.value);
+            console.log("Nouveau mode de rendu :", currentScale);
+        }
     });
 
-    nextBtn.addEventListener('click', () => {
-      if (currentPage < pdfDoc.numPages) queueRenderPage(currentPage + 1);
+    document.addEventListener("fullscreenchange", () => {
+        updateFlipbookSize();
     });
 
-    fullscreenBtn.addEventListener('click', () => {
-      if (!document.fullscreenElement) {
-        document.getElementById('flipbook-container').requestFullscreen();
-      } else {
-        document.exitFullscreen();
-      }
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowLeft") prevPage();
+        if (e.key === "ArrowRight") nextPage();
+        if (e.key === "Escape") exitFullscreen();
     });
 
-    fileInput.addEventListener('change', (e) => {
-      const file = e.target.files[0];
-      if (file && file.type === 'application/pdf') {
-        const fileReader = new FileReader();
-        fileReader.onload = function() {
-          const typedarray = new Uint8Array(this.result);
-          pdfjsLib.getDocument(typedarray).promise.then(function(pdf) {
-            pdfDoc = pdf;
-            pageCountSpan.textContent = pdfDoc.numPages;
-            currentPage = 1;
-            renderPage(currentPage);
-          });
-        };
-        fileReader.readAsArrayBuffer(file);
-      }
+    document.getElementById('pdf-input').addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        if (file && file.type === "application/pdf") {
+            const reader = new FileReader();
+            reader.onload = function () {
+                const typedArray = new Uint8Array(this.result);
+                renderPDFToFlipbook(typedArray);
+            };
+            reader.readAsArrayBuffer(file);
+        }
     });
-  </script>
+</script>
 </body>
 </html>
 
