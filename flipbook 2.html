@@ -301,32 +301,37 @@
 </header>
   <main>
     <div id="flipbook-container">
-      <div id="toolbar">
+        <div id="container">
+            <div id="flipbook"></div>
+            <div id="loading">Chargement du PDF...</div>
+            <div id="left-arrow" class="side-arrow" onclick="prevPage()">⬅</div>
+            <div id="right-arrow" class="side-arrow" onclick="nextPage()">➡</div>
+
+        </div>
+
+      
+      <div id="toolbar" class="controls">
         <input type="file" id="file-input" accept="application/pdf">
+      <button onclick="document.getElementById('pdf-input').click()">📂 Charger un PDF</button>
         <button id="prev">&#8592; Précédent</button>
         <span id="page-info">Page <span id="page-num">1</span> / <span id="page-count">1</span></span>
         <button id="next">Suivant &#8594;</button>
         <button id="fullscreen">⛶ Plein écran</button>
-      </div>
-      <canvas id="pdf-canvas"></canvas>
-    </div>
-  <div class="controls">
-      <button onclick="toggleOptions()">⚙️ Options</button>
-      <button onclick="exitFullscreen()" id="exitFS" style="display:none;">🔙 Quitter le plein écran</button>
-      <button onclick="document.getElementById('pdf-input').click()">📂 Charger un PDF</button>
-      <input type="file" id="pdf-input" accept="application/pdf" />
-
-      <button onclick="prevPage()">⬅ Précédent</button>
-      <button onclick="nextPage()">Suivant ➡</button>
-      <button onclick="toggleFullscreen()">🖵 Plein écran</button>
-
-
-
-      <div id="options-menu">
+      <button onclick="exitFullscreen()" id="exitFS" style="display:none;">🔙 Quitter le plein écran</button>      
+        <button onclick="toggleOptions()">⚙️ Options</button>      
+        <div id="options-menu">
           <strong>🛠️ Rendu PDF :</strong>
           <label><input type="radio" name="quality" value="1.5" checked> Standard (rapide)</label>
           <label><input type="radio" name="quality" value="2.0"> Haute qualité (images nettes)</label>
       </div>
+      </div>
+      <canvas id="pdf-canvas"></canvas>
+    </div>
+  <div>
+
+
+
+
   </div>
       
   </main>
