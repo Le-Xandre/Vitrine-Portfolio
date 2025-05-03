@@ -1,6 +1,6 @@
 
 let currentPage = 1;
-const pdfUrl = "pdf/livret.pdf";
+const pdfUrl = "Manifeste du Vertige.pdf";
 const flipbookContainer = document.getElementById("flipbook");
 
 function renderPage(num) {
