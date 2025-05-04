@@ -300,27 +300,27 @@
         <div id="right-arrow" class="side-arrow" onclick="nextPage()">➡</div>
 
     </div>
-
+</main>
     <div class="controls">
 
         <button onclick="document.getElementById('pdf-input').click()">📂 Charger un PDF</button>
-        <input type="file" id="pdf-input" accept="application/pdf" />
       <a href="Catalogue_compressed.pdf" class="button" aria-label="Flipbook" target="_blank">Exemple à télécharger</a>
-  <button onclick="toggleOptions()">⚙️ Options</button>
-        <button onclick="prevPage()">⬅ Précédent</button>
-        <button onclick="nextPage()">Suivant ➡</button>
+        <input type="file" id="pdf-input" accept="application/pdf" />
+ 
+        <button id="left-arrow" class="side-arrow" onclick="prevPage()">⬅ Précédent</button>
+        <button id="right-arrow" class="side-arrow" onclick="nextPage()">Suivant ➡</button>
 
        
         <button onclick="toggleFullscreen()">🖵 Plein écran</button>
         <button onclick="exitFullscreen()" id="exitFS" style="display:none;">🔙 Quitter le plein écran</button>
 
-        <div id="options-menu">
+     
+    </div>
+   <div id="options-menu"> <button onclick="toggleOptions()">⚙️ Options</button>
             <strong>🛠️ Rendu PDF :</strong>
             <label><input type="radio" name="quality" value="1.5" checked> Standard (rapide)</label>
             <label><input type="radio" name="quality" value="2.0"> Haute qualité (images nettes)</label>
         </div>
-    </div>
-</main>
 <footer>
     <p>
         © 2025 – Flipbook PDF interactif 💛 Vous aimez mon univers ?
