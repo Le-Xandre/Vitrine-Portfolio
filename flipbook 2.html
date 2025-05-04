@@ -79,7 +79,7 @@
             width: 100%;
             height: 100%;
             transition: 0.5s all ease;
-            transform: rotateX(60deg) scale(0.7);
+            transform: rotateX(45deg) scale(0.8);
             box-shadow: 0px 20px 50px #555;
             animation: entry 1s linear 1;
             background: linear-gradient(to bottom, #59476f 30%, #7b88d1 100%);
@@ -99,6 +99,63 @@
                 margin-bottom: 10px;
                 text-align: center;
             }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            width: auto;
+            height: auto;
+            border-radius: 100%;
+            
+        }
+
+        .glow-btn {
+            position: relative;
+            border-radius: 100%;
+            background: #333;
+            color: #fff;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: 0.5s ease;
+            
+        }
+
+            .glow-btn:hover {
+                background: #7b88d1;
+                box-shadow: 0 0 50px #e50914;
+                letter-spacing: 0.1em;
+            }
+
+        .particles {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #e50914;
+            box-shadow: 0 0 20px #e50914, 0 0 50px #e50914;
+            pointer-events: none;
+            opacity: 0;
+            animation: animate 3s linear forwards;
+            z-index: 0;
+        }
+
+        @keyframes animate {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(var(--dx), var(--dy)) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+
 
         #uploadBtn {
             background: #fff;
@@ -278,41 +335,42 @@
     <header>
         <span>
             <a href="Portfolio.html" class="button" aria-label="Flipbook">⟵ Vers Portfolio</a>
-          
+
         </span>
         <h1>
             📖 Flipbook PDF interactif
-            
+
         </h1>
         <a href="flipbook" class="button" aria-label="Flipbook" target="_blank">flipbook version 02</a>
         <span>
-           
+
             <a href="Dark saoul" class="button" aria-label="Flipbook" target="_blank">Vers Page erreur 404 ⟶</a>
         </span>
-        
+
     </header>
 
     <!-- Carte 3D avec bouton -->
     <div class="wrapper" id="mapWrapper">
         <div class="container">
 
+            <div class="btn-container">
+                <img class="glow-btn" style="width:90%;height:auto" src="MyLogoTube.png" alt="Alternate Text" />
 
-
-            <img style="width:90%;height:auto" src="MyLogoTube.png" alt="Alternate Text" />
+            </div>
+            <hr> 
 
             <button id="uploadBtn">
-                📄 Sélectionner un PDF
+                📄 Sélectionner un PDF 
             </button>
-            <input type="file" id="fileInput" accept="application/pdf" />
+<input type="file" id="fileInput" accept="application/pdf" />
 
-
-        </div>
+            </div>
     </div>
 
     <!-- Flipbook Viewer -->
     <div id="flipbookViewer">
 
-      
+
         <canvas id="pdfCanvas">
         </canvas>
         <div id="controls">
@@ -434,5 +492,78 @@
             diaporamaBtn.textContent = 'Lancer le Diaporama';
         }
     </script>
+
+    <script>
+        let btnContainer = document.querySelector('.btn-container');
+        let button = document.querySelector('.glow-btn');
+
+        let spawnDistance = 130;
+
+        function getRandomColor() {
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+            return `rgb(${r}, ${g}, ${b})`;
+        }
+
+        function updateButtonColor() {
+            const randomColor = getRandomColor();
+            button.style.background = randomColor;
+            button.style.boxShadow = `0 0 20px ${randomColor}, 0 0 50px ${randomColor}`;
+            button.style.color = '#fff'; // Maintenir le texte en blanc pour une lisibilité optimale
+        }
+
+
+        function getRandomSize() {
+            return Math.floor(Math.random() * (16 - 8 + 2)) + 8; // Taille entre 4px et 8px
+        }
+
+        function getRandomPosition(max) {
+            return Math.random() * (max * 4) - max; // Génère des positions aléatoires dans un rayon large
+        }
+
+        function createParticles() {
+            let particles = document.createElement('div');
+            particles.classList.add('particles');
+            let btnWidth = button.offsetWidth;
+            let btnHeight = button.offsetHeight;
+
+            let angle = Math.random() * 2 * Math.PI;
+            let x = btnWidth / 2 + Math.cos(angle) * spawnDistance;
+            let y = btnHeight / 2 + Math.sin(angle) * spawnDistance;
+
+            let dx = Math.cos(angle) * 100;
+            let dy = Math.sin(angle) * 100;
+
+            const randomSize = getRandomSize();
+            particles.style.width = `${randomSize}px`;
+            particles.style.height = `${randomSize}px`;
+
+            const randomColor = getRandomColor();
+            particles.style.background = randomColor;
+            particles.style.boxShadow = `0 0 20px ${randomColor}, 0 0 50px ${randomColor}`;
+
+            particles.style.left = `${x}px`;
+            particles.style.top = `${y}px`;
+            particles.style.setProperty('--dx', `${dx}px`);
+            particles.style.setProperty('--dy', `${dy}px`);
+
+            btnContainer.appendChild(particles);
+            setTimeout(() => {
+                particles.remove();
+            }, 8000);
+        }
+
+        button.addEventListener('mouseenter', () => {
+            interval = setInterval(createParticles, 80);
+            updateButtonColor(); // Changer la couleur du bouton et de son halo au survol
+        });
+
+        button.addEventListener('mouseleave', () => {
+            clearInterval(interval);
+        });
+    </script>
+
+
 </body>
 </html>
