@@ -5,9 +5,6 @@
     <title>Flipbook PDF Interactif</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- PDF.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-
     <style>
         body {
             margin: 0;
@@ -42,7 +39,7 @@
                 border-radius: 5px;
             }
 
-   
+
 
         footer {
             background-color: #222;
@@ -109,7 +106,6 @@
             width: auto;
             height: auto;
             border-radius: 100%;
-            
         }
 
         .glow-btn {
@@ -121,7 +117,6 @@
             text-transform: uppercase;
             letter-spacing: 0.1em;
             transition: 0.5s ease;
-            
         }
 
             .glow-btn:hover {
@@ -319,29 +314,34 @@
 
         @media (max-width: 480px) {
             .container {
-               transform: scale(0.6);
+                transform: scale(0.6);
             }
 
             #controls {
                 margin-top: 10px;
             }
         }
-
     </style>
+
+
+    <!-- PDF.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+
 </head>
 <body>
 
     <!-- Header -->
     <header>
         <span>
-            <a href="Portfolio.html" class="button" aria-label="Flipbook">⟵ Vers Portfolio</a>
+            <a href="Portfolio.html" class="button" aria-label="Flipbook">⟵</a>
 
         </span>
         
         <a href="flipbook" class="button" aria-label="Flipbook" target="_blank">flipbook version 02</a>
         <span>
 
-            <a href="Dark saoul" class="button" aria-label="Flipbook" target="_blank">Vers Page erreur 404 ⟶</a>
+            <a href="Dark saoul" class="button" aria-label="Flipbook" target="_blank">⟶</a>
         </span>
 
     </header>
@@ -377,7 +377,8 @@
 
             <button class="nav-btn" onclick="prevPage()">⟵</button>
             <span style="color: white;" id="pageInfo">
-                📖 Flipbook PDF interactif
+
+                <br>📖 Flipbook PDF interactif
             </span>
             <button class="nav-btn" onclick="nextPage()">⟶</button>
             <button id="backToMapBtn" class="nav-btn" onclick="resetViewer()">
@@ -392,10 +393,11 @@
 
     <!-- Footer -->
     <footer>
-
+        
         <p>
-            © 2025 – Flipbook PDF interactif 💛 Vous aimez mon univers ?
-            <a href="https://ko-fi.com/hellxandre" target="_blank">☕ Me soutenir sur Ko-fi</a>
+
+            Vous aimez mon univers ?<br />
+                                    <a href="https://ko-fi.com/hellxandre" target="_blank">💛 Me soutenir sur Ko-fi ☕</a>
 
 
         </p>
