@@ -19,7 +19,7 @@
         header, footer {
             background: #2f2f2f;
             color: white;
-            padding: 0.5em;
+            padding: 0.2em;
             text-align: center;
             font-size: 0.9em;
         }
@@ -43,8 +43,8 @@
         }
 
         #flipbook {
-            width: 90vw;
-            height: 70vh;
+            width: 100vw;
+            height: 80vh;
         }
 
         .page canvas {
@@ -61,8 +61,8 @@
         .page image {
             align-content: center;
             -webkit-align-items: inherit;
-            align-items: inherit;
-            padding: 0.2em;
+            align-items: center;
+            padding: 0.1em;
             margin: 0 auto;
         }
         .controls {
@@ -97,9 +97,9 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 1.1em;
+            font-size: 1em;
             background: rgba(255,255,255,0.9);
-            padding: 1em 2em;
+            padding: 1em 1em;
             border-radius: 10px;
             display: none;
         }
@@ -156,8 +156,8 @@
 
         @media (max-width: 1024px) {
             #flipbook {
-                width: 95vw;
-                height: 450px;
+                width: 80%;
+                height: auto;
             }
 
             .page p {
@@ -167,8 +167,8 @@
 
         @media (max-width: 768px) {
             #flipbook {
-                width: 90vw;
-                height: 400px;
+                width: 70%;
+                height: auto;
             }
 
             .page p {
@@ -180,7 +180,7 @@
             #flipbook {
                 width: 100%;
                 height: auto;
-                max-width: 375px; /* Limite la largeur du livret */
+                max-width: auto; /* Limite la largeur du livret */
             }
 
             .page {
@@ -188,7 +188,7 @@
             }
 
                 .page p {
-                    font-size: 0.75em;
+                    font-size: 0.65em;
                 }
 
 
@@ -219,7 +219,8 @@
 
         .img {
             width: 90%;
-            max-width: 800px;
+          height:auto;
+            max-width: auto;
             margin: 1rem auto;
             display: block;
             border-radius: 8px;
@@ -299,14 +300,15 @@
 
     </div>
     <div class="controls">
-<a href="Catalogue_compressed.pdf" class="button" aria-label="Flipbook" target="_blank">Exemple à télécharger et charger ensuite</a>
+
         <button onclick="document.getElementById('pdf-input').click()">📂 Charger un PDF</button>
         <input type="file" id="pdf-input" accept="application/pdf" />
- 
+      <a href="Catalogue_compressed.pdf" class="button" aria-label="Flipbook" target="_blank">Exemple à télécharger</a>
+  <button onclick="toggleOptions()">⚙️ Options</button>
         <button onclick="prevPage()">⬅ Précédent</button>
         <button onclick="nextPage()">Suivant ➡</button>
 
-        <button onclick="toggleOptions()">⚙️ Options</button>
+       
         <button onclick="toggleFullscreen()">🖵 Plein écran</button>
         <button onclick="exitFullscreen()" id="exitFS" style="display:none;">🔙 Quitter le plein écran</button>
 
