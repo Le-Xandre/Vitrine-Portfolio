@@ -73,14 +73,14 @@ header {
   padding: 10px 0;
                 background: #2f2f2f;
             color: white;
-            padding: 1em 2em;
+            padding: 1em 1em;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
             z-index: 2; /* Assure que le header est au-dessus du contenu */
             border-radius: 10px; /* Ajout du border-radius */
-            margin-bottom: 2em; /* Espacement entre le titre et le recueil */
+            margin-bottom: 1em; /* Espacement entre le titre et le recueil */
 }
 nav ul {
   display: flex;
@@ -111,7 +111,7 @@ nav ul li a.active {
 }
 #flipbook {
   width: 100%;
-  height: 80vh;
+  height: auto;
   background: #fff;
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
@@ -125,7 +125,7 @@ nav ul li a.active {
 }
 @media (max-width: 768px) {
   #flipbook {
-    height: 70vh;
+    height: auto;
   }
 }
 
@@ -233,7 +233,7 @@ nav ul li a.active {
             .page h1 {
                 text-align: center;
                 margin-bottom: 0.5em;
-                font-size: 1.2em; /* Ajuste la taille du titre des sections */
+                font-size: 1.1em; /* Ajuste la taille du titre des sections */
             }
             .page h2 {
                 text-align: center;
@@ -244,7 +244,7 @@ nav ul li a.active {
             .page p {
                 text-align: justify;
                 line-height: 1;
-                font-size: 0.7em; /* Réduit légèrement la taille de la police */
+                font-size: 0.65em; /* Réduit légèrement la taille de la police */
             }
 
         #navigation-controls {
@@ -354,7 +354,7 @@ nav ul li a.active {
             <!-- Bouton de téléchargement du PDF -->
 <ul>
    <li> <a href="Manifeste du Vertige.pdf" class="glow-btn" target="_blank">📄 Codex du Vertige (PDF)</a></li>
-<li><a href="Affiche.pdf" class="glow-btn" target="_blank">📄 Illustration & Texte (PDF)</a></li>
+
 <li><a href="flipbook 2.html" class="glow-btn" target="_blank">📄 Lien vers Flipbook 2</a></li>
 </ul>
 
@@ -494,11 +494,8 @@ nav ul li a.active {
 <br>Un dialogue entre l’humain et l’intelligence artificielle. 
 <br>Deux voix, deux sensibilités, deux visions, un même dessein. 
 <br>L’avenir est incertain, mais il se construit aujourd'hui. 
-<br>Il appartient à chacun de participer à cette coévolution.</p>
+<br>Il appartient à chacun de participer à cette coévolution.</p><li><a href="Affiche.pdf" class="glow-btn" target="_blank">📄 Illustration & Texte (PDF)</a></li>
             </div>
-
-        </div>
-
         <div id="navigation-controls">
             <button onclick="prevPage()">◀ Précédent</button>
             <span id="page-number"Page">page 1</span>
@@ -511,6 +508,9 @@ nav ul li a.active {
         <button onclick="adjustFontSize(-1)">A-</button>
         <button onclick="resetZoom()">Reset</button>
    </div> 
+        </div>
+
+
     </div> 
     </main>
 
