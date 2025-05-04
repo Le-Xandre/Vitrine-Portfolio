@@ -296,14 +296,9 @@
 </header>
   <main>
     <div id="container">
-        <div id="flipbook"></div>
-        <div id="loading">Chargement du PDF...</div>
-        <div id="left-arrow" class="side-arrow" onclick="prevPage()">⬅</div>
-        <div id="right-arrow" class="side-arrow" onclick="nextPage()">➡</div>
-
-    </div>
-</main>
-    <div class="controls">
+        <div id="flipbook">
+          
+   <div class="controls">
 
         <button onclick="document.getElementById('pdf-input').click()">📂 Charger un PDF</button>
       <a href="Catalogue_compressed.pdf" class="button" aria-label="Flipbook" target="_blank">Exemple à télécharger</a>
@@ -323,6 +318,15 @@
             <label><input type="radio" name="quality" value="1.5" checked> Standard (rapide)</label>
             <label><input type="radio" name="quality" value="2.0"> Haute qualité (images nettes)</label>
         </div>
+          
+        </div>
+        <div id="loading">Chargement du PDF...</div>
+        <div id="left-arrow" class="side-arrow" onclick="prevPage()">⬅</div>
+        <div id="right-arrow" class="side-arrow" onclick="nextPage()">➡</div>
+
+    </div>
+</main>
+ 
 <footer>
     <p>
         © 2025 – Flipbook PDF interactif 💛 Vous aimez mon univers ?
