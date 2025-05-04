@@ -30,7 +30,7 @@
 
             header h1 {
                 margin: 0;
-                font-size: 1.8rem;
+                font-size: 1.4rem;
             }
 
             header a {
@@ -41,6 +41,8 @@
                 background-color: #333;
                 border-radius: 5px;
             }
+
+   
 
         footer {
             background-color: #222;
@@ -80,7 +82,7 @@
             transform: rotateX(60deg) scale(0.7);
             box-shadow: 0px 20px 50px #555;
             animation: entry 1s linear 1;
-            background: linear-gradient(to bottom, #eba65b 30%, #d99267 100%);
+            background: linear-gradient(to bottom, #59476f 30%, #7b88d1 100%);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -94,7 +96,7 @@
 
             .container h3 {
                 color: white;
-                margin-bottom: 20px;
+                margin-bottom: 10px;
                 text-align: center;
             }
 
@@ -267,13 +269,17 @@
                 margin-top: 10px;
             }
         }
-    </style><!-- scale: 0.6; -->
+
+    </style>
 </head>
 <body>
 
     <!-- Header -->
     <header>
-        <h1>📖 Flipbook PDF interactif</h1>
+
+        <h1>
+            📖 Flipbook PDF interactif
+        </h1>
         <div>
             <a href="Portfolio.html" class="button" aria-label="Flipbook">Retour au portfolio</a>
             ou
@@ -284,32 +290,52 @@
     <!-- Carte 3D avec bouton -->
     <div class="wrapper" id="mapWrapper">
         <div class="container">
-            <h3>Charger un PDF dans le Flipbook</h3>
-            <button id="uploadBtn">📄 Sélectionner un PDF</button>
+
+
+
+            <img style="width:90%;height:auto" src="MyLogoTube.png" alt="Alternate Text" />
+
+            <button id="uploadBtn">
+                📄 Sélectionner un PDF
+            </button>
             <input type="file" id="fileInput" accept="application/pdf" />
+
+
         </div>
     </div>
 
     <!-- Flipbook Viewer -->
     <div id="flipbookViewer">
 
+      
         <canvas id="pdfCanvas">
-        </canvas>        📖 Flipbook PDF interactif
+        </canvas>
         <div id="controls">
+
             <button class="nav-btn" onclick="prevPage()">⟵ Précédent</button>
-            <span style="color: white;" id="pageInfo"></span>
+            <span style="color: white;" id="pageInfo">
+
+                📖 Flipbook PDF interactif
+            </span>
             <button class="nav-btn" onclick="nextPage()">Suivant ⟶</button>
-            <button id="backToMapBtn" class="nav-btn" onclick="resetViewer()">📄 Sélectionner un PDF</button>
+            <button id="backToMapBtn" class="nav-btn" onclick="resetViewer()">
+                📄 Sélectionner & Charger un PDF dans le Flipbook
+            </button>
             <button id="closeFullscreenBtn" onclick="toggleFullScreen()">🔲Plein Écran</button>
             <button id="diaporamaBtn" onclick="toggleSlideshow()">Lancer le Diaporama</button>
+
         </div>
+
     </div>
 
     <!-- Footer -->
     <footer>
+
         <p>
             © 2025 – Flipbook PDF interactif 💛 Vous aimez mon univers ?
             <a href="https://ko-fi.com/hellxandre" target="_blank">☕ Me soutenir sur Ko-fi</a>
+
+
         </p>
     </footer>
 
