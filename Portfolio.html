@@ -16,6 +16,13 @@
     <link rel="preload" as="image" href="assets/images/loading-circle.svg">
 <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css">
 
+
+    <link rel="stylesheet" href="assets/css/root.css">
+    <link rel="stylesheet" href="assets/css/styleport.css">
+    <link rel="stylesheet" href="assets/css/dark-theme.css">
+    <link rel="stylesheet" href="assets/css/lightbox.css">
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+
 <style>
 
     .contact-container {
@@ -55,7 +62,7 @@
     }
 
     button {
-      display: block;
+      display: flex;
       margin: 0 auto;
       padding: 10px 25px;
       border: none;
@@ -76,13 +83,6 @@
       margin-bottom: 5px;
     }
 </style>
-    <link rel="stylesheet" href="assets/css/root.css">
-    <link rel="stylesheet" href="assets/css/styleport.css">
-    <link rel="stylesheet" href="assets/css/dark-theme.css">
-    <link rel="stylesheet" href="assets/css/lightbox.css">
-    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
-
-
     <link rel="stylesheet" href="assets/font/fontawesome/css/fontawesome.css">
     <link rel="stylesheet" href="assets/font/font.css">
 
@@ -884,6 +884,24 @@
             </script>
 
     </div>
+      <script>
+    // Génère 2 nombres aléatoires
+    const n1 = Math.floor(Math.random( ) * 10);
+    const n2 = Math.floor(Math.random( ) * 10);
+    document.getElementById("n1").textContent = n1;
+    document.getElementById("n2").textContent = n2;
+
+    // Fonction de vérification du captcha
+    function checkCaptcha( ) {
+      const userAnswer = parseInt(document.getElementById("captcha").value);
+      if (userAnswer !== n1 + n2) {
+        alert("Captcha incorrect, réessayez !");
+        return false;
+      }
+      alert("Formulaire envoyé !");
+      return true; // ou remplacer par un envoi réel
+    }
+  </script>
       <script src="/app.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -905,24 +923,6 @@
     </script>
 <script src="script.js" defer></script>
 
-      <script>
-    // Génère 2 nombres aléatoires
-    const n1 = Math.floor(Math.random( ) * 10);
-    const n2 = Math.floor(Math.random( ) * 10);
-    document.getElementById("n1").textContent = n1;
-    document.getElementById("n2").textContent = n2;
-
-    // Fonction de vérification du captcha
-    function checkCaptcha( ) {
-      const userAnswer = parseInt(document.getElementById("captcha").value);
-      if (userAnswer !== n1 + n2) {
-        alert("Captcha incorrect, réessayez !");
-        return false;
-      }
-      alert("Formulaire envoyé !");
-      return true; // ou remplacer par un envoi réel
-    }
-  </script>
     
 </body>
 
