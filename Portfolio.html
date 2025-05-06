@@ -23,66 +23,6 @@
     <link rel="stylesheet" href="assets/css/lightbox.css">
     <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
 
-<style>
-
-    .contact-container {
-      backdrop-filter: blur(10px);
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-      padding: 30px;
-      width: 100%;
-      max-width: 450px;
-      animation: fadeInUp 1s ease forwards;
-      opacity: 0;
-      transform: translateY(20px);
-      color: white;
-    }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      border: none;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.2);
-      color: white;
-    }
-
-    input::placeholder, textarea::placeholder {
-      color: #eee;
-    }
-
-    button {
-      display: flex;
-      margin: 0 auto;
-      padding: 10px 25px;
-      border: none;
-      border-radius: 20px;
-      background-color: rgba(255, 255, 255, 0.3);
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: rgba(255, 255, 255, 0.5);
-    }
-
-    label {
-      display: flex;
-      margin-bottom: 5px;
-    }
-</style>
     <link rel="stylesheet" href="assets/font/fontawesome/css/fontawesome.css">
     <link rel="stylesheet" href="assets/font/font.css">
 
@@ -830,7 +770,7 @@
 
                         <label for="message">Message :</label>
                         <textarea id="message" name="message" rows="5" style="width: 100%; margin-bottom: 10px;" placeholder="Votre message" required></textarea>
-<label id="captchaLabel">Combien font<span id="n1">=  </span> + <span id="n2">  </span></label> 
+<label id="captchaLabel">Combien font = <span id="n1"></span>+<span id="n2"></span></label> 
       <input type="number" id="captcha" placeholder="Votre réponse" required>
 
                         <button type="submit" style="display: block; margin: 0 auto; padding: 10px 20px; font-size: 16px;"> 
