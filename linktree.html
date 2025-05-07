@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HellXandre • Liens</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: linear-gradient(120deg, #1a1a1a, #2d2d2d);
+            font-family: 'Montserrat', sans-serif;
+            color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #f0f0f0;
+            text-align: center;
+        }
+
+        .avatar {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+            border: none;
+            border-radius: 50%;
+            margin-bottom: 5px;
+            opacity: 0.8;
+            filter: drop-shadow(0 0 8px rgba(255, 105, 180, 0.4)) brightness(1.1);
+            transition: filter 0.4s ease, opacity 0.4s ease;
+        }
+
+            .avatar:hover {
+                opacity: 0.85;
+                filter: drop-shadow(0 0 16px rgba(255, 105, 180, 0.8)) brightness(1.3) saturate(1.2);
+            }
+
+        h1 {
+            margin: 2px;
+            padding: 2px;
+            font-size: 1.8rem;
+        }
+
+        p {
+            margin: 0 0 10px;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .link {
+            position: relative;
+            display: inline-block;
+            width: 80%;
+            max-width: 250px;
+            margin: 7px auto;
+            padding: 7px 10px;
+            background: rgba(51, 51, 51, 0.7);
+            border-radius: 12px;
+            backdrop-filter: blur(8px);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0.9;
+            filter: drop-shadow(0 0 2px rgba(255, 105, 180, 0.4)) brightness(1.1);
+            transition: transform 0.24s ease, box-shadow 0.6s ease,filter 0.8s ease, opacity 0.8s ease;
+        }
+
+            .link::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -75%;
+                width: 50%;
+                height: 100%;
+                background: linear-gradient( 120deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.1) 100% );
+                transform: skewX(-20deg);
+                pointer-events: none;
+            }
+
+            .link:hover::before {
+                animation: shimmer 1.5s ease-in-out forwards;
+            }
+
+        @keyframes shimmer {
+            0% {
+                left: -75%;
+            }
+
+            100% {
+                left: 125%;
+            }
+        }
+
+        footer {
+            margin-top: 10px;
+            padding: 5px;
+            font-size: 0.9rem;
+            opacity: 0.5;
+        }
+
+        /* Discret bouton toggle */
+        #toggleAnimation {
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 20px;
+
+            color: #eee;
+            cursor: pointer;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    
+    <canvas id="bg"></canvas>
+
+    
+
+    <div class="container">
+        <button id="toggleAnimation" title="Activer/Désactiver l'animation">
+            <img class="avatar" src="https://le-xandre.github.io/Vitrine-Portfolio/MyLogoTube.png" alt="Avatar">
+
+        </button>
+        <select id="styleSelector">
+            <option value="classic">Éther doux</option>
+            <option value="glow">Lueurs intérieures</option>
+            <option value="symbol">Jardin flottant</option>
+            <option value="aquarium">Aquarium</option>
+            <option value="emoji">Love, Death & Robots</option>
+        </select>
+
+        <h1>HellXandre</h1>
+        <p>
+            Artiste visuel • Portfolio vivant
+
+        </p>
+
+        <a class="link" href="https://le-xandre.github.io/Vitrine-Portfolio/" target="_blank">🌐 CV ~ Portfolio</a>
+        <a class="link" href="https://www.youtube.com/@HellXandre" target="_blank">▶️ YouTube</a>
+        <a class="link" href="https://www.instagram.com/hellxandre35" target="_blank">📸 Instagram officiel</a>
+        <a class="link" href="https://www.instagram.com/hellxandre" target="_blank">📸 Instagram vitrine</a>
+        <a class="link" href="https://www.flickr.com/people/lexandre/" target="_blank">🖼️ Flickr</a>
+        <a class="link" href="https://www.facebook.com/Hellxandre35/" target="_blank">📘 Facebook</a>
+        <a class="link" href="https://www.linkedin.com/in/Lexandre/" target="_blank">💼 LinkedIn</a>
+        <a class="link" href="https://www.association-lettre.org/" target="_blank">🫱 Lettre (association)</a>
+
+
+
+        <footer>
+            © HellXandre — Univers hybride & poétique
+        </footer>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('bg');
+        const ctx = canvas.getContext('2d');
+        const styleSelector = document.getElementById('styleSelector');
+        const toggleBtn = document.getElementById('toggleAnimation');
+
+        let animationOn = true;
+        let leaves = [];
+        let currentStyle = 'classic';
+
+        const neonColors = [
+            'rgba(255,105,180,0.6)',  // rose fluo
+            'rgba(0,255,255,0.6)',    // cyan
+            'rgba(255,255,0,0.6)',    // jaune
+            'rgba(255,0,255,0.6)',    // magenta
+            'rgba(0,255,120,0.6)'     // vert doux
+        ];
+
+        document.querySelectorAll('.link').forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                const glow = neonColors[Math.floor(Math.random() * neonColors.length)];
+                link.style.boxShadow = `0 0 18px ${glow}, 0 0 6px ${glow}`;
+                link.style.borderColor = glow;
+            });
+            link.addEventListener('mouseleave', () => {
+                link.style.boxShadow = 'none';
+                link.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+            });
+        });
+
+        document.querySelectorAll('.avatar').forEach(avatar => {
+            avatar.addEventListener('mouseenter', () => {
+                const glow = neonColors[Math.floor(Math.random() * neonColors.length)];
+                avatar.style.boxShadow = `0 0 18px ${glow}, 0 0 6px ${glow}`;
+                avatar.style.borderColor = glow;
+            });
+            avatar.addEventListener('mouseleave', () => {
+                avatar.style.boxShadow = 'none';
+                avatar.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+            });
+        });
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Leaf {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                const sizes = [8, 12, 16, 20, 24, 28];
+                this.size = sizes[Math.floor(Math.random() * sizes.length)];
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * -canvas.height;
+                this.speedY = 0.5 + Math.random() * 1.2;
+                this.speedX = -0.3 + Math.random() * 0.6;
+                this.alpha = 0.3 + Math.random() * 0.5;
+
+                const r = Math.floor(150 + Math.random() * 105);
+                const g = Math.floor(150 + Math.random() * 105);
+                const b = Math.floor(150 + Math.random() * 105);
+                this.color = `rgba(${r},${g},${b},${this.alpha})`;
+
+                this.symbols = ['🍃', '✦', '❈', '✨', '🍂', '🍁', '🌺', '🌿', '🪷'];
+                this.symbol = this.symbols[Math.floor(Math.random() * this.symbols.length)];
+
+                this.emojis = ['❤️', '💀', '🤖', '♥', '☠️', '👾', '💘', '𖠌', '✘', '🖤', '✖', '✚', '♡', '𓏵'];
+                this.emoji = this.emojis[Math.floor(Math.random() * this.emojis.length)];
+
+                this.fishes = ['🐠', '🐟', '🐡', '🦑', '🦐', '🐙'];
+                this.fish = this.fishes[Math.floor(Math.random() * this.fishes.length)];
+            }
+
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                if (this.y > canvas.height + this.size) this.reset();
+            }
+
+            draw() {
+                ctx.font = `${this.size}px serif`;
+                ctx.globalAlpha = this.alpha;
+                ctx.fillStyle = this.color;
+
+                if (currentStyle === 'symbol') {
+                    ctx.fillText(this.symbol, this.x, this.y);
+                } else if (currentStyle === 'emoji') {
+                    ctx.fillText(this.emoji, this.x, this.y);
+                } else if (currentStyle === 'glow') {
+                    const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 0.8);
+                    gradient.addColorStop(0, 'white');
+                    gradient.addColorStop(1, this.color);
+                    ctx.fillStyle = gradient;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size * 0.8, 0, Math.PI * 2);
+                    ctx.fill();
+
+                } else if (currentStyle === 'aquarium') {
+                    ctx.font = `${this.size}px serif`;
+                    ctx.globalAlpha = this.alpha;
+                    ctx.fillStyle = this.color;
+                    ctx.fillText(this.fish, this.x, this.y);
+                    ctx.globalAlpha = 1.0;
+                } else {
+                    ctx.beginPath();
+                    ctx.fillStyle = this.color;
+                    ctx.arc(this.x, this.y, this.size * 0.5, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                ctx.globalAlpha = 1;
+            }
+        }
+
+        function generateLeaves() {
+            leaves = [];
+            for (let i = 0; i < 60; i++) {
+                leaves.push(new Leaf());
+            }
+        }
+        generateLeaves();
+
+        function animate() {
+            if (!animationOn) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            leaves.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        styleSelector.addEventListener('change', () => {
+            currentStyle = styleSelector.value;
+        });
+
+        toggleBtn.addEventListener('click', () => {
+            animationOn = !animationOn;
+            if (animationOn) animate();
+            else ctx.clearRect(0, 0, canvas.width, canvas.height);
+        });
+    </script>
+</body>
+</html>
