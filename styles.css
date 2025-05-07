@@ -14,7 +14,7 @@ body {
     font-family: 'Roboto', Arial, sans-serif;
     background: linear-gradient(to right, #f4f4f9, #eef2f3);
     color: #333;
-    line-height: 1.2;
+    line-height: 1.1;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -28,8 +28,8 @@ body {
     grid-template-rows: auto auto 1fr auto;
     max-width: auto;
     gap: 10px;
-    margin: 30px auto;
-    padding: 30px;
+    margin: 25px auto;
+    padding: 25px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     overflow: hidden;
@@ -44,7 +44,7 @@ header {
     grid-template-columns: 1fr 2fr;
     align-items: center;
     text-align: center;
-    padding: 1rem;
+    padding: 0.9rem;
     animation: fadeInDown 1s ease-out;
 }
 
@@ -126,7 +126,7 @@ main {
     gap: 5px;
 }
 section {
-    margin-bottom: 1rem; /* Augmentation de l'espace entre sections */
+    margin-bottom: 0.9rem; /* Augmentation de l'espace entre sections */
     gap: 5px;
     align-items: center;
     text-align: center;
@@ -151,8 +151,6 @@ p {
     margin: 0 auto;
     font-size: 0.75rem;
 }
-
-
 
     img:hover {
         outline: var(--b) solid var(--c);
@@ -226,7 +224,7 @@ align-items:center;
 /* Contenu principal */
 .main-content {
     display: flex;
-    margin-top: 10px;
+    margin-top: 5px;
     flex-wrap: wrap;
     gap: 10px;
     padding: 5px;
@@ -387,8 +385,8 @@ ul {
 footer {
     font-size: 0.85rem;
     text-align: center;
-    margin-top: 20px;
-    padding: 10px;
+    margin-top: 10px;
+    padding: 5px;
     background-color: #2980b9;
     color: #fff;
 }
@@ -422,7 +420,7 @@ footer img {
 
     .contact-form input,
     .contact-form textarea {
-        width: 100%;
+        width: 90%;
         padding: 8px;
         border: 1px solid #ccc;
         border-radius: 5px;
@@ -432,7 +430,7 @@ footer img {
         background-color: #007BFF;
         color: gray;
         border: none;
-        padding: 10px;
+        padding: 5px;
         cursor: pointer;
         border-radius: 5px;
     }
