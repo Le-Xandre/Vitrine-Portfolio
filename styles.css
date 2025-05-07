@@ -121,7 +121,7 @@ header p {
 /* Sections principales */
 main {
     display: grid;
-    padding: 1rem;
+    padding: 0.5rem;
     grid-template-columns: 1fr 1fr;
     gap: 5px;
 }
