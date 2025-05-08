@@ -3,7 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HellXandre • Liens</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="MyLogoTube.png" />
+
+    <!-- Open Graph pour les aperçus de lien -->
+    <meta property="og:title" content="HellXandre • Portfolio" />
+    <meta property="og:description" content="Artiste visuel & interface poétique en ligne" />
+    <meta property="og:image" content="https://le-xandre.github.io/Vitrine-Portfolio/MyLogoTube.png" />
+    <meta property="og:image:width" content="200" />
+    <meta property="og:image:height" content="200" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:url" content="https://le-xandre.github.io/Vitrine-Portfolio/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="HellXandre" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="HellXandre • Portfolio" />
+    <meta name="twitter:description" content="Artiste visuel & interface poétique en ligne" />
+
+    <title>HellXandre • Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
@@ -14,12 +32,15 @@
             background: linear-gradient(120deg, #1a1a1a, #2d2d2d);
             font-family: 'Montserrat', sans-serif;
             color: #f0f0f0;
-            display: flex;
+            display:block;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
             text-align: center;
+            height: 100%;
+            min-height: 100vh;
+            overflow-y: auto;
+            box-sizing: border-box;
         }
 
         canvas {
@@ -33,18 +54,15 @@
         .container {
             position: relative;
             z-index: 1;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
             color: #f0f0f0;
             text-align: center;
+            
         }
 
         .avatar {
-            width: 200px;
-            height: 200px;
+            width: 400px;
+            height: 400px;
             object-fit: contain;
             border: none;
             border-radius: 50%;
@@ -55,11 +73,23 @@
             transition: filter 0.4s ease, opacity 0.4s ease;
         }
 
-            .avatar:hover {
-                opacity: 0.85;
-                filter: drop-shadow(0 0 16px rgb(105, 177, 255, 0.9)) brightness(1.2) saturate(1.2);
-                transition: filter 0.4s ease, opacity 0.4s ease;
+        /* Ajout d'une animation de pulsation pour l'avatar */
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
             }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .avatar:hover {
+            opacity: 0.85;
+            filter: drop-shadow(0 0 16px rgb(105, 177, 255, 0.9)) brightness(1.2) saturate(1.2);
+            transition: filter 0.4s ease, opacity 0.4s ease;
+            animation: pulse 1.2s infinite;
+        }
 
         h1 {
             margin: 4px;
@@ -72,6 +102,7 @@
             font-size: 0.8rem;
             opacity: 0.8;
         }
+
         #styleSelector {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.15);
@@ -82,13 +113,14 @@
             cursor: pointer;
             transition: all 0.2s ease;
         }
+
         .link {
             position: relative;
             display: inline-block;
-            width: 100%;
-            max-width: 260px;
-            margin: 7px auto;
-            padding: 7px 8px;
+            width: 90%;
+            max-width: 200px;
+            margin: 5px 5px;
+            padding: 8px 8px;
             background: rgba(51, 51, 51, 0.6);
             border-radius: 12px;
             backdrop-filter: blur(6px);
@@ -117,6 +149,12 @@
 
             .link:hover::before {
                 animation: shimmer 1.5s ease-in-out forwards;
+            }
+
+            /* Ajout d'une transition plus fluide pour les liens */
+            .link:hover {
+                transform: scale(1.05);
+                box-shadow: 0 0 24px rgba(255, 105, 180, 0.6), 0 0 12px rgba(255, 105, 180, 0.4);
             }
 
         @keyframes shimmer {
@@ -168,14 +206,17 @@
             opacity: 0;
             pointer-events: none;
         }
+
             #nowPlaying.visible {
                 opacity: 1;
                 pointer-events: auto;
             }
+
             #nowPlaying.hidden {
                 opacity: 0;
                 pointer-events: none;
             }
+
         #disc {
             width: 180px;
             height: 180px;
@@ -231,7 +272,6 @@
             overflow: hidden;
             width: 100%;
             text-overflow: ellipsis;
-            
         }
 
 
@@ -278,54 +318,36 @@
                 transform: rotate(360deg);
             }
         }
+
         #bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            z-index: -1; /* <-- assure que le fond passe sous tout */
+            z-index: 1; /* <-- assure que le fond passe sous tout */
             pointer-events: none;
         }
     </style>
+
+    <link rel="stylesheet" href="responsive.css" />
 </head>
 
 <body>
 
     <canvas id="bg"></canvas>
 
-    <div class="container">
+    <div class="container" style="opacity: 0.8;">
 
-
-        <div id="toggleAnimation" title="Activer/Désactiver l'animation" role="button" tabindex="0">
-
-            <h1>HellXandre</h1>
-            <img class="avatar" src="https://le-xandre.github.io/Vitrine-Portfolio/MyLogoTube.png" alt="Avatar">
-
-        </div>
-        
-        <p>
-            Artiste visuel ~ Portfolio vivant
-
-            <br /><span id="soundToggle" title="Activer/Désactiver l'animation" style="cursor: pointer;">🎵</span>
-            <select id="styleSelector">
-                <option value="classic">Éther doux</option>
-                <option value="glow">Lueurs intérieures</option>
-                <option value="symbol">Jardin flottant</option>
-                <option value="aquarium">Aquarium</option>
-                <option value="emoji">Love, Death & Robots</option>
-            </select>
-        </p>
-
-        <a class="link" href="https://le-xandre.github.io/Vitrine-Portfolio/" target="_blank">🌐 CV ~ Portfolio</a>
-        <a class="link" href="https://www.youtube.com/@HellXandre" target="_blank">▶️ YouTube</a>
-        <a class="link" href="https://www.instagram.com/hellxandre35" target="_blank">📸 Instagram officiel</a>
-        <a class="link" href="https://www.instagram.com/hellxandre" target="_blank">📸 Instagram vitrine</a>
-        <a class="link" href="https://www.flickr.com/people/lexandre/" target="_blank">🖼️ Flickr</a>
-        <a class="link" href="https://www.facebook.com/Hellxandre35/" target="_blank">📘 Facebook</a>
-        <a class="link" href="https://www.linkedin.com/in/Lexandre/" target="_blank">💼 LinkedIn</a>
-        <a class="link" href="https://www.association-lettre.org/" target="_blank">🫱 Lettre (association)</a>
-
+        <br /><span id="soundToggle" title="Activer/Désactiver l'animation" style="cursor: pointer;">🎵</span>
+        <select id="styleSelector">
+            <option value="classic">Éther doux</option>
+            <option value="glow">Lueurs intérieures</option>
+            <option value="symbol">Jardin flottant</option>
+            <option value="aquarium">Aquarium</option>
+            <option value="emoji">Love, Death & Robots</option>
+        </select>
+        <br />
         <div id="nowPlaying" class="">
             <div style="position: relative;">
                 <div id="disc"><img id="cover" src="" alt="cover" /></div>
@@ -362,6 +384,30 @@
             </style>
         </div>
 
+        <div id="toggleAnimation" title="Activer/Désactiver l'animation" role="button" tabindex="0">
+
+            <h1>HellXandre</h1>
+            <img class="avatar" src="https://le-xandre.github.io/Vitrine-Portfolio/MyLogoTube.png" alt="Avatar">
+
+        </div>
+
+        <p>
+
+            Artiste visuel ~ Portfolio vivant
+
+
+
+        </p>
+
+        <a class="link" href="https://le-xandre.github.io/Vitrine-Portfolio/" target="_blank">🌐 CV ~ Portfolio</a>
+        <a class="link" href="https://www.youtube.com/@HellXandre" target="_blank">▶️ YouTube</a>
+        <a class="link" href="https://www.instagram.com/hellxandre35" target="_blank">📸 Instagram officiel</a>
+        <a class="link" href="https://www.instagram.com/hellxandre" target="_blank">📸 Instagram vitrine</a>
+        <a class="link" href="https://www.flickr.com/people/lexandre/" target="_blank">🖼️ Flickr</a>
+        <a class="link" href="https://www.facebook.com/Hellxandre35/" target="_blank">📘 Facebook</a>
+        <a class="link" href="https://www.linkedin.com/in/Lexandre/" target="_blank">💼 LinkedIn</a>
+        <a class="link" href="https://www.association-lettre.org/" target="_blank">🫱 Lettre (association)</a>
+
 
         <footer>
             <hr />
@@ -387,6 +433,24 @@
             'rgba(0,255,120,0.6)'     // vert doux
         ];
 
+    function addHoverEffect(elements) {
+        elements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                const glow = neonColors[Math.floor(Math.random() * neonColors.length)];
+                el.style.boxShadow = `0 0 18px ${glow}, 0 0 6px ${glow}`;
+                el.style.borderColor = glow;
+            });
+            el.addEventListener('mouseleave', () => {
+                el.style.boxShadow = 'none';
+                el.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+            });
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        addHoverEffect(document.querySelectorAll('.link'));
+        addHoverEffect(document.querySelectorAll('.avatar'));
+    });
         document.querySelectorAll('.link').forEach(link => {
             link.addEventListener('mouseenter', () => {
                 const glow = neonColors[Math.floor(Math.random() * neonColors.length)];
@@ -583,6 +647,11 @@
         }
 
         function togglePlay() {
+            if (!audio || !currentTrack) {
+                alert("Veuillez sélectionner une piste audio avant de jouer !");
+                return;
+            }
+
             if (!audio || audio.paused) {
                 if (currentTrack) {
                     audio.play();
@@ -628,6 +697,28 @@
                 timer.textContent = `${min}:${sec}`;
             }
         }, 1000);
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const greeting = document.createElement('p');
+            const hours = new Date().getHours();
+            let message = "Bienvenue !";
+
+            if (hours < 12) {
+                message = "Bonjour !";
+            } else if (hours < 18) {
+                message = "Bon après-midi !";
+            } else {
+                message = "Bonsoir !";
+            }
+
+            greeting.textContent = message;
+            greeting.style.fontSize = "1rem";
+            greeting.style.marginTop = "10px";
+            greeting.style.opacity = "0.8";
+            document.querySelector('.container').prepend(greeting);
+        });
     </script>
 </body>
 </html>
