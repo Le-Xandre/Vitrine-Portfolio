@@ -1,0 +1,84 @@
+﻿@media (max-width: 768px) {
+    .main-layout {
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 20px 16px;
+        overflow-y: auto;
+    }
+
+    .link-column {
+        width: 100%;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .avatar-column {
+        width: 100%;
+        align-items: center;
+    }
+
+    .player-column {
+        width: 100%;
+        align-items: center;
+    }
+
+    .link {
+        width: 80%;
+    }
+
+    .burger {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    #linkList {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Avatar et menu alignés en haut */
+    .header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #nowPlaying {
+        position: static;
+        width: 100%;
+        margin-top: 20px;
+        transform: none;
+    }
+
+    .container {
+        padding-top: 20px;
+        align-items: center;
+    }
+
+    .burger-menu {
+        display: block;
+    }
+
+    .link-list {
+        display: none;
+    }
+
+    .burger-menu.active + .link-list {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Exemple bouton burger */
+    .burger-menu {
+        font-size: 2rem;
+        cursor: pointer;
+        margin: 10px;
+    }
+
+    #styleSelector {
+        width: 90%;
+        margin: 10px auto;
+    }
+}
