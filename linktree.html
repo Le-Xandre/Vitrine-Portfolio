@@ -76,11 +76,11 @@
         /* Ajout d'une animation de pulsation pour l'avatar */
         @keyframes pulse {
             0%, 100% {
-                transform: scale(0.8);
+                transform: scale(1);
             }
 
             50% {
-                transform: scale(1.0);
+                transform: scale(0.8);
             }
         }
 
@@ -88,7 +88,7 @@
             opacity: 0.9;
             filter: drop-shadow(0 0 8px rgb(105, 177, 255, 0.9)) brightness(1.2) saturate(1.2);
             transition: filter 0.4s ease, opacity 0.4s ease;
-            animation: pulse 4.2s infinite;
+            animation: pulse 3.2s infinite;
         }
 
         h1 {
