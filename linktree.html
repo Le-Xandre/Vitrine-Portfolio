@@ -145,8 +145,8 @@
         }
 
         #styleSelector {
-            width: 90%;
-            max-width: 200px;
+            width: 70%;
+            max-width: 160px;
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 10px;
             padding: 2px;
@@ -154,6 +154,7 @@
             cursor: pointer;
             justify-content: center;
             text-align: center;
+            align-items: center;
             animation: shimmer 1.5s ease-in-out forwards;
             filter: drop-shadow(0 0 2px rgb(105, 177, 255, 0.9)) brightness(1.2);
             transition: transform 0.24s ease, box-shadow 0.6s ease,filter 0.8s ease, opacity 0.8s ease;
@@ -165,7 +166,7 @@
             width: 90%;
             max-width: 200px;
             margin: 5px 5px;
-            padding: 8px 8px;
+            padding: 5px 5px;
             background: rgba(51, 51, 51, 0.6);
             border-radius: 12px;
             backdrop-filter: blur(6px);
@@ -387,7 +388,7 @@
 
 
         <div id="toggleAnimation" title="Activer/Désactiver l'animation" role="button" tabindex="0">
-            
+
             <h1>HellXandre</h1>
             <img class="avatar" src="https://le-xandre.github.io/Vitrine-Portfolio/MyLogoTube.png" alt="Avatar">
 
@@ -402,7 +403,7 @@
                 <circle class="leaf leaf2" cx="22" cy="28" r="10" fill="#81C784" />
                 <circle class="leaf leaf3" cx="42" cy="28" r="10" fill="#66BB6A" />
                 <rect x="28" y="32" width="8" height="20" rx="2" fill="#8D6E63" />
-                
+
                 <!-- Tree trunk -->
                 <rect x="70" y="100" width="15" height="60" fill="#8D6E63" />
 
@@ -424,7 +425,7 @@
                 <option value="aquarium">Aquarium</option>
                 <option value="emoji">Love, Death & Robots</option>
             </select>
-            
+
 
             <hr />
             <div>
@@ -459,203 +460,207 @@
                     <button id="volumeBtn" class="control-btn">🔈</button>
                     <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.1" style="width: 20%; margin-top: 5px;" />
                     <div id="timer">00:00</div>
+
+                
                 </div>
-
-
-                <style>
-                    @keyframes spin {
-                        0% {
-                            transform: rotate(0deg);
-                        }
-
-                        100% {
-                            transform: rotate(360deg);
-                        }
-                    }
-
-                    #nowPlaying:hover #discOverlay {
-                        opacity: 0;
-                    }
-                </style>
+               
             </div>
 
+            <style>
+                @keyframes spin {
+                    0% {
+                        transform: rotate(0deg);
+                    }
 
-        </p>
+                    100% {
+                        transform: rotate(360deg);
+                    }
+                }
+
+                #nowPlaying:hover #discOverlay {
+                    opacity: 0;
+                }
+            </style>
 
 
-        <footer>
-            <hr />
-            © HellXandre<em> — Univers hybride & poétique — </em>
-            <hr />
-        </footer>
+
     </div>
-    <script>document.addEventListener("DOMContentLoaded", () => {
-        const canvas = document.getElementById('bg');
-        const ctx = canvas.getContext('2d');
-        const styleSelector = document.getElementById('styleSelector');
-        const toggleBtn = document.getElementById('toggleAnimation');
 
-        let animationOn = true;
-        let leaves = [];
-        let currentStyle = 'classic';
 
-        const neonColors = [
-            'rgba(255,105,180,0.6)',  // rose fluo
-            'rgba(0,255,255,0.6)',    // cyan
-            'rgba(255,255,0,0.6)',    // jaune
-            'rgba(255,0,255,0.6)',    // magenta
-            'rgba(0,255,120,0.6)'     // vert doux
-        ];
+    <footer>
+        <hr />
+        © HellXandre<em> — Univers hybride & poétique — </em>
+        <hr />
+    </footer>
 
-    function addHoverEffect(elements) {
-        elements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                const glow = neonColors[Math.floor(Math.random() * neonColors.length)];
-                el.style.boxShadow = `0 0 18px ${glow}, 0 0 6px ${glow}`;
-                el.style.borderColor = glow;
-            });
-            el.addEventListener('mouseleave', () => {
-                el.style.boxShadow = 'none';
-                el.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-            });
-        });
-    }
-
+    <script>
     document.addEventListener("DOMContentLoaded", () => {
-        addHoverEffect(document.querySelectorAll('.link'));
-        addHoverEffect(document.querySelectorAll('.avatar'));
-    });
-        document.querySelectorAll('.link').forEach(link => {
-            link.addEventListener('mouseenter', () => {
-                const glow = neonColors[Math.floor(Math.random() * neonColors.length)];
-                link.style.boxShadow = `0 0 18px ${glow}, 0 0 6px ${glow}`;
-                link.style.borderColor = glow;
-            });
-            link.addEventListener('mouseleave', () => {
-                link.style.boxShadow = 'none';
-                link.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-            });
-        });
+            const canvas = document.getElementById('bg');
+            const ctx = canvas.getContext('2d');
+            const styleSelector = document.getElementById('styleSelector');
+            const toggleBtn = document.getElementById('toggleAnimation');
 
-        document.querySelectorAll('.avatar').forEach(avatar => {
-            avatar.addEventListener('mouseenter', () => {
-                const glow = neonColors[Math.floor(Math.random() * neonColors.length)];
-                avatar.style.boxShadow = `0 0 18px ${glow}, 0 0 6px ${glow}`;
-                avatar.style.borderColor = glow;
-            });
-            avatar.addEventListener('mouseleave', () => {
-                avatar.style.boxShadow = 'none';
-                avatar.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-            });
-        });
+            let animationOn = true;
+            let leaves = [];
+            let currentStyle = 'classic';
 
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
+            const neonColors = [
+                'rgba(255,105,180,0.6)',  // rose fluo
+                'rgba(0,255,255,0.6)',    // cyan
+                'rgba(255,255,0,0.6)',    // jaune
+                'rgba(255,0,255,0.6)',    // magenta
+                'rgba(0,255,120,0.6)'     // vert doux
+            ];
 
-        class Leaf {
-            constructor() {
-                this.reset();
+            function addHoverEffect(elements) {
+                elements.forEach(el => {
+                    el.addEventListener('mouseenter', () => {
+                        const glow = neonColors[Math.floor(Math.random() * neonColors.length)];
+                        el.style.boxShadow = `0 0 18px ${glow}, 0 0 6px ${glow}`;
+                        el.style.borderColor = glow;
+                    });
+                    el.addEventListener('mouseleave', () => {
+                        el.style.boxShadow = 'none';
+                        el.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                    });
+                });
             }
 
-            reset() {
-                const sizes = [8, 12, 16, 20, 24, 28];
-                this.size = sizes[Math.floor(Math.random() * sizes.length)];
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * -canvas.height;
-                this.speedY = 0.5 + Math.random() * 1.2;
-                this.speedX = -0.3 + Math.random() * 0.6;
-                this.alpha = 0.3 + Math.random() * 0.5;
+            document.addEventListener("DOMContentLoaded", () => {
+                addHoverEffect(document.querySelectorAll('.link'));
+                addHoverEffect(document.querySelectorAll('.avatar'));
+            });
+            document.querySelectorAll('.link').forEach(link => {
+                link.addEventListener('mouseenter', () => {
+                    const glow = neonColors[Math.floor(Math.random() * neonColors.length)];
+                    link.style.boxShadow = `0 0 18px ${glow}, 0 0 6px ${glow}`;
+                    link.style.borderColor = glow;
+                });
+                link.addEventListener('mouseleave', () => {
+                    link.style.boxShadow = 'none';
+                    link.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                });
+            });
 
-                const r = Math.floor(150 + Math.random() * 105);
-                const g = Math.floor(150 + Math.random() * 105);
-                const b = Math.floor(150 + Math.random() * 105);
-                this.color = `rgba(${r},${g},${b},${this.alpha})`;
+            document.querySelectorAll('.avatar').forEach(avatar => {
+                avatar.addEventListener('mouseenter', () => {
+                    const glow = neonColors[Math.floor(Math.random() * neonColors.length)];
+                    avatar.style.boxShadow = `0 0 18px ${glow}, 0 0 6px ${glow}`;
+                    avatar.style.borderColor = glow;
+                });
+                avatar.addEventListener('mouseleave', () => {
+                    avatar.style.boxShadow = 'none';
+                    avatar.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                });
+            });
 
-                this.symbols = ['🍃', '✦', '❈', '✨', '🍂', '🍁', '🌺', '🌿', '🪷'];
-                this.symbol = this.symbols[Math.floor(Math.random() * this.symbols.length)];
-
-                this.emojis = ['❤️', '💀', '🤖', '♥', '☠️', '👾', '💘', '𖠌', '✘', '🖤', '✖', '✚', '♡', '𓏵'];
-                this.emoji = this.emojis[Math.floor(Math.random() * this.emojis.length)];
-
-                this.fishes = ['🐠', '🐟', '🐡', '🦑', '🦐', '🐙', '🐠'];
-                this.fish = this.fishes[Math.floor(Math.random() * this.fishes.length)];
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
             }
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
 
-            update() {
-                this.y += this.speedY;
-                this.x += this.speedX;
-                if (this.y > canvas.height + this.size) this.reset();
-            }
+            class Leaf {
+                constructor() {
+                    this.reset();
+                }
 
-            draw() {
-                ctx.font = `${this.size}px serif`;
-                ctx.globalAlpha = this.alpha;
-                ctx.fillStyle = this.color;
+                reset() {
+                    const sizes = [8, 12, 16, 20, 24, 28];
+                    this.size = sizes[Math.floor(Math.random() * sizes.length)];
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * -canvas.height;
+                    this.speedY = 0.5 + Math.random() * 1.2;
+                    this.speedX = -0.3 + Math.random() * 0.6;
+                    this.alpha = 0.3 + Math.random() * 0.5;
 
-                if (currentStyle === 'symbol') {
-                    ctx.fillText(this.symbol, this.x, this.y);
-                } else if (currentStyle === 'emoji') {
-                    ctx.fillText(this.emoji, this.x, this.y);
-                } else if (currentStyle === 'glow') {
-                    const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 0.8);
-                    gradient.addColorStop(0, 'white');
-                    gradient.addColorStop(1, this.color);
-                    ctx.fillStyle = gradient;
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size * 0.8, 0, Math.PI * 2);
-                    ctx.fill();
+                    const r = Math.floor(150 + Math.random() * 105);
+                    const g = Math.floor(150 + Math.random() * 105);
+                    const b = Math.floor(150 + Math.random() * 105);
+                    this.color = `rgba(${r},${g},${b},${this.alpha})`;
 
-                } else if (currentStyle === 'aquarium') {
+                    this.symbols = ['🍃', '✦', '❈', '✨', '🍂', '🍁', '🌺', '🌿', '🪷'];
+                    this.symbol = this.symbols[Math.floor(Math.random() * this.symbols.length)];
+
+                    this.emojis = ['❤️', '💀', '🤖', '♥', '☠️', '👾', '💘', '𖠌', '✘', '🖤', '✖', '✚', '♡', '𓏵'];
+                    this.emoji = this.emojis[Math.floor(Math.random() * this.emojis.length)];
+
+                    this.fishes = ['🐠', '🐟', '🐡', '🦑', '🦐', '🐙', '🐠'];
+                    this.fish = this.fishes[Math.floor(Math.random() * this.fishes.length)];
+                }
+
+                update() {
+                    this.y += this.speedY;
+                    this.x += this.speedX;
+                    if (this.y > canvas.height + this.size) this.reset();
+                }
+
+                draw() {
                     ctx.font = `${this.size}px serif`;
                     ctx.globalAlpha = this.alpha;
                     ctx.fillStyle = this.color;
-                    ctx.fillText(this.fish, this.x, this.y);
-                    ctx.globalAlpha = 1.0;
-                } else {
-                    ctx.beginPath();
-                    ctx.fillStyle = this.color;
-                    ctx.arc(this.x, this.y, this.size * 0.5, 0, Math.PI * 2);
-                    ctx.fill();
+
+                    if (currentStyle === 'symbol') {
+                        ctx.fillText(this.symbol, this.x, this.y);
+                    } else if (currentStyle === 'emoji') {
+                        ctx.fillText(this.emoji, this.x, this.y);
+                    } else if (currentStyle === 'glow') {
+                        const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 0.8);
+                        gradient.addColorStop(0, 'white');
+                        gradient.addColorStop(1, this.color);
+                        ctx.fillStyle = gradient;
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.size * 0.8, 0, Math.PI * 2);
+                        ctx.fill();
+
+                    } else if (currentStyle === 'aquarium') {
+                        ctx.font = `${this.size}px serif`;
+                        ctx.globalAlpha = this.alpha;
+                        ctx.fillStyle = this.color;
+                        ctx.fillText(this.fish, this.x, this.y);
+                        ctx.globalAlpha = 1.0;
+                    } else {
+                        ctx.beginPath();
+                        ctx.fillStyle = this.color;
+                        ctx.arc(this.x, this.y, this.size * 0.5, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+
+                    ctx.globalAlpha = 1;
                 }
-
-                ctx.globalAlpha = 1;
             }
-        }
 
-        function generateLeaves() {
-            leaves = [];
-            for (let i = 0; i < 60; i++) {
-                leaves.push(new Leaf());
+            function generateLeaves() {
+                leaves = [];
+                for (let i = 0; i < 60; i++) {
+                    leaves.push(new Leaf());
+                }
             }
-        }
-        generateLeaves();
+            generateLeaves();
 
-        function animate() {
-            if (!animationOn) return;
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            leaves.forEach(p => {
-                p.update();
-                p.draw();
+            function animate() {
+                if (!animationOn) return;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                leaves.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                requestAnimationFrame(animate);
+            }
+            animate();
+
+            styleSelector.addEventListener('change', () => {
+                currentStyle = styleSelector.value;
             });
-            requestAnimationFrame(animate);
-        }
-        animate();
 
-        styleSelector.addEventListener('change', () => {
-            currentStyle = styleSelector.value;
+            toggleBtn.addEventListener('click', () => {
+                animationOn = !animationOn;
+                if (animationOn) animate();
+                else ctx.clearRect(0, 0, canvas.width, canvas.height);
+            });
+
         });
-
-        toggleBtn.addEventListener('click', () => {
-            animationOn = !animationOn;
-            if (animationOn) animate();
-            else ctx.clearRect(0, 0, canvas.width, canvas.height);
-        });
-
-});
     </script>
     <script>
 
@@ -696,7 +701,7 @@
 
         const soundToggle = document.getElementById("soundToggle");
         const nowPlaying = document.getElementById("nowPlaying");
-        
+
         soundToggle.addEventListener("click", () => {
             nowPlaying.classList.toggle("visible");
         });
@@ -729,7 +734,7 @@
         randomBtn.addEventListener("click", () => playTrack(Math.floor(Math.random() * tracks.length)));
 
         function togglePlay() {
-           
+
 
             if (!audio || audio.paused) {
                 if (currentTrack) {
@@ -776,6 +781,8 @@
                 timer.textContent = `${min}:${sec}`;
             }
         }, 1000);
+
+
     </script>
 
     <script>
