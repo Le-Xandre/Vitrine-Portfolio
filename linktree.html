@@ -67,7 +67,7 @@
             border-radius: 50%;
             margin-bottom: 1px;
             margin: auto;
-            padding: 4px;
+            padding: 3px;
             opacity: 0.8;
             filter: drop-shadow(0 0 8px rgba(255, 105, 180, 0.4)) brightness(1.1);
             transition: filter 0.4s ease, opacity 0.4s ease;
@@ -76,19 +76,19 @@
         /* Ajout d'une animation de pulsation pour l'avatar */
         @keyframes pulse {
             0%, 100% {
-                transform: scale(1);
+                transform: scale(0.8);
             }
 
             50% {
-                transform: scale(1.05);
+                transform: scale(1.0);
             }
         }
 
         .avatar:hover {
-            opacity: 0.85;
-            filter: drop-shadow(0 0 16px rgb(105, 177, 255, 0.9)) brightness(1.2) saturate(1.2);
+            opacity: 0.9;
+            filter: drop-shadow(0 0 8px rgb(105, 177, 255, 0.9)) brightness(1.2) saturate(1.2);
             transition: filter 0.4s ease, opacity 0.4s ease;
-            animation: pulse 1.2s infinite;
+            animation: pulse 4.2s infinite;
         }
 
         h1 {
@@ -418,9 +418,8 @@
 
             </svg>
             <select id="styleSelector">
-
-                <option value="classic">Lueurs étherées</option>
                 <option value="glow">Lueurs intérieures</option>
+                <option value="classic">Lueurs extérieures</option>
                 <option value="symbol">Jardin flottant</option>
                 <option value="aquarium">Aquarium</option>
                 <option value="emoji">Love, Death & Robots</option>
@@ -709,8 +708,8 @@
         function playTrack(track) {
             if (audio) audio.pause();
             audio = new Audio(track.file);
-            audio.volume = 0.1;
-            audio.loop = false;
+            audio.volume = 0.2;
+            audio.loop = new Audio(track.file);
             currentTrack = track;
             coverImg.src = track.cover;
             titleDisplay.textContent = track.title;
