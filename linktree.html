@@ -705,12 +705,19 @@
             if (audio) audio.pause();
             audio = new Audio(track.file);
             audio.volume = 0.1;
-            audio.loop = true;
+            audio.loop = false;
             currentTrack = track;
             coverImg.src = track.cover;
             titleDisplay.textContent = track.title;
             disc.style.animationPlayState = "paused";
             tonearm.classList.remove("active");
+
+            audio.addEventListener("ended", () => {
+                let nextTrackIndex = (trackIndex + 1) % tracks.length; // Passe au prochain morceau
+                playTrack(nextTrackIndex);
+            });
+
+
             setTimeout(() => {
                 audio.play();
                 disc.style.animationPlayState = "running";
@@ -719,6 +726,7 @@
                 toggleBtn.textContent = "⏸";
             }, 600);
         }
+        randomBtn.addEventListener("click", () => playTrack(Math.floor(Math.random() * tracks.length)));
 
         function togglePlay() {
            
