@@ -32,7 +32,7 @@
             background: linear-gradient(120deg, #1a1a1a, #2d2d2d);
             font-family: 'Montserrat', sans-serif;
             color: #f0f0f0;
-            display:block;
+            display: block;
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -57,7 +57,6 @@
             justify-content: center;
             color: #f0f0f0;
             text-align: center;
-            
         }
 
         .avatar {
@@ -67,6 +66,7 @@
             border: none;
             border-radius: 50%;
             margin-bottom: 1px;
+            margin: auto;
             padding: 4px;
             opacity: 0.8;
             filter: drop-shadow(0 0 8px rgba(255, 105, 180, 0.4)) brightness(1.1);
@@ -103,15 +103,60 @@
             opacity: 0.8;
         }
 
+
+        .leaf {
+            transition: transform 0.2s ease-in-out;
+            transform-origin: center;
+            fill: #66bb6a;
+            animation: fall 4s ease-in infinite;
+        }
+
+        .tree-svg:hover .leaf1 {
+            transform: rotate(-5deg) translateY(-2px);
+        }
+
+        .tree-svg:hover .leaf2 {
+            transform: rotate(3deg) translateY(-1px);
+        }
+
+        .tree-svg:hover .leaf3 {
+            transform: rotate(-4deg) translateY(-3px);
+        }
+
+
+        .leaf:nth-child(2) {
+            animation-delay: 1s;
+        }
+
+        .leaf:nth-child(3) {
+            animation-delay: 2s;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(80px) rotate(180deg);
+                opacity: 0;
+            }
+        }
+
         #styleSelector {
-            background: rgba(255, 255, 255, 0.05);
+            width: 90%;
+            max-width: 200px;
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 10px;
             padding: 2px;
-            color: #fff;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             cursor: pointer;
-            transition: all 0.2s ease;
+            justify-content: center;
+            text-align: center;
+            animation: shimmer 1.5s ease-in-out forwards;
+            filter: drop-shadow(0 0 2px rgb(105, 177, 255, 0.9)) brightness(1.2);
+            transition: transform 0.24s ease, box-shadow 0.6s ease,filter 0.8s ease, opacity 0.8s ease;
         }
 
         .link {
@@ -189,10 +234,10 @@
         /* Lecteur vinyle avancé */
         #nowPlaying {
             position: fixed;
-            top: 50%;
-            right: 40px;
+            top: 40%;
+            right: 60px;
             transform: translateY(-50%);
-            width: 260px;
+            width: 300px;
             background: rgba(30,30,30,0.4);
             border-radius: 16px;
             padding: 20px;
@@ -218,8 +263,8 @@
             }
 
         #disc {
-            width: 180px;
-            height: 180px;
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
             overflow: hidden;
             border: 6px solid rgba(255, 255, 255, 0.1);
@@ -339,74 +384,103 @@
 
     <div class="container" style="opacity: 0.8;">
 
-        <br /><span id="soundToggle" title="Activer/Désactiver l'animation" style="cursor: pointer;">🎵</span>
-        <select id="styleSelector">
-            <option value="classic">Éther doux</option>
-            <option value="glow">Lueurs intérieures</option>
-            <option value="symbol">Jardin flottant</option>
-            <option value="aquarium">Aquarium</option>
-            <option value="emoji">Love, Death & Robots</option>
-        </select>
-        <br />
-        <div id="nowPlaying" class="">
-            <div style="position: relative;">
-                <div id="disc"><img id="cover" src="" alt="cover" /></div>
-                <div id="tonearm">
-                    <svg width="80" height="80" viewBox="0 0 60 60">
-                        <line x1="50" y1="55" x2="20" y2="20" stroke="rgba(255,255,255,0.4)" stroke-width="4" stroke-linecap="round" />
-                        <circle cx="20" cy="20" r="6" fill="rgba(255,105,180,0.6)" />
-                    </svg>
-                </div>
-            </div>
-            <div id="title">Titre ici</div>
-            <div id="controls">
-                <button id="toggleBtn" class="control-btn">▶</button>
-                <button id="randomBtn" class="control-btn">🔀</button>
-                <button id="volumeBtn" class="control-btn">🔈</button>
-                <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.1" style="width: 40%; margin-top: 5px;" />
-            </div>
-            <div id="timer">00:00</div>
 
-            <style>
-                @keyframes spin {
-                    0% {
-                        transform: rotate(0deg);
-                    }
-
-                    100% {
-                        transform: rotate(360deg);
-                    }
-                }
-
-                #nowPlaying:hover #discOverlay {
-                    opacity: 0;
-                }
-            </style>
-        </div>
 
         <div id="toggleAnimation" title="Activer/Désactiver l'animation" role="button" tabindex="0">
-
+            
             <h1>HellXandre</h1>
             <img class="avatar" src="https://le-xandre.github.io/Vitrine-Portfolio/MyLogoTube.png" alt="Avatar">
 
+
         </div>
-
         <p>
+            LinkTree animé
+            <svg width="40" height="40" viewBox="0 0 60 45" xmlns="http://www.w3.org/2000/svg" class="tree-svg" style="">
 
-            Artiste visuel ~ Portfolio vivant
 
+                <circle class="leaf leaf1" cx="32" cy="20" r="12" fill="#4CAF50" />
+                <circle class="leaf leaf2" cx="22" cy="28" r="10" fill="#81C784" />
+                <circle class="leaf leaf3" cx="42" cy="28" r="10" fill="#66BB6A" />
+                <rect x="28" y="32" width="8" height="20" rx="2" fill="#8D6E63" />
+                
+                <!-- Tree trunk -->
+                <rect x="70" y="100" width="15" height="60" fill="#8D6E63" />
+
+                <!-- Tree foliage -->
+                <circle cx="75" cy="80" r="30" fill="#4CAF50" />
+
+                <!-- Falling leaves -->
+                <circle class="leaf" cx="65" cy="60" r="4" />
+                <circle class="leaf" cx="85" cy="55" r="4" />
+                <circle class="leaf" cx="75" cy="50" r="4" />
+                <circle class="leaf" cx="95" cy="45" r="4" />
+
+            </svg>
+            <select id="styleSelector">
+
+                <option value="classic">Lueurs étherées</option>
+                <option value="glow">Lueurs intérieures</option>
+                <option value="symbol">Jardin flottant</option>
+                <option value="aquarium">Aquarium</option>
+                <option value="emoji">Love, Death & Robots</option>
+            </select>
+            
+
+            <hr />
+            <div>
+
+
+                <a class="link" href="https://le-xandre.github.io/Vitrine-Portfolio/" target="_blank">🌐 CV ~ Portfolio</a>
+                <a class="link" href="https://www.youtube.com/@HellXandre" target="_blank">▶️ YouTube</a>
+                <a class="link" href="https://www.instagram.com/hellxandre35" target="_blank">📸 Instagram officiel</a>
+                <a class="link" href="https://www.instagram.com/hellxandre" target="_blank">📸 Instagram vitrine</a>
+                <a class="link" href="https://www.flickr.com/people/lexandre/" target="_blank">🖼️ Flickr</a>
+                <a class="link" href="https://www.facebook.com/Hellxandre35/" target="_blank">📘 Facebook</a>
+                <a class="link" href="https://www.linkedin.com/in/Lexandre/" target="_blank">💼 LinkedIn</a>
+                <a class="link" href="https://www.association-lettre.org/" target="_blank">🫱 Lettre (association)</a>
+            </div>
+            <br />
+            <span id="soundToggle" title="Activer/Désactiver l'animation" style="cursor: pointer;">Cliquez → 🎵</span>
+            <div id="nowPlaying" class="">
+
+                <div style="position: relative;">
+                    <div id="disc"><img id="cover" src="" alt="cover" /></div>
+                    <div id="tonearm">
+                        <svg width="80" height="80" viewBox="0 0 60 60">
+                            <line x1="50" y1="55" x2="20" y2="20" stroke="rgba(255,255,255,0.4)" stroke-width="4" stroke-linecap="round" />
+                            <circle cx="20" cy="20" r="6" fill="rgba(255,105,180,0.6)" />
+                        </svg>
+                    </div>
+                </div>
+                <div id="title">Titre ici</div>
+                <div id="controls">
+                    <button id="toggleBtn" class="control-btn">▶</button>
+                    <button id="randomBtn" class="control-btn">🔀</button>
+                    <button id="volumeBtn" class="control-btn">🔈</button>
+                    <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.1" style="width: 20%; margin-top: 5px;" />
+                    <div id="timer">00:00</div>
+                </div>
+
+
+                <style>
+                    @keyframes spin {
+                        0% {
+                            transform: rotate(0deg);
+                        }
+
+                        100% {
+                            transform: rotate(360deg);
+                        }
+                    }
+
+                    #nowPlaying:hover #discOverlay {
+                        opacity: 0;
+                    }
+                </style>
+            </div>
 
 
         </p>
-
-        <a class="link" href="https://le-xandre.github.io/Vitrine-Portfolio/" target="_blank">🌐 CV ~ Portfolio</a>
-        <a class="link" href="https://www.youtube.com/@HellXandre" target="_blank">▶️ YouTube</a>
-        <a class="link" href="https://www.instagram.com/hellxandre35" target="_blank">📸 Instagram officiel</a>
-        <a class="link" href="https://www.instagram.com/hellxandre" target="_blank">📸 Instagram vitrine</a>
-        <a class="link" href="https://www.flickr.com/people/lexandre/" target="_blank">🖼️ Flickr</a>
-        <a class="link" href="https://www.facebook.com/Hellxandre35/" target="_blank">📘 Facebook</a>
-        <a class="link" href="https://www.linkedin.com/in/Lexandre/" target="_blank">💼 LinkedIn</a>
-        <a class="link" href="https://www.association-lettre.org/" target="_blank">🫱 Lettre (association)</a>
 
 
         <footer>
@@ -647,10 +721,7 @@
         }
 
         function togglePlay() {
-            if (!audio || !currentTrack) {
-                alert("Veuillez sélectionner une piste audio avant de jouer !");
-                return;
-            }
+           
 
             if (!audio || audio.paused) {
                 if (currentTrack) {
@@ -706,11 +777,11 @@
             let message = "Bienvenue !";
 
             if (hours < 12) {
-                message = "Bonjour !";
+                message = "Bonjour à tous & toutes !";
             } else if (hours < 18) {
-                message = "Bon après-midi !";
+                message = "Bon après-midi à vous !";
             } else {
-                message = "Bonsoir !";
+                message = "Bonsoir tous & toutes !";
             }
 
             greeting.textContent = message;
