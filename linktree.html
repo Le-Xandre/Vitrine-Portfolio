@@ -57,7 +57,7 @@
             width: 430px;
             height: 430px;
             object-fit: contain;
-            align-items:center;
+            align-items: center;
             border: none;
             border-radius: 50%;
             margin-bottom: 1px;
@@ -109,11 +109,10 @@
 
 
             #soundToggle:hover {
-                
                 filter: drop-shadow(0 0 4px rgb(105, 177, 255, 1)) brightness(1.8) saturate(1.4);
                 transition: filter 0.4s ease, opacity 0.4s ease;
             }
-      
+
 
         .leaf {
             transition: transform 0.2s ease-in-out;
@@ -156,12 +155,12 @@
         }
 
         #styleSelector {
-            width: 70%;
+            width: 80%;
             max-width: 160px;
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 10px;
-            padding: 2px;
-            font-size: 0.75rem;
+            padding: 1px;
+            font-size: 0.8rem;
             cursor: pointer;
             justify-content: center;
             text-align: center;
@@ -190,7 +189,6 @@
             opacity: 0.9;
             filter: drop-shadow(0 0 2px rgba(255, 105, 180, 0.4)) brightness(1.2);
             transition: transform 0.24s ease, box-shadow 0.6s ease,filter 0.8s ease, opacity 0.8s ease;
-
         }
 
             .link::before {
@@ -242,7 +240,6 @@
             padding: 0;
             margin-bottom: 10px;
             outline: none;
-
         }
 
         /* Lecteur vinyle avancé */
@@ -346,10 +343,10 @@
             background: rgba(255, 255, 255, 0.55);
             border: 2px solid rgba(255, 255, 255, 0.55);
             border-radius: 50%;
-            width: 36px;
-            height: 36px;
+            width: 30px;
+            height: 30px;
             color: #fff;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -370,6 +367,24 @@
             opacity: 0.7;
         }
 
+        #playlist li {
+            position: relative;
+            display: list-item;
+            width: auto;
+            height: auto;
+            margin: 2px;
+            padding: 1px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+        }
+
+            #playlist li:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+
         @keyframes spin {
             0% {
                 transform: rotate(0deg);
@@ -389,14 +404,13 @@
             z-index: 1; /* <-- assure que le fond passe sous tout */
             pointer-events: none;
         }
-    
-.control-btn.toggle-on {
-  transform: translateY(2px);
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
-  background: rgba(255, 255, 255, 0.2);
-}
 
-</style>
+        .control-btn.toggle-on {
+            transform: translateY(2px);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
 
     <link rel="stylesheet" href="responsive.css" />
 </head>
@@ -470,12 +484,18 @@
                 <div id="controls">
                     <button id="toggleBtn" class="control-btn">▶</button>
                     <button id="randomBtn" class="control-btn">🔀</button>
+                    <button id="playlistToggle" class="control-btn" title="Afficher la playlist">📜</button>
                     <button id="volumeBtn" class="control-btn">🔈</button>
                     <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.1" style="width: 25%; margin-top: 1px;">
                     <div id="timer"> 00:00 </div>
+                </div>
+                <div id="playlistContainer" style="margin-top:10px;">
+                    
+                    <ul id="playlist"
+                        style="display:none; list-style:none; padding:0; margin:10px 0 0; max-height:200px; overflow:auto; width:180px; background:rgba(255,255,255,0.05); border-radius:8px;">
+                        <bold style="text-decoration: underline;">Playlist</bold></ul>
 
                 </div>
-
                 <style>
                     @keyframes spin {
                         0% {
@@ -500,7 +520,7 @@
 
             </div>
 
-    </div>
+</div>
 
     <footer>
         <hr />
@@ -679,7 +699,7 @@
     </script>
 
     <script>
-    const tracks = [
+        const tracks = [
             { file: "sound/Bulle Pixel (1).mp3", title: "Bulle Pixel (1)", cover: "sound/Bulle Pixel (1).jpg" },
             { file: "sound/Bulle Pixel.mp3", title: "Bulle Pixel", cover: "sound/Bulle Pixel.jpg" },
             { file: "sound/Deep Impact Hit.mp3", title: "Deep Impact Hit", cover: "sound/Deep Impact Hit.jpg" },
@@ -699,24 +719,24 @@
             { file: "sound/Mélodie Florale.mp3", title: "Mélodie Florale", cover: "sound/Mélodie Florale.jpg" },
             { file: "sound/Shadow of the Witcher.mp3", title: "Shadow of the Witcher", cover: "sound/Shadow of the Witcher.jpg" },
 
-        
-
-        { file: "sound/The Witcher's Call (1).mp3", title: "The Witcher's Call (1)", cover: "sound/The Witcher's Call (1).jpg" },
-        { file: "sound/The Witcher's Call.mp3", title: "The Witcher's Call", cover: "sound/The Witcher's Call.jpg" },
-        { file: "sound/The Final Whisper.mp3", title: "The Final Whisper", cover: "sound/The Final Whisper.jpg" },
-        { file: "sound/Sword and Spell (1).mp3", title: "Sword and Spell (1)", cover: "sound/Sword and Spell (1).jpg" },
-        { file: "sound/Sword and Spell.mp3", title: "Sword and Spell", cover: "sound/Sword and Spell.jpg" },
 
 
-        { file: "sound/La Lame de Ciri (1).mp3", title: "La Lame de Ciri (1)", cover: "sound/La Lame de Ciri (1).jpg" },
-        { file: "sound/La Lame de Ciri.mp3", title: "La Lame de Ciri", cover: "sound/La Lame de Ciri.jpg" },
-        { file: "sound/Ghost of Destiny (1).mp3", title: "Ghost of Destiny (1)", cover: "sound/Ghost of Destiny (1).jpg" },
-        { file: "sound/Ghost of Destiny.mp3", title: "Ghost of Destiny", cover: "sound/Ghost of Destiny.jpg" },
-        { file: "sound/Digital Drift (2).mp3", title: "Digital Drift (2)", cover: "sound/Digital Drift (2).jpg" },
+            { file: "sound/The Witcher's Call (1).mp3", title: "The Witcher's Call (1)", cover: "sound/The Witcher's Call (1).jpg" },
+            { file: "sound/The Witcher's Call.mp3", title: "The Witcher's Call", cover: "sound/The Witcher's Call.jpg" },
+            { file: "sound/The Final Whisper.mp3", title: "The Final Whisper", cover: "sound/The Final Whisper.jpg" },
+            { file: "sound/Sword and Spell (1).mp3", title: "Sword and Spell (1)", cover: "sound/Sword and Spell (1).jpg" },
+            { file: "sound/Sword and Spell.mp3", title: "Sword and Spell", cover: "sound/Sword and Spell.jpg" },
 
 
-        { file: "sound/Deep Impact Hit (2).mp3", title: "Deep Impact Hit (2)", cover: "sound/Deep Impact Hit (2).jpg" },
-        { file: "sound/Ashe of the Fallen.mp3", title: "Ashe of the Fallen", cover: "sound/Ashe of the Fallen.jpg" },
+            { file: "sound/La Lame de Ciri (1).mp3", title: "La Lame de Ciri (1)", cover: "sound/La Lame de Ciri (1).jpg" },
+            { file: "sound/La Lame de Ciri.mp3", title: "La Lame de Ciri", cover: "sound/La Lame de Ciri.jpg" },
+            { file: "sound/Ghosts of Destiny (1).mp3", title: "Ghosts of Destiny (1)", cover: "sound/Ghosts of Destiny (1).jpg" },
+            { file: "sound/Ghosts of Destiny.mp3", title: "Ghosts of Destiny", cover: "sound/Ghosts of Destiny.jpg" },
+            { file: "sound/Digital Drift (2).mp3", title: "Digital Drift (2)", cover: "sound/Digital Drift (2).jpg" },
+
+
+            { file: "sound/Deep Impact Hit (2).mp3", title: "Deep Impact Hit (2)", cover: "sound/Deep Impact Hit (2).jpg" },
+            { file: "sound/Ashes of the Fallen.mp3", title: "Ashes of the Fallen", cover: "sound/Ashes of the Fallen.jpg" },
         ];
         let audio = null;
         let isPlaying = false;
@@ -735,6 +755,24 @@
         const soundToggle = document.getElementById("soundToggle");
         const nowPlaying = document.getElementById("nowPlaying");
 
+        // 🎵 Playlist interactive flottante
+        const playlistToggle = document.getElementById("playlistToggle");
+        const playlist = document.getElementById("playlist");
+
+        tracks.forEach((track, index) => {
+            const li = document.createElement("li");
+            li.textContent = track.title;
+            li.addEventListener("click", () => {
+                playTrack(track);
+            });
+            playlist.appendChild(li);
+        });
+
+        playlistToggle.addEventListener("click", () => {
+            playlist.style.display = playlist.style.display === "none" ? "block" : "none";
+        });
+
+
         soundToggle.addEventListener("click", () => {
             nowPlaying.classList.toggle("visible");
         });
@@ -749,7 +787,7 @@
             titleDisplay.textContent = track.title;
             disc.style.animationPlayState = "paused";
             tonearm.classList.remove("active");
-                        
+
 
             audio.addEventListener("ended", () => {
                 const currentIndex = tracks.findIndex(t => t.file === track.file);
