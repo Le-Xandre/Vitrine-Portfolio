@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Manifeste à deux voix - Livret interactif</title>
 
-    <link rel="stylesheet" href="responsive.css" />
     <style>
         * {
             box-sizing: border-box;
@@ -52,7 +51,7 @@
         }
 
         @keyframes changeImages {
-            0%, 100% {
+            0% {
                 background-image: url('MyLogoTube.png'), url('images/image (2).jpg'), url('images/image (3).jpg');
             }
 
@@ -62,6 +61,10 @@
 
             66% {
                 background-image: url('images/image (1).png'), url('images/image (4).jpg'), url('images/image (3).jpg');
+            }
+
+            100% {
+                background-image: url('images/image (4).png'), url('images/image (5).png'), url('images/image (6).png');
             }
         }
 header {
@@ -98,13 +101,11 @@ nav ul li a.active {
   text-decoration: underline;
 }
 .flipbook-container {
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 20px auto;
   width: 90%;
-  max-width: 1000px;
 }
 #flipbook {
   width: 100%;
@@ -338,13 +339,14 @@ nav ul li a.active {
             }
         }
     </style>
-
-           
-
-
- <link rel="stylesheet" href="style (2).css">
+         
+<link rel="stylesheet" href="style (2).css">    
+    <link rel="stylesheet" href="responsive.css" />
+    
     <script src="script.js" defer></script>
+    
 </head>
+    
 <body>
     <div id="background"></div> <!-- Arrière-plan animé -->
 
@@ -513,11 +515,8 @@ nav ul li a.active {
 
     </div>        
     </main>
-<br>
 
     <footer>
-
-
         <p>© 2025 Manifeste à deux voix - Tous droits réservés</p>
     </footer>
 
