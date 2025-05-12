@@ -125,9 +125,15 @@ nav ul li a.active {
   font-size: 18px;
 }
 @media (max-width: 768px) {
-  #flipbook {
-    height: auto;
-  }
+            #flipbook {
+                width: 90vw;
+                height: 400px;
+            }
+
+            .page p {
+                font-size: 0.8em;
+            }
+        }
 }
 
         h1 {
@@ -200,7 +206,7 @@ nav ul li a.active {
             font-weight: bold;
         }
 
-        .img {
+        #img {
             width: 90%;
             max-width: 800px;
             margin: 0.5rem auto;
@@ -210,15 +216,15 @@ nav ul li a.active {
         }
 
         hr {
-            margin: 0.5rem 0;
+            margin: 0.2rem 0;
         }
         #flipbook {
             width: 80vw;
-            max-width: 800px; /* Réduit la largeur pour que le contenu tienne mieux */
-            height: 520px; /* Ajuste la hauteur du flipbook */
+            max-width: 750px; /* Réduit la largeur pour que le contenu tienne mieux */
+            height: 480px; /* Ajuste la hauteur du flipbook */
             z-index: 1; /* Le flipbook est derrière les boutons */
             margin: 0 auto; /* Centrer le livret horizontalement */
-            padding: 5px; /* Espace autour du contenu */
+            padding: 3px; /* Espace autour du contenu */
         }
 
         .page {
@@ -338,7 +344,12 @@ nav ul li a.active {
                 }
 
             #container {
-                height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 80%;
+            max-width: 80%;
             }
         }
     </style>
