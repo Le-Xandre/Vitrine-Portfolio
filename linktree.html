@@ -701,45 +701,43 @@
     </script>
 
     <script>
-        const tracks = [
-            { file: "sound/Bulle Pixel (1).mp3", title: "Bulle Pixel (1)", cover: "sound/Bulle Pixel (1).jpg" },
-            { file: "sound/Bulle Pixel.mp3", title: "Bulle Pixel", cover: "sound/Bulle Pixel.jpg" },
-            { file: "sound/Deep Impact Hit.mp3", title: "Deep Impact Hit", cover: "sound/Deep Impact Hit.jpg" },
-            { file: "sound/Desillusionnée IA (1).mp3", title: "Desillusionnée IA (1)", cover: "sound/Desillusionnée IA (1).jpg" },
-            { file: "sound/Desillusionnée IA.mp3", title: "Desillusionnée IA", cover: "sound/Desillusionnée IA.jpg" },
-            { file: "sound/Digital Drift.mp3", title: "Digital Drift", cover: "sound/Digital Drift.jpg" },
-            { file: "sound/Echo cosmique (1).mp3", title: "Echo cosmique (1)", cover: "sound/Echo cosmique (1).jpg" },
-            { file: "sound/Echo cosmique.mp3", title: "Echo cosmique", cover: "sound/Echo cosmique.jpg" },
-            { file: "sound/Echo of Shadows.mp3", title: "Echo of Shadows", cover: "sound/Echo of Shadows.jpg" },
-            { file: "sound/Echoes of Renfri (1).mp3", title: "Echoes of Renfri (1)", cover: "sound/Echoes of Renfri (1).jpg" },
-            { file: "sound/Echoes of Renfri.mp3", title: "Echoes of Renfri", cover: "sound/Echoes of Renfri.jpg" },
-            { file: "sound/Floraison Numérique (1).mp3", title: "Floraison Numérique (1)", cover: "sound/Floraison Numérique (1).jpg" },
-            { file: "sound/Floraison Numérique.mp3", title: "Floraison Numérique", cover: "sound/Floraison Numérique.jpg" },
-            { file: "sound/Intro Musicale Douce 8-bit (1).mp3", title: "Intro Musicale Douce 8-bit (1)", cover: "sound/Intro Musicale Douce 8-bit (1).jpg" },
-            { file: "sound/Intro Musicale Douce 8-bit.mp3", title: "Intro Musicale Douce 8-bit", cover: "sound/Intro Musicale Douce 8-bit.jpg" },
-            { file: "sound/Mélodie Florale (1).mp3", title: "Mélodie Florale (1)", cover: "sound/Mélodie Florale (1).jpg" },
-            { file: "sound/Mélodie Florale.mp3", title: "Mélodie Florale", cover: "sound/Mélodie Florale.jpg" },
-            { file: "sound/Shadow of the Witcher.mp3", title: "Shadow of the Witcher", cover: "sound/Shadow of the Witcher.jpg" },
+       const tracks = [
+    { file: "sound/Ashes of the Fallen.mp3", title: "Ashes of the Fallen", cover: "sound/Ashes of the Fallen.jpg" },
+    { file: "sound/Bubbles.mp3", title: "Bubbles", cover: "sound/Bubbles.jpg" },
+    { file: "sound/Bulle Pixel.mp3", title: "Bulle Pixel", cover: "sound/Bulle Pixel.jpg" },
+    { file: "sound/Bulle Pixel (1).mp3", title: "Bulle Pixel (1)", cover: "sound/Bulle Pixel (1).jpg" },
+    { file: "sound/Deep Impact Hit.mp3", title: "Deep Impact Hit", cover: "sound/Deep Impact Hit.jpg" },
+    { file: "sound/Deep Impact Hit (2).mp3", title: "Deep Impact Hit (2)", cover: "sound/Deep Impact Hit (2).jpg" },
+    { file: "sound/Desillusionnée IA.mp3", title: "Desillusionnée IA", cover: "sound/Desillusionnée IA.jpg" },
+    { file: "sound/Desillusionnée IA (1).mp3", title: "Desillusionnée IA (1)", cover: "sound/Desillusionnée IA (1).jpg" },
+    { file: "sound/Digital Drift.mp3", title: "Digital Drift", cover: "sound/Digital Drift.jpg" },
+    { file: "sound/Digital Drift (2).mp3", title: "Digital Drift (2)", cover: "sound/Digital Drift (2).jpg" },
+    { file: "sound/Echo cosmique.mp3", title: "Echo cosmique", cover: "sound/Echo cosmique.jpg" },
+    { file: "sound/Echo cosmique (1).mp3", title: "Echo cosmique (1)", cover: "sound/Echo cosmique (1).jpg" },
+    { file: "sound/Echo of Shadows.mp3", title: "Echo of Shadows", cover: "sound/Echo of Shadows.jpg" },
+    { file: "sound/Echoes of Renfri.mp3", title: "Echoes of Renfri", cover: "sound/Echoes of Renfri.jpg" },
+    { file: "sound/Echoes of Renfri (1).mp3", title: "Echoes of Renfri (1)", cover: "sound/Echoes of Renfri (1).jpg" },
+    { file: "sound/Floraison Numérique.mp3", title: "Floraison Numérique", cover: "sound/Floraison Numérique.jpg" },
+    { file: "sound/Floraison Numérique (1).mp3", title: "Floraison Numérique (1)", cover: "sound/Floraison Numérique (1).jpg" },
+    { file: "sound/Ghosts of Destiny.mp3", title: "Ghosts of Destiny", cover: "sound/Ghosts of Destiny.jpg" },
+    { file: "sound/Ghosts of Destiny (1).mp3", title: "Ghosts of Destiny (1)", cover: "sound/Ghosts of Destiny (1).jpg" },
+    { file: "sound/Intro Musicale Douce 8-bit.mp3", title: "Intro Musicale Douce 8-bit", cover: "sound/Intro Musicale Douce 8-bit.jpg" },
+    { file: "sound/Intro Musicale Douce 8-bit (1).mp3", title: "Intro Musicale Douce 8-bit (1)", cover: "sound/Intro Musicale Douce 8-bit (1).jpg" },
+    { file: "sound/La Lame de Ciri.mp3", title: "La Lame de Ciri", cover: "sound/La Lame de Ciri.jpg" },
+    { file: "sound/La Lame de Ciri (1).mp3", title: "La Lame de Ciri (1)", cover: "sound/La Lame de Ciri (1).jpg" },
+    { file: "sound/Mélodie Florale.mp3", title: "Mélodie Florale", cover: "sound/Mélodie Florale.jpg" },
+    { file: "sound/Mélodie Florale (1).mp3", title: "Mélodie Florale (1)", cover: "sound/Mélodie Florale (1).jpg" },
+    { file: "sound/Shadow of the Witcher.mp3", title: "Shadow of the Witcher", cover: "sound/Shadow of the Witcher.jpg" },
+    { file: "sound/Sword and Spell.mp3", title: "Sword and Spell", cover: "sound/Sword and Spell.jpg" },
+    { file: "sound/Sword and Spell (1).mp3", title: "Sword and Spell (1)", cover: "sound/Sword and Spell (1).jpg" },
+    { file: "sound/The Final Whisper.mp3", title: "The Final Whisper", cover: "sound/The Final Whisper.jpg" },
+    { file: "sound/The Witcher's Call.mp3", title: "The Witcher's Call", cover: "sound/The Witcher's Call.jpg" },
+    { file: "sound/The Witcher's Call (1).mp3", title: "The Witcher's Call (1)", cover: "sound/The Witcher's Call (1).jpg" },
+    { file: "sound/Whispered Horizons.mp3", title: "Whispered Horizons", cover: "sound/Whispered Horizons.jpg" },
+    { file: "sound/🎼 BeTwiin Echoes 🎼.mp3", title: "🎼 BeTwiin Echoes 🎼", cover: "sound/🎼 BeTwiin Echoes 🎼.jpg" },
+    { file: "sound/🎼 Oni-Lyrics Waves 🎼.mp3", title: "🎼 Oni-Lyrics Waves 🎼", cover: "sound/🎼 Oni-Lyrics Waves 🎼.jpg" },
+];
 
-
-
-            { file: "sound/The Witcher's Call (1).mp3", title: "The Witcher's Call (1)", cover: "sound/The Witcher's Call (1).jpg" },
-            { file: "sound/The Witcher's Call.mp3", title: "The Witcher's Call", cover: "sound/The Witcher's Call.jpg" },
-            { file: "sound/The Final Whisper.mp3", title: "The Final Whisper", cover: "sound/The Final Whisper.jpg" },
-            { file: "sound/Sword and Spell (1).mp3", title: "Sword and Spell (1)", cover: "sound/Sword and Spell (1).jpg" },
-            { file: "sound/Sword and Spell.mp3", title: "Sword and Spell", cover: "sound/Sword and Spell.jpg" },
-
-
-            { file: "sound/La Lame de Ciri (1).mp3", title: "La Lame de Ciri (1)", cover: "sound/La Lame de Ciri (1).jpg" },
-            { file: "sound/La Lame de Ciri.mp3", title: "La Lame de Ciri", cover: "sound/La Lame de Ciri.jpg" },
-            { file: "sound/Ghosts of Destiny (1).mp3", title: "Ghosts of Destiny (1)", cover: "sound/Ghosts of Destiny (1).jpg" },
-            { file: "sound/Ghosts of Destiny.mp3", title: "Ghosts of Destiny", cover: "sound/Ghosts of Destiny.jpg" },
-            { file: "sound/Digital Drift (2).mp3", title: "Digital Drift (2)", cover: "sound/Digital Drift (2).jpg" },
-
-
-            { file: "sound/Deep Impact Hit (2).mp3", title: "Deep Impact Hit (2)", cover: "sound/Deep Impact Hit (2).jpg" },
-            { file: "sound/Ashes of the Fallen.mp3", title: "Ashes of the Fallen", cover: "sound/Ashes of the Fallen.jpg" },
-        ];
         let audio = null;
         let isPlaying = false;
         let currentTrack = null;
