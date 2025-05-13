@@ -56,3 +56,31 @@
         margin: 10px auto;
     }
 }
+.burger-menu {
+    display: none;
+    font-size: 2rem;
+    background: none;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .burger-menu {
+        display: block;
+    }
+
+    .link-list {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 400px;
+        margin: auto;
+    }
+
+    .link-list.active {
+        display: flex;
+    }
+}
