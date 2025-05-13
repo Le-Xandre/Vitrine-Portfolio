@@ -23,19 +23,6 @@
   -webkit-tap-highlight-color: transparent;
     }
 
-    .burger {
-        display: block;
-        margin-bottom: 10px;
-    }
-
-    #linkList {
-  width: 100%;
-  max-width: 400px;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-    }
-}
 
 @media (max-width: 768px) {
     /* Avatar et menu alignés en haut */
@@ -63,23 +50,6 @@
   box-sizing: border-box;
     }
 
-    .burger-menu {
-        display: block;
-    }
-
-
-
-    .burger-menu.active + .link-list {
-        display: flex;
-        flex-direction: column;
-    }
-
-    /* Exemple bouton burger */
-    .burger-menu {
-        font-size: 2rem;
-        cursor: pointer;
-        margin: 10px;
-    }
 
     #styleSelector {
         width: 90%;
