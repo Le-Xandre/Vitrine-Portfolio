@@ -62,9 +62,10 @@
         width: 90%;
         margin: 10px auto;
     }
-}
+
+
 .burger-menu {
-    display: none;
+   display: block;
     font-size: 1rem;
     background: none;
     color: white;
@@ -73,10 +74,6 @@
     margin-bottom: 10px;
 }
 
-@media (max-width: 768px) {
-    .burger-menu {
-        display: block;
-    }
 
     .link-list {
         display: none;
