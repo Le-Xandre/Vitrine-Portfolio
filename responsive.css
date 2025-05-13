@@ -33,12 +33,21 @@
     }
 
     #nowPlaying {
-        position: static;
-        width: 100%;
-        margin-top: 20px;
-        transform: none;
+    position: static !important; /* 👈 ce qui le rendra intégré dans le flux */
+    width: 100%;
+    margin-top: 20px;
+    transform: none;
+    opacity: 0;
+    pointer-events: none;
+    display: none;
     }
 
+  #nowPlaying.visible {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
+  }
+    
     .container {
   display: flex;
   flex-direction: column;
@@ -84,3 +93,4 @@
         display: flex;
     }
 }
+
