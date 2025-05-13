@@ -41,6 +41,7 @@
             top: 0;
             left: 0;
             z-index: -1;
+    pointer-events: none; /* 👈 déjà bien fait */
         }
 
 
@@ -405,10 +406,13 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            z-index: 0; /* <-- assure que le fond passe sous tout */
+            z-index: -1; /* <-- assure que le fond passe sous tout */
             pointer-events: none;
         }
-
+.tree-svg,
+.leaf {
+    pointer-events: none;
+}
         .control-btn.toggle-on {
             transform: translateY(2px);
             box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
