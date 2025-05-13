@@ -889,5 +889,15 @@
             document.querySelector('.container').prepend(greeting);
         });
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+    const burgerToggle = document.getElementById("burgerToggle");
+    const linkList = document.getElementById("linkList");
+
+    burgerToggle.addEventListener("click", () => {
+        linkList.classList.toggle("active");
+    });
+});
+    </script>
 </body>
 </html>
