@@ -1,4 +1,4 @@
-﻿@media (max-width: 768px) {
+@media (max-width: 768px) {
     .main-layout {
         flex-direction: column;
         justify-content: flex-start;
@@ -23,8 +23,6 @@
   -webkit-tap-highlight-color: transparent;
     }
 
-
-@media (max-width: 768px) {
     /* Avatar et menu alignés en haut */
     .header {
         display: flex;
