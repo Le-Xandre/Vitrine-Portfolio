@@ -1,0 +1,112 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+header, footer {
+  padding: 0.4em;
+  background: #111;
+  text-align: center;
+}
+h1 {
+    font-size: 2em;
+    color: #fff;
+    margin: 10px;
+}
+main {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+}
+.element {
+  background-color: var(--color);
+  padding: 1em;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #000;
+  box-shadow: 0 0 15px var(--color);
+  transition: transform 0.2s ease;
+}
+.element:hover {
+  transform: scale(1.1);
+}
+.illustration {
+    max-height: 25vh;
+    width: auto;
+    height: auto;
+    max-width: 85%;
+    object-fit: contain;
+    margin: 1rem auto;
+}
+
+.illustration-frame {
+  width: 600px;
+  height: 350px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #1a1a1a;
+  margin-bottom: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.illustration-frame img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+#status {
+  margin-bottom: 1em;
+}
+#record {
+  margin-top: 1em;
+  padding: 0.5em 1em;
+  background: #222;
+  color: #fff;
+  border: 1px solid #555;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.epitaphe {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    display: block;
+    right: 10px;
+    top: 160px;
+    font-size: 0.9em;
+    color: #ccc;
+    max-width: 500px;
+    text-align: right;
+}
+.epitaphe a {
+  color: #66f;
+  font-style: italic;
+  font-size: 0.85em;
+}
+p {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    color: #808080;
+    font-size: 0.9em;
+}
+footer {
+    flex-shrink: 0;
+    background-color: #111;
+    padding: 1em;
+    color: #808080;
+    font-size: 0.8em;
+}
