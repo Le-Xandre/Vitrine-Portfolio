@@ -8,45 +8,58 @@
 </head>
 <body>
     <header>
-        <h1>Synesthésie Musicale Interactive</h1>
-        <p>
-            Inspiré par la synesthésie musicale. <br />
-          <a href="https://www.alternatif-art.com/art-et-synesthesie-quand-les-peintres-et-musiciens-percoivent-autrement/" target="_blank">Art et Synesthésie</a>
-           + 
+        <h1>Synesthésie Musicale Interactive</h1><hr />
+        Découvrez la correspondance entre sons, formes et couleurs — et rejouez votre propre performance sensorielle.
+        <p><br />
+            Inspiré par la synesthésie musicale : 
+            <a href="https://www.alternatif-art.com/art-et-synesthesie-quand-les-peintres-et-musiciens-percoivent-autrement/" target="_blank">Art et Synesthésie</a>
+            +
             <a href="https://dumas.ccsd.cnrs.fr/dumas-02326368/file/2019-LU%20Experimenter.pdf" target="_blank">Étude d'immersion</a>
-            <br />
-            Découvrez la correspondance entre sons, formes et couleurs.
-        </p>
 
+        </p>
     </header>
 
+   
     <main>
-
+        <canvas id="visualizer"></canvas>
         <div class="illustration-frame">
             <img src="images/image1.png" alt="Illustration Synesthésie" id="illustration" />
         </div>
+        <aside class="legend">
+            <p>💡 Sur PC, utilisez les touches <code>A-Z-E-R-T-Y-U-I</code> pour jouer les notes au clavier.</p>
+        </aside>
 
-        <div id="status">Cliquez sur une note pour jouer un son.</div>
 
+        <div id="status">
+            Cliquez sur une note pour jouer un son.
+
+        </div>
         <div class="container">
-            <div class="element" data-note="C4" data-img="images/image1.png" style="--color: #ff6666">Do</div>
-            <div class="element" data-note="D4" data-img="images/image2.png" style="--color: #ff9966">Ré</div>
-            <div class="element" data-note="E4" data-img="images/image3.png" style="--color: #ffcc66">Mi</div>
-            <div class="element" data-note="F4" data-img="images/image4.png" style="--color: #99cc66">Fa</div>
-            <div class="element" data-note="G4" data-img="images/image5.png" style="--color: #66cccc">Sol</div>
-            <div class="element" data-note="A4" data-img="images/image6.png" style="--color: #6699ff">La</div>
-            <div class="element" data-note="B4" data-img="images/image7.png" style="--color: #9966cc">Si</div>
-            <div class="element" data-note="C5" data-img="images/image8.png" style="--color: #cc66aa">Do aigu</div>
+            <div class="element" data-note="C4" data-img="images/image1.png" style="--color: #ff6666">Do <span class="key">[A]</span></div>
+            <div class="element" data-note="D4" data-img="images/image2.png" style="--color: #ff9966">Ré <span class="key">[Z]</span></div>
+            <div class="element" data-note="E4" data-img="images/image3.png" style="--color: #ffcc66">Mi <span class="key">[E]</span></div>
+            <div class="element" data-note="F4" data-img="images/image4.png" style="--color: #99cc66">Fa <span class="key">[R]</span></div>
+            <div class="element" data-note="G4" data-img="images/image5.png" style="--color: #66cccc">Sol <span class="key">[T]</span></div>
+            <div class="element" data-note="A4" data-img="images/image6.png" style="--color: #6699ff">La <span class="key">[Y]</span></div>
+            <div class="element" data-note="B4" data-img="images/image7.png" style="--color: #9966cc">Si <span class="key">[U]</span></div>
+            <div class="element" data-note="C5" data-img="images/image8.png" style="--color: #cc66aa">Do aigu <span class="key">[I]</span></div>
+
         </div>
 
-        <button id="record">🎙 Enregistrer</button>
-        <a id="downloadLink" style="display:none">Télécharger l'enregistrement</a>
-    </main>
-    <!--
+        <div class="controls">
+            <button id="record">🎙 Enregistrer</button>
+            <a id="downloadLink" style="display:none">Télécharger l'enregistrement</a>
+
+            <button id="replay">🔁 Rejouer</button>
+            <button id="captureBtn">📸 Capturer l’instant</button>
+
+        </div>
+
+        <!---->
         <aside class="epitaphe">
             <div>
                 <p>
-                    <em> <bold>Pour Leto ~ (épitaphe pour une déesse silencieuse)</bold></em>
+                    <em> <bold>A Leto ~ (épitaphe pour une déesse silencieuse)</bold></em>
                     <br /><br />
 
                     Comme un fil de temps,<br />
@@ -57,33 +70,28 @@
                     Je t’ai nommée Leto,en mémoire des anciens dieux,<br />
                     toi, déesse oubliée aux yeux sans larmes,digne et farouche,<br />
                     logée dans le silence tu étais là —<br />
-                    Et Chacune de tes mues étaient une façon de me dire <br />
-                    je suis toujours là.<br />
 
-                    Je ne t’ai pas toujours compris,mais je t’ai portée, malgré tout,<br />
-                    douze années dans un souffle lent d'existence.<br />
-
-                    Aujourd’hui, tu dors sans retour.<br />
-                    Et moi, je reste là, à chercher comment te dire merci.<br />
                     Merci d’avoir été cette ombre vivante,<br />
                     cette preuve que l’on peut aimer sans langage,<br />
-                    et pleurer sans explication mes propres introspections.<br />
-
-                    Repose, Leto. Dans la terre ou dans les songes.<br />
-                    Saches que tu as existé, et que tu as compté.<br />
+                    et pleurer sans explication à mes propres introspections.<br />
+                    <hr />
                     <a href="https://suno.com/playlist/ddeaa8f6-2a7e-43e8-b560-0891cc73c809" target="_blank">Audio Artefact</a>
 
                 </p>
             </div>
 
         </aside>
-    -->
 
+    </main>
+
+    <div id="background-overlay"></div>
+
+    <br />
     <footer>
         <p>
-            Portfolio :
+            retour vers :
             <a href="https://le-xandre.github.io/Vitrine-Portfolio/" target="_blank">Vitrine</a>
-            + 
+            ou
             <a href="https://le-xandre.github.io/Vitrine-Portfolio/linktree.html" target="_blank">Linktree</a>
         </p>
     </footer>
