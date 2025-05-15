@@ -187,7 +187,7 @@ p {
     margin: 0;
     padding: 0;
     color: #808080;
-    font-size: 0.9em;
+    font-size: 0.8em;
 }
 
 footer {
@@ -211,7 +211,7 @@ footer {
     cursor: pointer;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 650px) {
     .container {
         flex-direction: row;
         align-items: center;
@@ -225,8 +225,8 @@ footer {
         margin-left: 0.1em;
     }
     .illustration-frame {
-        width: 85vw;
-        height: 35vh;
+        width: 95vw;
+        height: 45vh;
     }
     .epitaphe {
         display: none;
