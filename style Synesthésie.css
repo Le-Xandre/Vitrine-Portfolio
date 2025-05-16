@@ -2,7 +2,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Marcellus', serif;
   background: #0c0c0c;
   color: white;
   overflow-x: hidden;
@@ -70,6 +70,9 @@ a {
   width: 120px;
   height: 120px;
   opacity: 0;
+}
+#illustration {
+  transition: opacity 0.5s ease;
 }
 .illustration-frame {
   width: auto;
