@@ -11,7 +11,7 @@
 </head>
 <body>
     <header>
-        <h1>Synesthésie Musicale Interactive</h1><hr />
+        <h1>Synesthésie Musicale Interactive</h1>   
 
         <p>
             - Découvrez la correspondance entre sons, formes et couleurs -
@@ -20,19 +20,22 @@
             <a href="https://www.alternatif-art.com/art-et-synesthesie-quand-les-peintres-et-musiciens-percoivent-autrement/" target="_blank">Art et Synesthésie</a>
             +
             <a href="https://dumas.ccsd.cnrs.fr/dumas-02326368/file/2019-LU%20Experimenter.pdf" target="_blank">Étude d'immersion</a>
-
+           
         </p>
     </header>
+
 
     <canvas id="visualizer"></canvas>
 
     <main>
 
         <div class="illustration-frame">
-            <img src="images/image1.png" alt="Illustration Synesthésie" id="illustration" />        
-    <!-- Éditeur interactif pour customisation synesthésique -->
+
+            <img src="images/image1.png" alt="Illustration Synesthésie" id="illustration" />
+
+            <!-- Éditeur interactif pour customisation synesthésique -->
             <section id="mapping-editor">
-                <h2>🎨 Créez vos propres associations</h2>
+                <hr />  <h2>🎨 Créez vos propres associations</h2><hr />
                 <label for="note-select">Note :</label>
                 <select id="note-select">
                     <option value="C4">Do</option>
@@ -48,7 +51,14 @@
                 <input type="color" id="color-picker" />
                 <label for="image-url">Image (URL ou nom local) :</label>
                 <input type="text" id="image-url" placeholder="images/image1.png" />
-                <button id="update-mapping">Mettre à jour</button>
+                <button id="update-mapping">Mettre à jour</button> 
+    <!-- 🎨 Galerie de presets -->
+                <section id="presets">
+                    <hr />    <h2>🌈 Thèmes synesthésiques</h2><hr />
+                    <button data-preset="dream">Dream</button>
+                    <button data-preset="cosmic">Cosmic</button>
+                    <button data-preset="forest">Forest</button>
+                </section>
             </section>
         </div>
         <aside class="legend">
@@ -73,40 +83,38 @@
         </div>
 
         <div class="controls">
+
             <button id="record">🎙 Enregistrer</button>
 
 
             <button id="replay">🔁 Rejouer</button>
             <button id="captureBtn">📸 Capturer l’instant</button>
 
+            <button id="fullscreenBtn">Plein écran</button>
         </div>
         <a id="downloadLink" style="display:none">Télécharger l'enregistrement</a>
-<!---->
+        <!---->
         <aside class="epitaphe">
-            <bold>A Leto ~</bold> <br /><em>(épitaphe pour une déesse silencieuse)</em>
+            <bold>A Leto ~🕊️</bold> <br /><em>(épitaphe pour une déesse silencieuse)</em>
 
-            <div class="signature">
+                                           <div class="signature">
+                                               <!-- 🎭 Mode hommage -->
+                                               <section id="leto-hommage">
 
-                <p>
-                    <br>
-                    Comme une ondulation dans le Temps,<br />
-                    dans les replis tièdes de ton royaume de verre,<br />
-                    tu as traversé les années sans bruit,<br />
-                    en gardienne muette de mes jours & mes nuits.<br />
-                    <br />
-                    Je t’ai nommée Leto, en mémoire des anciens dieux,<br />
-                    toi, la déesse oubliée aux yeux sans larmes,<br />
-                    digne et farouche, logée dans le silence tu étais là,<br />
-                    te laissant à nos aïeux dans un dernier adieu ~*<br />
-                    <br />
-                    Merci d’avoir été cette ombre mouvante,<br />
-                    cette preuve que l’on peut aimer sans langage,<br />
-                    et pleurer sans explication à nos propres introspections.<br />
-                    <hr />
-                    <a href="https://suno.com/s/UQQXZnEmOYvx6Alu" target="_blank">Audio Artefact</a>
+                                                   <button id="start-tribute">Lancer</button>
+                                                   <button id="stop-tribute">⏹️ Arrêter</button>
+                                                   <div id="poem-display">
 
-                </p>
-            </div>
+
+                                                   </div>
+                                               </section>  
+                                               <p>
+
+                                                   <hr />
+                                                   <a href="https://suno.com/s/UQQXZnEmOYvx6Alu" target="_blank">Audio Artefact</a>
+
+                                               </p>
+                                           </div>
 
         </aside>
         <div id="background-overlay"></div>
