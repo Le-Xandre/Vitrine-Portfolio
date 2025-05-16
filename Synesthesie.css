@@ -1,0 +1,95 @@
+﻿/* synesthesie.css : enrichissements visuels */
+
+/* Halo et animation flottante au survol */
+.element {
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+    .element:hover {
+        transform: scale(1.05);
+    }
+
+    .element::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: var(--color);
+        opacity: 0.2;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        transition: width 0.4s ease-out, height 0.4s ease-out, opacity 0.6s ease-out;
+    }
+
+    .element.active::after {
+        width: 120px;
+        height: 120px;
+        opacity: 0;
+    }
+
+/* Effet de flottement doux */
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.element {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Canvas en arrière-plan sans interaction */
+#visualizer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+}
+
+/* Mapping editor stylisé border: 1px solid #444;*/
+#mapping-editor {
+    background: #1a1a1a;
+    border: none;
+    margin: 0 auto;
+    padding: 1em;
+    margin: 2em auto;
+    width: 100%;
+    max-width: 310px;
+    border-radius: 12px;
+    color: white;
+    font-size: 0.8em;
+}
+
+    #mapping-editor input,
+    #mapping-editor select {
+        margin-bottom: 0.5em;
+        padding: 0.4em;
+        border-radius: 6px;
+        border: none;
+        width: 100%;
+    }
+
+    #mapping-editor button {
+        margin: auto;
+        padding: 0.5em 1em;
+        background: #333;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+    }

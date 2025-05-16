@@ -10,12 +10,17 @@ html, body {
 header, footer {
   text-align: center;
   background: #111;
-  padding: 0.8em;
+  padding: 0.5em;
 }
 h1 {
     font-size: 1.6em;
     color: #fff;
-    margin: 3px;
+    margin: 2px;
+}
+h2 {
+    font-size: 1.2em;
+    color: #fff;
+    margin: 2px;
 }
 main {
   display: flex;
@@ -28,7 +33,7 @@ main {
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.5em;
-  margin-top: 0.7em;
+  margin-top: 0.8em;
   z-index: 2;
 }
 a {
@@ -159,11 +164,11 @@ button {
     margin: 0;
     padding: 0;
     display: block;
-    left: 20px;
-    top: 140px;
-    font-size: 0.9em;
+    right: 40px;
+    top: 40px;
+    font-size: 1em;
     color: #ccc;
-    max-width: 500px;
+    max-width: 400px;
     text-align: center;
 }
 
@@ -239,9 +244,13 @@ footer {
     h1 {
         font-size: 1em;
         color: #fff;
-        margin: 3px;
+        margin: 1.8px;
     }
-
+    h2 {
+        font-size: 0.83em;
+        color: #fff;
+        margin: 0.5px;
+    }
     p {
         position: relative;
         margin: 0;

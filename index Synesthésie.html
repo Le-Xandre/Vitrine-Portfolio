@@ -1,35 +1,56 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Synesthésie Musicale Interactive</title>
-  <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Synesthésie Musicale Interactive</title>
+    <link rel="stylesheet" href="style Synesthésie.css" />
+    <link rel="stylesheet" href="synesthesie.css" /> <!-- module synesthésie avancée -->
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style Synesthésie.css" />
 </head>
 <body>
     <header>
         <h1>Synesthésie Musicale Interactive</h1><hr />
-       
-                                                 <p>
-                                                    - Découvrez la correspondance entre sons, formes et couleurs -
-                                                     <br />♪ et rejouez votre propre performance sensorielle ♫<br /><br />
-                                                     Inspiré par :
-                                                     <a href="https://www.alternatif-art.com/art-et-synesthesie-quand-les-peintres-et-musiciens-percoivent-autrement/" target="_blank">Art et Synesthésie</a>
-                                                     +
-                                                     <a href="https://dumas.ccsd.cnrs.fr/dumas-02326368/file/2019-LU%20Experimenter.pdf" target="_blank">Étude d'immersion</a>
 
-                                                 </p>
+        <p>
+            - Découvrez la correspondance entre sons, formes et couleurs -
+            <br />♪ et rejouez votre propre performance sensorielle ♫<br /><br />
+            Inspiré par :
+            <a href="https://www.alternatif-art.com/art-et-synesthesie-quand-les-peintres-et-musiciens-percoivent-autrement/" target="_blank">Art et Synesthésie</a>
+            +
+            <a href="https://dumas.ccsd.cnrs.fr/dumas-02326368/file/2019-LU%20Experimenter.pdf" target="_blank">Étude d'immersion</a>
+
+        </p>
     </header>
- 
 
-        <canvas id="visualizer"></canvas>
+
+    <canvas id="visualizer"></canvas>
 
     <main>
-       
+
         <div class="illustration-frame">
-            <img src="images/image1.png" alt="Illustration Synesthésie" id="illustration" />
+            <img src="images/image1.png" alt="Illustration Synesthésie" id="illustration" />        
+    <!-- Éditeur interactif pour customisation synesthésique -->
+            <section id="mapping-editor">
+                <h2>🎨 Créez vos propres associations</h2>
+                <label for="note-select">Note :</label>
+                <select id="note-select">
+                    <option value="C4">Do</option>
+                    <option value="D4">Ré</option>
+                    <option value="E4">Mi</option>
+                    <option value="F4">Fa</option>
+                    <option value="G4">Sol</option>
+                    <option value="A4">La</option>
+                    <option value="B4">Si</option>
+                    <option value="C5">Do aigu</option>
+                </select>
+                <label for="color-picker">Couleur :</label>
+                <input type="color" id="color-picker" />
+                <label for="image-url">Image (URL ou nom local) :</label>
+                <input type="text" id="image-url" placeholder="images/image1.png" />
+                <button id="update-mapping">Mettre à jour</button>
+            </section>
         </div>
         <aside class="legend">
             <p>💡 Sur PC, utilisez les touches <code>A-Z-E-R-T-Y-U-I</code> pour jouer les notes au clavier.</p>
@@ -51,35 +72,34 @@
             <div class="element" data-note="C5" data-img="images/image8.png" style="--color: #cc66aa">Do aigu <span class="key">[I]</span></div>
 
         </div>
-        
+
         <div class="controls">
             <button id="record">🎙 Enregistrer</button>
-            
+
 
             <button id="replay">🔁 Rejouer</button>
             <button id="captureBtn">📸 Capturer l’instant</button>
 
         </div>
         <a id="downloadLink" style="display:none">Télécharger l'enregistrement</a>
+<!---->
+        <aside class="epitaphe">
+            <bold>A Leto ~</bold> <br /><em>(épitaphe pour une déesse silencieuse)</em>
 
-    </main>
-   <!---->
-        <aside class="epitaphe"><bold>A Leto ~</bold> <br /><em>(épitaphe pour une déesse silencieuse)</em>
-                   
-            <div>
-                
-                <p class="signature">
-<br>
+            <div class="signature">
+
+                <p>
+                    <br>
                     Comme une ondulation dans le Temps,<br />
                     dans les replis tièdes de ton royaume de verre,<br />
                     tu as traversé les années sans bruit,<br />
                     en gardienne muette de mes jours & mes nuits.<br />
-<br />
+                    <br />
                     Je t’ai nommée Leto, en mémoire des anciens dieux,<br />
                     toi, la déesse oubliée aux yeux sans larmes,<br />
                     digne et farouche, logée dans le silence tu étais là,<br />
                     te laissant à nos aïeux dans un dernier adieu ~*<br />
-<br />
+                    <br />
                     Merci d’avoir été cette ombre mouvante,<br />
                     cette preuve que l’on peut aimer sans langage,<br />
                     et pleurer sans explication à nos propres introspections.<br />
@@ -90,7 +110,10 @@
             </div>
 
         </aside>
-    <div id="background-overlay"></div>
+        <div id="background-overlay"></div>
+
+
+    </main>
 
     <br />
     <footer>
@@ -104,5 +127,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.35/Tone.js"></script>
     <script src="script Synesthésie.js"></script>
+    <script src="synesthesie.js"></script> <!-- module JS pour enrichissements synesthésiques -->
 </body>
 </html>
