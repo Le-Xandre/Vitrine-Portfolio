@@ -41,7 +41,6 @@ elements.forEach(el => {
 
     bgOverlay.style.background = color + "22";
       
-
       drawCircle(color.trim());
       sequence.push({ note, image, color, timestamp });
   });
