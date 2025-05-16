@@ -18,7 +18,7 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-    body.dark-theme {
+body.dark-theme {
         background-color: #333;
         color: #fff;
     }
