@@ -356,7 +356,7 @@
             </h3>
             <div class="btn-container">
 
-                <img class="glow-btn" style="width:90%;height:auto" src="MyLogoTube.png" alt="Alternate Text">
+                <img class="glow-btn" style="width:90%;height:auto" src="MyLogoTube.png" alt="Carte interactive">
 
                 <hr>
 
@@ -369,8 +369,7 @@
     </div>
 
     <!-- Flipbook Viewer -->
-    <div id="flipbookViewer">
-
+    <div id="flipbookViewer" style="display: none;>
 
         <canvas id="pdfCanvas">
         </canvas>
@@ -558,7 +557,15 @@
             clearInterval(interval);
         });
     </script>
+<script>
 
+    document.getElementById('fileInput').addEventListener('change', function () {
+  const module = document.getElementById('flipbookModule');
+  if (this.files.length > 0) {
+    module.style.display = 'block';
+  }
+});
+</script>
 
 </body>
 </html>
