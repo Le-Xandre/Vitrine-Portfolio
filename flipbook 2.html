@@ -5,7 +5,6 @@
     <title>Flipbook PDF Interactif</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="responsive.css" />
     <style>
         body {
             margin: 0;
@@ -369,7 +368,7 @@
     </div>
 
     <!-- Flipbook Viewer -->
-    <div id="flipbookViewer" style="display: none;>
+    <div id="flipbookViewer" style="display: inherit;>
 
         <canvas id="pdfCanvas">
         </canvas>
@@ -395,7 +394,15 @@
     <footer>
         Vous aimez mon univers ?<a href="https://ko-fi.com/hellxandre" target="_blank"> 💛 Me soutenir sur Ko-fi ☕</a>
  </footer>
+<script>
 
+    document.getElementById('fileInput').addEventListener('change', function () {
+  const module = document.getElementById('flipbookModule');
+  if (this.files.length > 0) {
+    module.style.display = 'block';
+  }
+});
+</script>
     <script>
         const uploadBtn = document.getElementById('uploadBtn');
         const fileInput = document.getElementById('fileInput');
@@ -557,15 +564,7 @@
             clearInterval(interval);
         });
     </script>
-<script>
 
-    document.getElementById('fileInput').addEventListener('change', function () {
-  const module = document.getElementById('flipbookModule');
-  if (this.files.length > 0) {
-    module.style.display = 'block';
-  }
-});
-</script>
 
 </body>
 </html>
