@@ -69,7 +69,7 @@
         header {
             background: #2f2f2f;
             color: white;
-            padding: 1em 2em;
+            padding: 1em 1em;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
@@ -80,7 +80,7 @@
         }
 
         h1 {
-            font-size: 1.8em; /* Réduit légèrement la taille du titre */
+            font-size: 1.2em; /* Réduit légèrement la taille du titre */
             margin: 0;
         }
 
@@ -130,12 +130,12 @@
         }
 
         #flipbook {
-            width: 80vw;
+            width: 90vw;
             max-width: 829px; /* Réduit la largeur pour que le contenu tienne mieux */
             height: 401px; /* Ajuste la hauteur du flipbook */
             z-index: 1; /* Le flipbook est derrière les boutons */
             margin: 0 auto; /* Centrer le livret horizontalement */
-            padding: 5px; /* Espace autour du contenu */
+            padding: 4px; /* Espace autour du contenu */
         }
 
         .page {
@@ -219,19 +219,8 @@
 
         @media (max-width: 1024px) {
             #flipbook {
-                width: 95vw;
-                height: 450px;
-            }
-
-            .page p {
-                font-size: 0.85em;
-            }
-        }
-
-        @media (max-width: 768px) {
-            #flipbook {
                 width: 90vw;
-                height: 400px;
+                height: auto;
             }
 
             .page p {
@@ -239,19 +228,30 @@
             }
         }
 
+        @media (max-width: 768px) {
+            #flipbook {
+                width: 80vw;
+                height: auto;
+            }
+
+            .page p {
+                font-size: 0.6em;
+            }
+        }
+
         @media (max-width: 480px) {
             #flipbook {
-                width: 100%;
+                width: 60vw;
                 height: auto;
                 max-width: 375px; /* Limite la largeur du livret */
             }
 
             .page {
-                padding: 1em;
+                padding: 0.5em;
             }
 
                 .page p {
-                    font-size: 0.75em;
+                    font-size: 0.5em;
                 }
 
             #container {
@@ -271,24 +271,24 @@
             display: inline-block;
             background: #1a73e8;
             color: #fff;
-            padding: 0.6rem 1rem;
-            margin: 1rem 0;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem 0;
             text-decoration: none;
             border-radius: 4px;
             font-weight: bold;
         }
 
         .illustration {
-            width: 100%;
-            max-width: 800px;
-            margin: 2rem auto;
+            width: 80%;
+            max-width: 600px;
+            margin: 1rem auto;
             display: block;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
         }
 
         hr {
-            margin: 2rem 0;
+            margin: 0.2rem 0;
         }
     </style>
 <link rel="stylesheet" href="flipbookresponsive.css">
@@ -445,9 +445,6 @@
                 
                 
             </div>
-
-        </div>
-
 <div id="navigation-controls">
             <button onclick="prevPage()">◀ Précédent</button>
             <span id="page-number"Page">page 1</span>
@@ -457,6 +454,9 @@
         <button onclick="adjustFontSize(-1)">A-</button>
 
         </div> 
+        </div>
+
+
 
     </div>        
     </main>
