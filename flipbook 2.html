@@ -415,20 +415,20 @@
                 <img class="glow-btn" style="width:90%;height:auto" src="MyLogoTube.png" alt="Carte interactive">
 
                 <hr>
-  <!-- 📁 Choix de fichier -->
+
+            </div>
+            </div>
+    </div>  <!-- 📁 Choix de fichier -->
   <div id="fileInputContainer">
     <label for="fileInput">📂 Choisir un module à afficher :</label><br>
     <input type="file" id="fileInput" accept=".application,.pdf,.json,.txt">
-
-  </div>
-            </div>
-            </div>
-    </div>
       <button id="uploadBtn">
                     📄 Sélectionner un PDF
                 </button>
+  </div>
+
   <!-- 📘 Module flipbook (caché au départ) -->
-  <div id="flipbookModule">
+  
     <!-- Flipbook Viewer -->
     <div id="flipbookViewer" style="display: none;>
 
@@ -448,8 +448,6 @@
             <button id="closeFullscreenBtn" onclick="toggleFullScreen()">🔲Plein Écran</button>
             <button id="diaporamaBtn" onclick="toggleSlideshow()">Lancer le Diaporama</button>
 
-        </div>
-
     </div>
 </div>
     <!-- Footer -->
@@ -459,7 +457,7 @@
 <!-- JS -->
   <script>
     document.getElementById('fileInput').addEventListener('change', function () {
-      const module = document.getElementById('flipbookModule');
+      const module = document.getElementById('flipbookViewer');
       if (this.files.length > 0) {
         module.style.display = 'block';
       }
