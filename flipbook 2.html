@@ -368,7 +368,7 @@
     </div>
 
     <!-- Flipbook Viewer -->
-    <div id="flipbookViewer" style="display: none;>
+    <div id="flipbookViewer">
 
         <canvas id="pdfCanvas">
         </canvas>
@@ -394,7 +394,15 @@
     <footer>
         Vous aimez mon univers ?<a href="https://ko-fi.com/hellxandre" target="_blank"> 💛 Me soutenir sur Ko-fi ☕</a>
  </footer>
+<script>
 
+    document.getElementById('fileInput').addEventListener('change', function () {
+  const module = document.getElementById('flipbookViewer');
+  if (this.files.length > 0) {
+    module.style.display = 'block';
+  }
+});
+</script>
     <script>
         const uploadBtn = document.getElementById('uploadBtn');
         const fileInput = document.getElementById('fileInput');
