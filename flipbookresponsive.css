@@ -1,0 +1,66 @@
+﻿/* flipbookresponsive.css */
+
+/* Général — empêche les débordements horizontaux */
+body {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/* Réduction du container principal sur petits écrans */
+@media (max-width: 768px) {
+    .container, .flipbook-container {
+        padding: 10px;
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    /* Ajuste la taille du flipbook */
+    .flipbook {
+        transform: scale(0.85);
+        transform-origin: top center;
+    }
+
+    /* Réduction des boutons */
+    .btn, button, .nav-button {
+        font-size: 14px !important;
+        padding: 8px 12px !important;
+        margin: 5px;
+    }
+
+    /* Réduction du header si trop grand */
+    header, .header {
+        font-size: 1rem;
+        padding: 10px;
+        text-align: center;
+    }
+
+    /* Centrage si nécessaire */
+    .flipbook-wrapper, .book-container {
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Cache éléments non essentiels ou trop gros */
+    .desktop-only {
+        display: none !important;
+    }
+}
+
+/* Ultra-petit écran (mobile portrait) */
+@media (max-width: 480px) {
+    .flipbook {
+        transform: scale(0.7);
+    }
+
+    .btn, button {
+        font-size: 12px !important;
+        padding: 6px 10px !important;
+    }
+
+    header, .header {
+        font-size: 0.9rem;
+    }
+}
