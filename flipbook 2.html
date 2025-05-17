@@ -368,7 +368,7 @@
     </div>
 
     <!-- Flipbook Viewer -->
-    <div id="flipbookViewer" style="display: inherit;>
+    <div id="flipbookViewer" style="display: none;>
 
         <canvas id="pdfCanvas">
         </canvas>
@@ -397,7 +397,7 @@
 <script>
 
     document.getElementById('fileInput').addEventListener('change', function () {
-  const module = document.getElementById('flipbookModule');
+  const module = document.getElementById('flipbookViewer');
   if (this.files.length > 0) {
     module.style.display = 'block';
   }
