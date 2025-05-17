@@ -4,8 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Manifeste à deux voix - Livret interactif</title>
-     
-    <style>
+         <style>
         * {
             box-sizing: border-box;
         }
@@ -19,21 +18,23 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
         }
 
         /* Arrière-plan animé avec mosaïque d'images */
         #background {
-            position : absolute;
-            display:flex;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background: rgba(255, 255, 255, 0.6); /* Opacité augmentée */
-            background-image: url(''), url(''), url(''), url(''), url('');
-            background-size: 25% 25%; /* Taille des fragments d'image pour la mosaïque */
+            background-image: url('images/image (1).jpg'), url('images/image (2).jpg'), url('images/image (3).jpg'), url('images/image (4).jpg'), url('images/image (1).png');
+            background-size: 20% 20%; /* Taille des fragments d'image pour la mosaïque */
             background-repeat: repeat;
-            animation: moveBackground 30s linear infinite, changeImages 20s infinite; /* Transition plus longue */
+            animation: moveBackground 30s linear infinite, changeImages 15s infinite; /* Transition plus longue */
             z-index: 0;
         }
 
@@ -50,79 +51,96 @@
                 background-position: 100% 100%;
             }
         }
- @keyframes changeImages {
-            0% {
-                background-image: url('MyLogoTube.png'), url('images/image (2).jpg'), url('images/image (3).jpg');
+
+        @keyframes changeImages {
+            0%, 100% {
+                background-image: url('images/image (1).jpg'), url('images/image (2).jpg'), url('images/image (3).jpg');
             }
 
             33% {
-                background-image: url('images/image (4).jpg'), url('images/image (1).png'), url('MyLogoTube.png');
+                background-image: url('images/image (4).jpg'), url('images/image (1).png'), url('images/image (2).png');
             }
 
             66% {
-                background-image: url('images/image (1).png'), url('images/image (4).jpg'), url('images/image (3).jpg');
-            }
-
-            100% {
-                background-image: url('images/image (4).png'), url('images/image (5).png'), url('images/image (6).png');
+                background-image: url('images/image (1).jpg'), url('images/image (2).jpg'), url('images/image (3).png');
             }
         }
-        
-        
-header {
-    display: block ruby;
-  background: #333;
-  color: #fff;
-            padding: 1em 1em;
+
+        header {
+            background: #2f2f2f;
+            color: white;
+            padding: 1em 2em;
+            display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
             z-index: 2; /* Assure que le header est au-dessus du contenu */
             border-radius: 10px; /* Ajout du border-radius */
-            margin-bottom: 20em; /* Espacement entre le titre et le recueil */
-    position:relative;
-}
-nav ul {
-  display: flex;
-  justify-content: center;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-nav ul li {
-  margin: 0 15px;
-}
-nav ul li a {
-  color: #fff;
-  text-decoration: none;
-}
-nav ul li a.active {
-  font-weight: bold;
-  text-decoration: underline;
-}
-.flipbook-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 4px auto;
-  width: 100%;
-}
-#flipbook {
-  width: 100%;
-  height: auto;
-  background: #fff;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-}
-.controls {
-  margin-top: 8px;
-}
-.controls button {
-  margin: 0 8px;
-  padding: 4px 8px;
-  font-size: 15px;
-}
-                .page {
+            margin-bottom: 2em; /* Espacement entre le titre et le recueil */
+        }
+
+        h1 {
+            font-size: 1.8em; /* Réduit légèrement la taille du titre */
+            margin: 0;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5em;
+            margin-top: 0.5em;
+        }
+
+            nav button, .accessibility button, #navigation-controls button {
+                background: #444;
+                border: none;
+                color: white;
+                padding: 0.5em 1em;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+                nav button:hover, .accessibility button:hover, #navigation-controls button:hover {
+                    background: #666;
+                }
+
+        .accessibility {
+            position: fixed;
+            left: 1em;
+            top: 60%; /* Positionné plus bas, presque centré par rapport au livret */
+            z-index: 3; /* Les boutons doivent être au-dessus du contenu */
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
+            background: rgba(255,255,255,0.9);
+            padding: 0.5em;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+
+        #container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            max-width: 100%;
+            z-index: 2;
+            padding-bottom: 40px; /* Réduit l'espace en bas pour intégrer le footer */
+        }
+
+        #flipbook {
+            width: 80vw;
+            max-width: 829px; /* Réduit la largeur pour que le contenu tienne mieux */
+            height: 401px; /* Ajuste la hauteur du flipbook */
+            z-index: 1; /* Le flipbook est derrière les boutons */
+            margin: 0 auto; /* Centrer le livret horizontalement */
+            padding: 5px; /* Espace autour du contenu */
+        }
+
+        .page {
             background: white;
-            padding: 1em;
+            padding: 1.5em;
             box-shadow: 0 0 10px rgba(0,0,0,0.25);
             border-radius: 10px;
             display: flex;
@@ -132,23 +150,23 @@ nav ul li a.active {
         }
             .page h1 {
                 text-align: center;
-                margin-bottom: 0.5em;
-                font-size: 1em; /* Ajuste la taille du titre des sections */
+                margin-bottom: 1em;
+                font-size: 1.2em; /* Ajuste la taille du titre des sections */
             }
             .page h2 {
                 text-align: center;
                 margin-bottom: 0.5em;
-                font-size: 0.9em; /* Ajuste la taille du titre des sections */
+                font-size: 1em; /* Ajuste la taille du titre des sections */
             }
 
             .page p {
                 text-align: justify;
-                line-height: 1;
-                font-size: 0.6em; /* Réduit légèrement la taille de la police */
+                line-height: 1.2;
+                font-size: 0.75em; /* Réduit légèrement la taille de la police */
             }
-       
+
         #navigation-controls {
-            margin-top: 0.5em;
+            margin-top: 1em;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -156,8 +174,8 @@ nav ul li a.active {
         }
 
         #page-number {
-            margin: 0.2em;
-            padding: 0.2em;
+            margin: 0.4em;
+            padding: 0.4em;
             font-weight:normal;
             background: #f0f0f0;
             border-radius: 5%; 
@@ -198,88 +216,48 @@ nav ul li a.active {
             z-index: 0;
             box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
         }
-        .btn {
-            display: inline-block;
-            background: #1a73e8;
-            color: #fff;
-            padding: 0.5rem 0.5rem;
-            margin: 0.5rem 0;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: bold;
-        }
-  
-        a {
-            color: #1a73e8;
-            text-decoration: none;
-        }
 
-            a:hover {
-                text-decoration: underline;
+        @media (max-width: 1024px) {
+            #flipbook {
+                width: 95vw;
+                height: 450px;
             }
 
-@media (max-width: 768px) {
+            .page p {
+                font-size: 0.85em;
+            }
+        }
+
+        @media (max-width: 768px) {
             #flipbook {
                 width: 90vw;
                 height: 400px;
             }
 
             .page p {
-                font-size: 0.7em;
+                font-size: 0.8em;
             }
         }
-}
 
-        h1 {
-            font-size: 1.8em; /* Réduit légèrement la taille du titre */
-            margin: 0;
-        }
-
-        nav {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5em;
-            margin-top: 0.5em;
-        }
-
-            nav button, .accessibility button, #navigation-controls button {
-                background: #444;
-                border: none;
-                color: white;
-                padding: 0.5em 0.5em;
-                border-radius: 5px;
-                cursor: pointer;
+        @media (max-width: 480px) {
+            #flipbook {
+                width: 100%;
+                height: auto;
+                max-width: 375px; /* Limite la largeur du livret */
             }
 
-                nav button:hover, .accessibility button:hover, #navigation-controls button:hover {
-                    background: #666;
+            .page {
+                padding: 1em;
+            }
+
+                .page p {
+                    font-size: 0.75em;
                 }
 
-        .accessibility {
-            position: fixed;
-            left: 1em;
-            top: 60%; /* Positionné plus bas, presque centré par rapport au livret */
-            z-index: 3; /* Les boutons doivent être au-dessus du contenu */
-            display: flex;
-            flex-direction: column;
-            gap: 0.5em;
-            background: rgba(255,255,255,0.9);
-            padding: 0.5em;
-            border-radius: 8px;
-            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            #container {
+                height: auto;
+            }
         }
-
-        #container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            width: 80%;
-            max-width: 60%;
-            z-index: 2;
-            padding-bottom: 35px; /* Réduit l'espace en bas pour intégrer le footer */
-        }
-
         a {
             color: #1a73e8;
             text-decoration: none;
@@ -289,140 +267,28 @@ nav ul li a.active {
                 text-decoration: underline;
             }
 
-        .btn {
+        .button {
             display: inline-block;
             background: #1a73e8;
             color: #fff;
-            padding: 0.5rem 0.5rem;
-            margin: 0.5rem 0;
+            padding: 0.6rem 1rem;
+            margin: 1rem 0;
             text-decoration: none;
-            border-radius: 3px;
+            border-radius: 4px;
             font-weight: bold;
         }
 
-        #img {
-            width: 90%;
-            max-width: 250px;
-            margin: 0.5rem auto;
+        .illustration {
+            width: 100%;
+            max-width: 800px;
+            margin: 2rem auto;
             display: block;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
 
         hr {
-            margin: 0.2rem 0;
-        }
-        #flipbook {
-            width: 90vw;
-            max-width: 300px; /* Réduit la largeur pour que le contenu tienne mieux */
-            height: 460px; /* Ajuste la hauteur du flipbook */
-            z-index: 1; /* Le flipbook est derrière les boutons */
-            margin: 0 auto; /* Centrer le livret horizontalement */
-            padding: 3px; /* Espace autour du contenu */
-        }
-
-        .page {
-            background: white;
-            padding: 0.5em;
-            box-shadow: 0 0 10px rgba(0,0,0,0.25);
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            user-select: none;
-        }
-            .page h1 {
-                text-align: center;
-                margin-bottom: 0.5em;
-                font-size: 1em; /* Ajuste la taille du titre des sections */
-            }
-            .page h2 {
-                text-align: center;
-                margin-bottom: 0.5em;
-                font-size: 0.9em; /* Ajuste la taille du titre des sections */
-            }
-
-            .page p {
-                text-align: justify;
-                line-height: 1;
-                font-size: 0.6em; /* Réduit légèrement la taille de la police */
-            }
-       
-        #navigation-controls {
-            margin-top: 0.5em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1em;
-        }
-
-        #page-number {
-            margin: 0.2em;
-            padding: 0.2em;
-            font-weight:normal;
-            background: #f0f0f0;
-            border-radius: 5%; 
-        }
-
-        #toggle-toc {
-            background: #444;
-            border: none;
-            color: white;
-            padding: 0.5em 1em;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        #dynamic-toc-container {
-            display: none;
-            margin-top: 1em;
-        }
-
-            #dynamic-toc-container.open {
-                display: block;
-            }
-
-        #dynamic-toc li {
-            margin: 0.5em 0;
-        }
-
-        footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: #2f2f2f;
-            color: white;
-            text-align: center;
-            padding: 1em;
-            font-size: 0.8em;
-            z-index: 0;
-            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
-        }
-
-        @media (max-width: 480px) {
-            #flipbook {
-                width: 80%;
-                height: auto;
-                max-width: 200px; /* Limite la largeur du livret */
-            }
-
-            .page {
-                padding: 0.5em;
-            }
-
-                .page p {
-                    font-size: 0.5em;
-                }
-
-            #container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            width: 80%;
-            max-width: 60%;
-            }
+            margin: 2rem 0;
         }
     </style>
 <link rel="stylesheet" href="flipbookresponsive.css">
@@ -598,8 +464,6 @@ nav ul li a.active {
     <footer>
         <p>© 2025 Manifeste à deux voix - Tous droits réservés</p>
     </footer>
-
-    <script src="flipbook/Script.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="turn.js"></script>
     
