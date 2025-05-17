@@ -324,6 +324,63 @@
     </style>
 
 
+  <!-- Feuilles de style -->
+  <link rel="stylesheet" href="styles/flipbook.css">
+  <link rel="stylesheet" href="styles/flipbookresponsive.css">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+      text-align: center;
+    }
+
+    header {
+      padding: 1rem;
+      font-size: 1.5rem;
+      background: #222;
+      color: #fff;
+    }
+
+    #carteContainer img {
+      width: 90%;
+      max-width: 600px;
+      height: auto;
+      margin: 2rem auto;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+
+    #fileInputContainer {
+      margin: 1rem auto 2rem;
+    }
+
+    input[type="file"] {
+      padding: 0.5rem;
+      font-size: 1rem;
+    }
+
+    #flipbookModule {
+      display: none;
+      margin: 2rem auto;
+    }
+
+    /* Responsive complémentaire */
+    @media (max-width: 600px) {
+      header {
+        font-size: 1.2rem;
+        padding: 0.8rem;
+      }
+
+      input[type="file"] {
+        font-size: 0.9rem;
+        padding: 0.4rem;
+      }
+    }
+  </style>
     <!-- PDF.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 
@@ -353,20 +410,25 @@
                 📖 Flipbook PDF interactif
 
             </h3>
-            <div class="btn-container">
+            <div class="btn-container" id="carteContainer">
 
                 <img class="glow-btn" style="width:90%;height:auto" src="MyLogoTube.png" alt="Carte interactive">
 
                 <hr>
-
-                <button id="uploadBtn">
+  <!-- 📁 Choix de fichier -->
+  <div id="fileInputContainer">
+    <label for="fileInput">📂 Choisir un module à afficher :</label><br>
+    <input type="file" id="fileInput" accept=".application,.pdf,.json,.txt">
+      <button id="uploadBtn">
                     📄 Sélectionner un PDF
                 </button>
-                <input type="file" id="fileInput" accept="application/pdf" />
+  </div>
             </div>
             </div>
     </div>
 
+  <!-- 📘 Module flipbook (caché au départ) -->
+  <div id="flipbookModule">
     <!-- Flipbook Viewer -->
     <div id="flipbookViewer" style="display: none;>
 
@@ -389,20 +451,20 @@
         </div>
 
     </div>
-
+</div>
     <!-- Footer -->
     <footer>
         Vous aimez mon univers ?<a href="https://ko-fi.com/hellxandre" target="_blank"> 💛 Me soutenir sur Ko-fi ☕</a>
  </footer>
-<script>
-
-    document.getElementById('flipbookViewer').addEventListener('change', function () {
-  const module = document.getElementById('flipbookViewer');
-  if (this.files.length > 0) {
-    module.style.display = 'block';
-  }
-});
-</script>
+<!-- JS -->
+  <script>
+    document.getElementById('fileInput').addEventListener('change', function () {
+      const module = document.getElementById('flipbookModule');
+      if (this.files.length > 0) {
+        module.style.display = 'block';
+      }
+    });
+  </script>
     <script>
         const uploadBtn = document.getElementById('uploadBtn');
         const fileInput = document.getElementById('fileInput');
