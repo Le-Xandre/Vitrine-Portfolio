@@ -69,8 +69,10 @@
                 background-image: url('images/image (4).png'), url('images/image (5).png'), url('images/image (6).png');
             }
         }
-        }
+        
+        
 header {
+position : relative;
   background: #333;
   color: #fff;
   padding: 10px 0;
@@ -124,42 +126,8 @@ nav ul li a.active {
   font-size: 18px;
 }
 
-        
-        @media (max-width: 1024px) {
-            #flipbook {
-                width: 95vw;
-                height: 450px;
-            }
+  
 
-            .page p {
-                font-size: 0.85em;
-            }
-        }
-
-        @media (max-width: 480px) {
-            #flipbook {
-                width: 100%;
-                height: auto;
-                max-width: 375px; /* Limite la largeur du livret */
-            }
-
-            .page {
-                padding: 1em;
-            }
-
-                .page p {
-                    font-size: 0.75em;
-                }
-
-            #container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            width: 80%;
-            max-width: 80%;
-            }
-        }
 @media (max-width: 768px) {
             #flipbook {
                 width: 90vw;
@@ -256,7 +224,7 @@ nav ul li a.active {
         }
         #flipbook {
             width: 90vw;
-            max-width: auto; /* Réduit la largeur pour que le contenu tienne mieux */
+            max-width: 700px; /* Réduit la largeur pour que le contenu tienne mieux */
             height: 480px; /* Ajuste la hauteur du flipbook */
             z-index: 1; /* Le flipbook est derrière les boutons */
             margin: 0 auto; /* Centrer le livret horizontalement */
@@ -342,6 +310,30 @@ nav ul li a.active {
             box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
         }
 
+        @media (max-width: 480px) {
+            #flipbook {
+                width: 80%;
+                height: auto;
+                max-width: 200px; /* Limite la largeur du livret */
+            }
+
+            .page {
+                padding: 1em;
+            }
+
+                .page p {
+                    font-size: 0.7em;
+                }
+
+            #container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 80%;
+            max-width: 80%;
+            }
+        }
     </style>
 
 </head>
