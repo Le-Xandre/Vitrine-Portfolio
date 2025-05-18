@@ -231,11 +231,11 @@ footer {
 details {
     background: #111;
     border: 1px solid #444;
-    padding: 1em;
-    margin: 1em auto;
+    padding: 0.4em;
+    margin: 0.2em auto;
     border-radius: 10px;
     color: white;
-    max-width: 600px;
+    max-width: 450px;
     font-family: Marcellus, serif;
 }
 
@@ -243,15 +243,15 @@ details {
         cursor: pointer;
         font-weight: bold;
         font-size: 0.8em;
-        margin-bottom: 0.5em;
+        margin-bottom: 0.2em;
     }
 
     details input,
     details select {
         display: block;
-        width: 100%;
-        margin: 0.3em 0;
-        padding: 0.4em;
+        width: 90%;
+        margin: 0.2em 0;
+        padding: 0.3em;
         border-radius: 6px;
         border: none;
         font-family: inherit;
