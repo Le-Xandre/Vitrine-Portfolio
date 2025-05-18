@@ -235,9 +235,11 @@ details {
     margin: 0.2em auto;
     border-radius: 10px;
     color: white;
-    max-width: 400px;
+    max-width: 450px;
     font-family: Marcellus, serif;
     justify-content: center;
+  
+    text-align: center;
 }
 
     details summary {
@@ -245,6 +247,8 @@ details {
         font-weight: bold;
         font-size: 0.8em;
         margin-bottom: 0.2em;
+        justify-content: center;
+      text-align: center;
     }
 
     details input,
@@ -256,6 +260,8 @@ details {
         border-radius: 6px;
         border: none;
         font-family: inherit;
+        justify-content: center;
+      text-align: center;
     }
 
     details button {
@@ -266,6 +272,8 @@ details {
         border: none;
         border-radius: 6px;
         cursor: pointer;
+        justify-content: center;
+    text-align: center;
     }
 
 /* Layout mobile */
