@@ -52,11 +52,11 @@
     <link rel="stylesheet" href="styles.css">
 </head>     
     
-   
-           <div class="container">
 <body> 
 
 
+   
+           <div class="container">
     <button class="theme-toggle" id="theme-toggle">🌙</button>
         <header>
 
@@ -353,28 +353,12 @@
             </a>
         </p>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const sections = document.querySelectorAll("section");
 
-    sections.forEach(section => {
-      const header = section.querySelector("h2");
-      const content = section.querySelector(".collapsible-content");
 
-      if (header && content) {
-        header.style.cursor = "pointer"; // Indiquer que c'est cliquable
-
-        header.addEventListener("click", function () {
-          section.classList.toggle("active");
-        });
-      }
-    });
-  });
-</script>
-
-<script defer src="script.js"></script>
-</body>  
       
 </div> 
+<script defer src="script.js"></script>
+</body>  
+
 </html>
 
