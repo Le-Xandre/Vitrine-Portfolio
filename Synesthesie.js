@@ -167,16 +167,15 @@ const tributeText = [
     "dans les replis tièdes de ton royaume de verre,",
     "tu as traversé les années sans bruit,",
     "en gardienne muette de mes jours & mes nuits.",
-    "\n", "\n",
+  
     "Je t’ai nommée Leto, en mémoire des anciens dieux,",
     "toi, la déesse oubliée aux yeux sans larmes,",
     "digne et farouche, logée dans le silence tu étais là,",
     "te laissant à nos aïeux dans un dernier adieu ~*",
-    "\n", "\n",
+ 
     "Merci d’avoir été cette ombre mouvante,",
     "cette preuve que l’on peut aimer sans langage,",
     "et pleurer sans explication à nos propres introspections.",
-    "\n", "\n",
 ];
 
 const tributeBtn = document.getElementById("start-tribute");
