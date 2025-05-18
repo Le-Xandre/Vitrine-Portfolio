@@ -33,8 +33,10 @@
             <img src="images/image1.png" alt="Illustration Synesthésie" id="illustration" />
 
             <!-- Éditeur interactif pour customisation synesthésique -->
-            <section id="mapping-editor">
-                <hr />  <h2>🎨 Créez vos propres associations</h2><hr />
+            
+                <details id="mapping-editor">
+   
+                <hr />  <summary> <h2>🎨 Créez vos propres associations</h2></summary><hr />
                 <label for="note-select">Note :</label>
                 <select id="note-select">
                     <option value="C4">Do</option>
@@ -51,15 +53,17 @@
                 <label for="image-url">Image (URL ou nom local) :</label>
                 <input type="text" id="image-url" placeholder="images/image1.png" />
                 <button id="update-mapping">Mettre à jour</button> 
+            </details>
     <!-- 🎨 Galerie de presets -->
-                <section id="presets">
-                    <hr />    <h2>🌈 Thèmes synesthésiques</h2><hr />
+                <details id="presets">
+    
+                    <hr />  <summary>  <h2>🌈 Thèmes synesthésiques</h2></summary><hr />
                     <button data-preset="dream">Dream</button>
                     <button data-preset="cosmic">Cosmic</button>
                     <button data-preset="forest">Forest</button>
-                    <button data-preset="cyberpunk">Cyberpunk</button>
-                </section>
-            </section>
+                    <button data-preset="cyberpunk">C.77</button>
+                </details>
+            </details>
         </div>
         <aside class="legend">
             <p>💡 Sur PC, utilisez les touches <code>A-Z-E-R-T-Y-U-I</code> pour jouer les notes au clavier.</p>
@@ -95,11 +99,12 @@
         <a id="downloadLink" style="display:none">Télécharger l'enregistrement</a>
         <!---->
         <aside class="epitaphe">
-            <bold>A Leto ~🕊️</bold> <br /><em>(épitaphe pour une déesse silencieuse)</em>
+            
+    <summary><bold>A Leto ~🕊️</bold> <br /><em>(épitaphe pour une déesse silencieuse)</em></summary>
 
                                            <div class="signature">
                                                <!-- 🎭 Mode hommage -->
-                                               <section id="leto-hommage">
+                                               <details id="leto-hommage">
 
                                                    <button id="start-tribute">Lancer</button>
                                                    <button id="stop-tribute">⏹️ Arrêter</button>
@@ -107,7 +112,7 @@
 
 
                                                    </div>
-                                               </section>  
+                                               </details>
                                                <p>
 
                                                    <hr />
