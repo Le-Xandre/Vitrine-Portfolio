@@ -60,6 +60,24 @@ keys.forEach(el => {
     });
 });
 
+// 🧘 Mode relax automatique
+let relaxInterval;
+const relaxBtn = document.getElementById("auto-relax");
+relaxBtn?.addEventListener("click", () => {
+    if (relaxInterval) {
+        clearInterval(relaxInterval);
+        relaxInterval = null;
+        relaxBtn.textContent = "Activer mode relax";
+    } else {
+        relaxInterval = setInterval(() => {
+            const all = [...document.querySelectorAll('.element')];
+            const el = all[Math.floor(Math.random() * all.length)];
+            if (el) el.click();
+        }, 2500);
+        relaxBtn.textContent = "Arrêter mode relax";
+    }
+});
+
 // 🔳 Plein écran
 const fsBtn = document.getElementById("fullscreenBtn");
 if (fsBtn) {
