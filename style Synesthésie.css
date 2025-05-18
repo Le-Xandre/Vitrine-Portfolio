@@ -235,8 +235,9 @@ details {
     margin: 0.2em auto;
     border-radius: 10px;
     color: white;
-    max-width: 450px;
+    max-width: 400px;
     font-family: Marcellus, serif;
+    justify-content: center;
 }
 
     details summary {
