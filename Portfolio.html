@@ -29,7 +29,6 @@
     <link rel="stylesheet" href="assets/font/fontawesome/css/fontawesome.css">
     <link rel="stylesheet" href="assets/font/font.css">
   <link rel="stylesheet" href="responsive.css" />    
-    <script src="script.js" defer></script>
 </head>
 
 <body class="active" id="top">
@@ -52,15 +51,15 @@
                         <img src="assets/images/nav-logo.png" width="140" height="40" alt="Alx home" class="img">
                   
                         </a> 
-                     <button class="nav-open-btn" aria-label="Ouvrir le menu" data-nav-toggler>
-                             <img src="assets/images/menu.svg" width="25" height="25" alt="Icône menu">
-                    </button>
+
                 </div>
 
                 <nav class="navbar" data-navbar>           
-
+<button id="theme-button">🎨 Thème</button>
                      <div class="navbar-top">
-  
+                       <button class="nav-open-btn" aria-label="Ouvrir le menu" data-nav-toggler>
+                             <img src="assets/images/menu.svg" width="25" height="25" alt="Icône menu">
+                    </button>
                         <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
                             <span class="span one"></span>
                             <span class="span two"></span>
@@ -856,6 +855,16 @@
         });
     </script>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const btn = document.getElementById('theme-button');
+    if (btn) {
+      btn.addEventListener('click', function () {
+        document.body.classList.toggle('dark-mode');
+      });
+    }
+  });
+</script>
 
     
 </body>
