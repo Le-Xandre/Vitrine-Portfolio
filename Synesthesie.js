@@ -111,7 +111,18 @@ const presets = {
         A4: ['#597d51', 'images/image6.png'],
         B4: ['#86a273', 'images/image7.png'],
         C5: ['#a3cfa4', 'images/image8.png']
-    }
+    },
+    cyberpunk: { 
+        C4: ['#ff00aa', 'images/image1.png'], 
+        D4: ['#00ffaa', 'images/image2.png'], 
+        E4: ['#aa00ff', 'images/image3.png'], 
+        F4: ['#ff6600', 'images/image4.png'], 
+        G4: ['#00ccff', 'images/image5.png'], 
+        A4: ['#ffcc00', 'images/image6.png'], 
+        B4: ['#cc00ff', 'images/image7.png'], 
+        C5: ['#ff0033', 'images/image8.png'] 
+    },
+
 };
 
 function loadPreset(name) {
