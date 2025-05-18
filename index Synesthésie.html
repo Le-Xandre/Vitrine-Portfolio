@@ -42,26 +42,7 @@
 
         <div id="status">
 
-  <details id="mapping-editor">
-    <summary>🎨 Créez vos associations</summary>
-              
-                <label for="note-select">Note :</label>
-                <select id="note-select">
-                    <option value="C4">Do</option>
-                    <option value="D4">Ré</option>
-                    <option value="E4">Mi</option>
-                    <option value="F4">Fa</option>
-                    <option value="G4">Sol</option>
-                    <option value="A4">La</option>
-                    <option value="B4">Si</option>
-                    <option value="C5">Do aigu</option>
-                </select>
-                <label for="color-picker">Couleur :</label>
-                <input type="color" id="color-picker" />
-                <label for="image-url">Image (URL ou nom local) :</label>
-                <input type="text" id="image-url" placeholder="images/image1.png" />
-                <button id="update-mapping">Mettre à jour</button> 
-            </details>    <!-- 🎨 Galerie de presets -->
+  <!-- 🎨 Galerie de presets -->
                    
                 <details id="presets"> <summary>🌈 Thèmes</summary>
                         <button data-preset="dream">Dream</button>
@@ -81,7 +62,27 @@
             <div class="element" data-note="A4" data-img="images/image6.png" style="--color: #6699ff">La <span class="key">[Y]</span></div>
             <div class="element" data-note="B4" data-img="images/image7.png" style="--color: #9966cc">Si <span class="key">[U]</span></div>
             <div class="element" data-note="C5" data-img="images/image8.png" style="--color: #cc66aa">Do aigu <span class="key">[I]</span></div>
-
+            
+  <details id="mapping-editor">
+    <summary>🎨 Créez vos associations</summary>
+              
+                <label for="note-select">Note :</label>
+                <select id="note-select">
+                    <option value="C4">Do</option>
+                    <option value="D4">Ré</option>
+                    <option value="E4">Mi</option>
+                    <option value="F4">Fa</option>
+                    <option value="G4">Sol</option>
+                    <option value="A4">La</option>
+                    <option value="B4">Si</option>
+                    <option value="C5">Do aigu</option>
+                </select>
+                <label for="color-picker">Couleur :</label>
+                <input type="color" id="color-picker" />
+                <label for="image-url">Image (URL ou nom local) :</label>
+                <input type="text" id="image-url" placeholder="images/image1.png" />
+                <button id="update-mapping">Mettre à jour</button> 
+            </details>  
         </div>
 
         <div class="controls">
