@@ -35,40 +35,76 @@ Fonctionnalités :
 
 ## 🛠️ Technologies utilisées
 - HTML5, CSS3, JavaScript (Vanilla)
-- Bibliothèque [Tone.js](https://tonejs.github.io/) pour le son
-- Arborescence maintenue simple et modulaire (chaque page = une entité)
+- Bibliothèque [Tone.js](https://tonejs.github.io/) pour la synthèse sonore
+- Arborescence modulaire : chaque projet est indépendant
+- GitHub Pages pour l’hébergement
 
 ---
 
 ## 📁 Structure du projet
 ```
 📁 Vitrine-Portfolio/
- ├── index.html               (entrée principale ou redirection)
- ├── linktree.html            (accueil artistique)
- ├── index Synesthésie.html   (page synesthésie)
+ ├── index.html               (page d’entrée ou redirection)
+ ├── linktree.html            (accueil central stylisé)
+ ├── index Synesthésie.html   (projet musical interactif)
  ├── style.css / synesthesie.css
  ├── script.js / synesthesie.js
- ├── 📁 images/               (illustrations musicales)
- ├── 📁 assets/               (fonds animés ou visuels)
+ ├── 📁 images/               (illustrations visuelles liées aux notes)
+ ├── 📁 assets/               (fonds dynamiques, arrière-plans, SVG, etc.)
+ ├── 📁 docs/                 (fichier index.html si déploiement en page GitHub personnalisée)
 ```
 
 ---
 
-## 📱 Compatibilité
-- Entièrement responsive
-- Menu mobile, éléments tactiles, performance optimisée
+## 🌍 Déploiement GitHub Pages
+Pour activer automatiquement une page d’accueil :
+1. Créer un dossier `/docs`
+2. Y placer une version `index.html` qui redirige ou présente le lientree
+3. Aller dans **Settings > Pages** et choisir la source `/docs`
+
+```html
+<!-- Exemple d'index.html dans docs/ -->
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content="0; url=../linktree.html" />
+    <title>Redirection...</title>
+  </head>
+  <body>
+    <p>Redirection vers <a href="../linktree.html">le portfolio visuel</a>...</p>
+  </body>
+</html>
+```
+
+---
+
+## 🔎 Visibilité et SEO
+- Balises meta et titre définis dans chaque page
+- Structure HTML claire, compatible indexation
+- Possibilité d’ajouter des fichiers Open Graph (`og:title`, `og:image`) pour les aperçus partagés
+- Pour optimiser la diffusion : créer une page `index.html` dans `/docs/` + ajouter `favicon` et `manifest`
+
+---
+
+## 📱 Compatibilité mobile
+- Toutes les pages sont pensées **responsive**
+- Navigation tactile fluide, effets optimisés
 
 ---
 
 ## 🖋️ Auteur & collaboration
 
-Projet artistique personnel d’**Alexandre** alias **HellXandre**, accompagné et enrichi par **ChatGPT-4** (OpenAI) pour la co-conception.
+Projet artistique personnel d’**Alexandre** alias **HellXandre**, accompagné et enrichi par **ChatGPT-4** (OpenAI) pour la co-conception d’interfaces musicales et visuelles.
 
-🖼️ Voir mes autres créations : [YouTube](https://www.youtube.com/@HellXandre) · [Instagram](https://instagram.com/hellxandre35)
+🖼️ Voir mes autres créations :
+- [YouTube](https://www.youtube.com/@HellXandre)
+- [Instagram](https://instagram.com/hellxandre35)
+- [Flickr](https://www.flickr.com/people/lexandre/)
 
 ---
 
 ## 📄 Licence
 Projet libre à but artistique et expérimental.
 
-> ✨ Vous pouvez cloner, adapter, vous inspirer — merci de citer si possible.
+> ✨ Vous pouvez cloner, adapter, vous inspirer — merci de me citer si possible ♥
