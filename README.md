@@ -1,43 +1,74 @@
-# 🎹 Synesthésie Musicale — Hommage à Leto
+# ✨ Vitrine Portfolio — Alexandre (HellXandre)
 
-Une interface interactive et artistique permettant d'explorer la synesthésie via un clavier musical visuel, associant sons, couleurs, images et textes poétiques.
+Bienvenue dans mon espace créatif. Ce dépôt contient l’ensemble des pages, projets interactifs, expériences visuelles et musicales que je développe et expose via GitHub Pages.
 
-## 🚀 Fonctionnalités principales
+Accès direct : [https://le-xandre.github.io/Vitrine-Portfolio/](https://le-xandre.github.io/Vitrine-Portfolio/)
 
-- **Clavier interactif** : chaque touche déclenche une note, une couleur et une image
-- **Canvas animé** : arrière-plan dynamique réagissant aux sons
-- **Presets thématiques** : Rêve de Leto, Cosmique, Forêt humide, Cyberpunk
-- **Éditeur personnalisé** : modifiez les couleurs et les visuels associés à chaque note
-- **Mode poétique hommage** : texte défilant et animation inspirée de Leto
-- **Mode relax automatique** : génération aléatoire de notes et visuels à intervalle régulier
-- **Plein écran** : pour une immersion totale
+---
 
-## 🧰 Structure des fichiers
+## 🌐 Pages et projets intégrés
 
+### 🎨 Page d’accueil (Linktree animé)
+- Interface de navigation immersive
+- Arrière-plans animés interchangeables
+- Lecteur musical discret intégré avec pochette et effets visuels
+- Responsive et fluide sur mobile comme desktop
+
+➡️ [Voir la page linktree](https://le-xandre.github.io/Vitrine-Portfolio/linktree.html)
+
+---
+
+### 🎹 Synesthésie Musicale — Hommage à Leto
+Une interface artistique explorant les correspondances entre son, couleur, image et émotion.
+
+Fonctionnalités :
+- Clavier musical interactif (sons + images + couleurs)
+- Canvas animé en arrière-plan
+- Thèmes prédéfinis (Rêve, Cosmique, Forêt, Cyberpunk)
+- Mode poétique (texte hommage à Leto)
+- Mode relax automatique (notes générées en boucle)
+- Éditeur personnalisé + responsive
+
+➡️ [Explorer la synesthésie](https://le-xandre.github.io/Vitrine-Portfolio/index%20Synesth%C3%A9sie.html)
+
+---
+
+## 🛠️ Technologies utilisées
+- HTML5, CSS3, JavaScript (Vanilla)
+- Bibliothèque [Tone.js](https://tonejs.github.io/) pour le son
+- Arborescence maintenue simple et modulaire (chaque page = une entité)
+
+---
+
+## 📁 Structure du projet
 ```
-📁 images/
-   ├── image1.png à image8.png — Illustrations par défaut
-
-📄 index.html         — Structure de la page
-📄 style.css          — Mise en page générale
-📄 synesthesie.css    — Effets visuels + responsive
-📄 synesthesie.js     — Interactivité avancée (canvas, presets, hommage, etc.)
+📁 Vitrine-Portfolio/
+ ├── index.html               (entrée principale ou redirection)
+ ├── linktree.html            (accueil artistique)
+ ├── index Synesthésie.html   (page synesthésie)
+ ├── style.css / synesthesie.css
+ ├── script.js / synesthesie.js
+ ├── 📁 images/               (illustrations musicales)
+ ├── 📁 assets/               (fonds animés ou visuels)
 ```
 
-## 🎨 Technologies utilisées
+---
 
-- HTML5 + CSS3 (responsive design)
-- JavaScript vanilla + Tone.js pour la synthèse sonore
+## 📱 Compatibilité
+- Entièrement responsive
+- Menu mobile, éléments tactiles, performance optimisée
 
-## 📱 Compatible mobile
-- Mise en page fluide
-- Sections repliables
-- Touches tactiles adaptées à l'écran
+---
 
-## 🖋️ Crédits
+## 🖋️ Auteur & collaboration
 
-Créé par Alexandre (HellXandre) × GPT-4 — 2025
-Inspiré par le serpent Leto 🐍 et les phénomènes de synesthésie
+Projet artistique personnel d’**Alexandre** alias **HellXandre**, accompagné et enrichi par **ChatGPT-4** (OpenAI) pour la co-conception.
+
+🖼️ Voir mes autres créations : [YouTube](https://www.youtube.com/@HellXandre) · [Instagram](https://instagram.com/hellxandre35)
+
+---
 
 ## 📄 Licence
-Projet libre à but artistique. Partage et remix autorisés avec mention.
+Projet libre à but artistique et expérimental.
+
+> ✨ Vous pouvez cloner, adapter, vous inspirer — merci de citer si possible.
