@@ -192,7 +192,7 @@ button {
 }
 
 aside.legend {
-    font-size: 0.9em;
+    font-size: 0.85em;
     opacity: 0.6;
     margin-top: 0.2em;
     text-align: center;
@@ -242,7 +242,7 @@ details {
     details summary {
         cursor: pointer;
         font-weight: bold;
-        font-size: 0.6em;
+        font-size: 0.8em;
         margin-bottom: 0.5em;
     }
 
