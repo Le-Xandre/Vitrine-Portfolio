@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Fermer les autres sections ouvertes
-sections.forEach(otherSection => {
+section.forEach(otherSection => {
 
     const header = section.querySelector("h2");
     const content = section.querySelector(".collapsible-content");
