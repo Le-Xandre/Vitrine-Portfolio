@@ -57,40 +57,27 @@
         </div>
 
         <div class="controls">
-
+<a id="downloadLink" style="display:none">Télécharger l'enregistrement</a>
             <button id="record">🎙 Enregistrer</button>
-
-
             <button id="replay">🔁 Rejouer</button>
             <button id="captureBtn">📸 Capturer l’instant</button>
 <button id="auto-relax">Activer mode relax</button>
             <button id="fullscreenBtn">Plein écran</button>
+    <!-- 🎨 Galerie de presets -->
+                   
+                <details id="presets"> <hr />  <summary>  <h2>🌈 Thèmes synesthésiques</h2></summary><hr />
+                        <button data-preset="dream">Dream</button>
+                    <button data-preset="cosmic">Cosmic</button>
+                    <button data-preset="forest">Forest</button>
+                    <button data-preset="cyberpunk">C.77</button>
+                </details>
+
         </div>
-        <a id="downloadLink" style="display:none">Télécharger l'enregistrement</a>
+        
         <!---->
         <aside class="epitaphe">
             
     
-
-                                           <div class="signature">
-                                               <!-- 🎭 Mode hommage -->
-                                               <details id="leto-hommage">
-<summary><bold>A Leto ~🕊️</bold> <br /><em>(épitaphe pour une déesse silencieuse)</em></summary>
-                                                   <button id="start-tribute">Lancer</button>
-                                                   <button id="stop-tribute">⏹️ Arrêter</button>
-                                                   <div id="poem-display">
-
-
-                                                   </div>
-                                               </details>
-                                               <p>
-
-                                                   <hr />
-                                                   <a href="https://suno.com/s/UQQXZnEmOYvx6Alu" target="_blank">Audio Artefact</a>
-
-                                               </p>
-                                           </div>
-
                 <details id="mapping-editor">
     <hr />  <summary> <h2>🎨 Créez vos propres associations</h2></summary><hr />
                 
@@ -111,17 +98,27 @@
                 <input type="text" id="image-url" placeholder="images/image1.png" />
                 <button id="update-mapping">Mettre à jour</button> 
             </details>
-<br>
-    <!-- 🎨 Galerie de presets -->
-                   
-                <details id="presets"> <hr />  <summary>  <h2>🌈 Thèmes synesthésiques</h2></summary><hr />
-                        <button data-preset="dream">Dream</button>
-                    <button data-preset="cosmic">Cosmic</button>
-                    <button data-preset="forest">Forest</button>
-                    <button data-preset="cyberpunk">C.77</button>
-                </details>
-            
-            </details>
+
+
+                                           <div class="signature">
+                                               <!-- 🎭 Mode hommage -->
+                                               <details id="leto-hommage">
+<summary><bold>A Leto ~🕊️</bold> <br /><em>(épitaphe pour une déesse silencieuse)</em></summary>
+                                                   <button id="start-tribute">Lancer</button>
+                                                   <button id="stop-tribute">⏹️ Arrêter</button>
+                                                   <div id="poem-display">
+
+
+                                                   </div>
+                                               </details>
+                                               <p>
+
+                                                   <hr />
+                                                   <a href="https://suno.com/s/UQQXZnEmOYvx6Alu" target="_blank">Audio Artefact</a>
+
+                                               </p>
+                                           </div>
+
         </aside>
         <div id="background-overlay"></div>
 
