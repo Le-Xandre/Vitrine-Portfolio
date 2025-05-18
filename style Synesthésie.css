@@ -226,6 +226,119 @@ footer {
     cursor: pointer;
 }
 
+
+/* Mapping Editor + Presets + Hommage */
+details {
+    background: #111;
+    border: 1px solid #444;
+    padding: 1em;
+    margin: 1.5em auto;
+    border-radius: 10px;
+    color: white;
+    max-width: 700px;
+    font-family: Marcellus, serif;
+}
+
+    details summary {
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-bottom: 0.5em;
+    }
+
+    details input,
+    details select {
+        display: block;
+        width: 100%;
+        margin: 0.3em 0;
+        padding: 0.4em;
+        border-radius: 6px;
+        border: none;
+        font-family: inherit;
+    }
+
+    details button {
+        margin-top: 0.5em;
+        padding: 0.4em 1em;
+        background: #333;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+/* Layout mobile */
+@media (max-width: 768px) {
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5em;
+    }
+
+    .element {
+        flex: 0 0 40%;
+        text-align: center;
+        font-size: 1em;
+        padding: 0.6em;
+    }
+
+    .controls {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5em;
+        margin-top: 1em;
+    }
+
+        .controls button {
+            width: 90%;
+            font-size: 1em;
+            padding: 0.6em;
+        }
+
+    .illustration-frame img {
+        width: 90%;
+        max-width: 300px;
+        margin: auto;
+        display: block;
+    }
+
+    #poem-display p {
+        font-size: 0.95em;
+        text-align: center;
+    }
+}
+
+/* Responsive Poem Display */
+#poem-display {
+    margin-top: 1em;
+    padding: 0.5em;
+    color: white;
+    font-style: italic;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+    #poem-display p {
+        margin: 0.4em 0;
+    }
+
+/* Légende et signature */
+.legend {
+    text-align: center;
+    color: #ccc;
+    margin-top: 2em;
+    font-size: 0.9em;
+    font-family: Marcellus, serif;
+}
+
+.signature {
+    font-style: italic;
+    opacity: 0.8;
+    margin-top: 0.3em;
+}
 @media screen and (max-width: 650px) {
     .container {
         flex-direction: row;
