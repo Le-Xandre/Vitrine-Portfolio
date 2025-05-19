@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Manifeste à deux voix - Livret interactif</title>
+        
+<link rel="stylesheet" href="flipbook/Style.css">
+    
          <style>
         * {
             box-sizing: border-box;
@@ -464,7 +467,96 @@
     <footer>
         <p>© 2025 Manifeste à deux voix - Tous droits réservés</p>
     </footer>
-  <script src="flipbook.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/turn.min.js"></script>
+    <script>
+        let currentFontSize = 1;
+
+        function adjustFontSize(delta) {
+            currentFontSize += delta * 0.05;
+            $('.page p').css('font-size', currentFontSize + 'em');
+        }
+
+        function resetZoom() {
+            currentFontSize = 1;
+            $('.page p').css('font-size', '1em');
+        }
+
+        function goToPage(num) {
+            $('#flipbook').turn('page', num);
+        }
+
+        function updatePageNumber(page) {
+            $('#page-number').text('Page ' + page);
+        }
+
+        function prevPage() {
+            $('#flipbook').turn('previous');
+        }
+
+        function nextPage() {
+            $('#flipbook').turn('next');
+        }
+
+        $(document).ready(function () {
+            if ($.isFunction($.fn.turn)) {
+                $('#flipbook').turn({
+                    width: $('#flipbook').width(),
+                    height: $('#flipbook').height(),
+                    autoCenter: true,
+                    acceleration: true,
+                    gradients: true,
+                    when: {
+                        turned: function (e, page) {
+                            updatePageNumber(page);
+                        }
+                    }
+                });
+
+                updatePageNumber($('#flipbook').turn('page'));
+
+                let isHolding = false;
+
+                $('#flipbook')
+                    .on('mousedown', function () {
+                        isHolding = true;
+                    })
+                    .on('mouseup mouseleave', function () {
+                        isHolding = false;
+                    })
+                    .on('mousemove', function (e) {
+                        if (isHolding) {
+                            e.preventDefault();
+                        }
+                    });
+            } else {
+                console.error('turn.js n\'a pas été correctement chargé.');
+            }
+
+            // Fonction pour basculer l'affichage du sommaire
+            document.getElementById('toggle-toc').addEventListener('click', function () {
+                const tocContainer = document.getElementById('dynamic-toc-container');
+                tocContainer.classList.toggle('open');
+            });
+
+            // Génération dynamique du sommaire
+            function buildTOC() {
+                const tocContainer = document.getElementById('dynamic-toc');
+                const pages = document.querySelectorAll('.page');
+                tocContainer.innerHTML = '';
+                pages.forEach((page, index) => {
+                    const tocItem = document.createElement('li');
+                    const pageTitle = page.querySelector('h2').innerText;
+                    tocItem.innerHTML = `<a href="javascript:void(0)" onclick="goToPage(${index + 1})">${pageTitle}</a>`;
+                    tocContainer.appendChild(tocItem);
+                });
+            }
+
+            buildTOC();
+        });
+    </script>
+     
     <script src="turn.js"></script>
   
     <script>
