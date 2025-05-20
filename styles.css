@@ -14,7 +14,7 @@ body {
     font-family: 'Roboto', Arial, sans-serif;
     background: linear-gradient(to right, #f4f4f9, #eef2f3);
     color: #333;
-    line-height: 1.1;
+    line-height: 1;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -44,7 +44,7 @@ header {
     grid-template-columns: 1fr 2fr;
     align-items: center;
     text-align: center;
-    padding: 0.8rem;
+    padding: 0.6rem;
     animation: fadeInDown 1s ease-out;
 }
 
@@ -56,8 +56,8 @@ header {
     }
 
 .photo-container img {
-    width: 180px;
-    height: 180px;
+    width: 200px;
+    height: 200px;
     padding: 10px;
     border-radius: 50%;
     object-fit: cover;
@@ -94,10 +94,10 @@ img:hover {
 header h1 {
     align-items: center;
     text-align: center;
-    margin: 20px 0 10px;
+    margin: 15px 0 5px;
     font-size: 2.8rem;
     color: #2980b9;
-    transition: color 0.3s;
+    transition: color 0.4s;
 }
 
     header h1:hover {
