@@ -1,216 +1,95 @@
-// 🎨 synesthesie.js : enrichissements dynamiques
-const canvas = document.getElementById('visualizer');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+/* synesthesie.css : enrichissements visuels */
 
-window.addEventListener("resize", () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-});
-
-let circles = [];
-function drawCircle(color) {
-    const x = Math.random() * canvas.width;
-    const y = Math.random() * canvas.height;
-    const radius = Math.random() * 40 + 10;
-    circles.push({ x, y, radius, color, alpha: 0.5 });
+/* Halo et animation flottante au survol */
+.element {
+    position: relative;
+    transition: transform 0.3s ease;
 }
 
-function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    circles.forEach(c => {
-        ctx.beginPath();
-        ctx.arc(c.x, c.y, c.radius, 0, Math.PI * 2);
-        ctx.fillStyle = c.color + Math.floor(c.alpha * 255).toString(16);
-        ctx.fill();
-        c.alpha -= 0.002;
-    });
-    circles = circles.filter(c => c.alpha > 0);
-    requestAnimationFrame(animate);
-}
-animate();
-
-// 🎛 Mappage synesthésique personnalisé
-const noteSelect = document.getElementById('note-select');
-const colorPicker = document.getElementById('color-picker');
-const imageUrl = document.getElementById('image-url');
-const updateBtn = document.getElementById('update-mapping');
-
-updateBtn.addEventListener('click', () => {
-    const note = noteSelect.value;
-    const color = colorPicker.value;
-    const img = imageUrl.value || 'images/image1.png';
-
-    const el = [...document.querySelectorAll('.element')].find(e => e.dataset.note === note);
-    if (el) {
-        el.style.setProperty('--color', color);
-        el.dataset.img = img;
-        el.style.backgroundColor = color;
-        el.style.boxShadow = `0 0 15px ${color}`;
+    .element:hover {
+        transform: scale(1.05);
     }
-});
 
-// 🎹 Réaction visuelle des touches
-const keys = document.querySelectorAll('.element');
-keys.forEach(el => {
-    el.addEventListener('click', () => {
-        const color = getComputedStyle(el).getPropertyValue('--color').trim();
-        drawCircle(color);
-    });
-});
-
-// 🧘 Mode relax automatique
-let relaxInterval;
-const relaxBtn = document.getElementById("auto-relax");
-relaxBtn?.addEventListener("click", () => {
-    if (relaxInterval) {
-        clearInterval(relaxInterval);
-        relaxInterval = null;
-        relaxBtn.textContent = "Activer mode relax";
-    } else {
-        relaxInterval = setInterval(() => {
-            const all = [...document.querySelectorAll('.element')];
-            const el = all[Math.floor(Math.random() * all.length)];
-            if (el) el.click();
-        }, 2500);
-        relaxBtn.textContent = "Arrêter mode relax";
+    .element::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: var(--color);
+        opacity: 0.2;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        transition: width 0.4s ease-out, height 0.4s ease-out, opacity 0.6s ease-out;
     }
-});
 
-// 🔳 Plein écran
-const fsBtn = document.getElementById("fullscreenBtn");
-if (fsBtn) {
-    fsBtn.addEventListener("click", () => {
-        if (!document.fullscreenElement) {
-            document.documentElement.requestFullscreen();
-            fsBtn.textContent = "Quitter le plein écran";
-        } else {
-            document.exitFullscreen();
-            fsBtn.textContent = "Plein écran";
-        }
-    });
+    .element.active::after {
+        width: 120px;
+        height: 120px;
+        opacity: 0;
+    }
 
-    document.addEventListener("fullscreenchange", () => {
-        if (!document.fullscreenElement) {
-            fsBtn.textContent = "Plein écran";
-        }
-    });
+/* Effet de flottement doux */
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
 }
 
-// 🌈 Galerie de presets
-const presets = {
-    dream: {
-        C4: ['#fbb1d3', 'images/image1.png'],
-        D4: ['#b1e3fb', 'images/image2.png'],
-        E4: ['#dbfab1', 'images/image3.png'],
-        F4: ['#e9b1fb', 'images/image4.png'],
-        G4: ['#b1fbd5', 'images/image5.png'],
-        A4: ['#fbe2b1', 'images/image6.png'],
-        B4: ['#b1ccfb', 'images/image7.png'],
-        C5: ['#fbb1b1', 'images/image8.png']
-    },
-    cosmic: {
-        C4: ['#ff00ff', 'images/image1.png'],
-        D4: ['#00ffff', 'images/image2.png'],
-        E4: ['#ffff00', 'images/image3.png'],
-        F4: ['#ff8800', 'images/image4.png'],
-        G4: ['#8800ff', 'images/image5.png'],
-        A4: ['#00ff88', 'images/image6.png'],
-        B4: ['#ff4444', 'images/image7.png'],
-        C5: ['#44ff44', 'images/image8.png']
-    },
-    forest: {
-        C4: ['#3e6b2f', 'images/image1.png'],
-        D4: ['#5c913b', 'images/image2.png'],
-        E4: ['#9bcf8b', 'images/image3.png'],
-        F4: ['#b8e0b0', 'images/image4.png'],
-        G4: ['#2e5939', 'images/image5.png'],
-        A4: ['#597d51', 'images/image6.png'],
-        B4: ['#86a273', 'images/image7.png'],
-        C5: ['#a3cfa4', 'images/image8.png']
-    },
-    cyberpunk: {
-        C4: ['#ff00aa', 'images/image1.png'],
-        D4: ['#00ffaa', 'images/image2.png'],
-        E4: ['#aa00ff', 'images/image3.png'],
-        F4: ['#ff6600', 'images/image4.png'],
-        G4: ['#00ccff', 'images/image5.png'],
-        A4: ['#ffcc00', 'images/image6.png'],
-        B4: ['#cc00ff', 'images/image7.png'],
-        C5: ['#ff0033', 'images/image8.png']
-    },
-    pastel: {
-        C4: ['#ff6666', 'images/image1.png'],
-        D4: ['#ff9966', 'images/image2.png'],
-        E4: ['#ffcc66', 'images/image3.png'],
-        F4: ['#99cc66', 'images/image4.png'],
-        G4: ['#66cccc', 'images/image5.png'],
-        A4: ['#6699ff', 'images/image6.png'],
-        B4: ['#9966cc', 'images/image7.png'],
-        C5: ['#cc66aa', 'images/image8.png']
-    },
-};
-
-function loadPreset(name) {
-    const map = presets[name];
-    if (!map) return;
-    Object.entries(map).forEach(([note, [color, img]]) => {
-        const el = [...document.querySelectorAll('.element')].find(e => e.dataset.note === note);
-        if (el) {
-            el.style.setProperty('--color', color);
-            el.dataset.img = img;
-            el.style.backgroundColor = color;
-            el.style.boxShadow = `0 0 15px ${color}`;
-        }
-    });
+.element {
+    animation: float 3s ease-in-out infinite;
 }
 
-document.querySelectorAll("[data-preset]").forEach(btn => {
-    btn.addEventListener("click", () => loadPreset(btn.dataset.preset));
-});
-
-
-// 🕊️ Mode hommage poétique (version circle + splashes)
-const tributeText = [
-    "Comme une ondulation dans le Temps,",
-    "dans les replis tièdes de ton royaume de verre,",
-    "tu as traversé les années sans bruit,",
-    "en gardienne muette de mes jours & mes nuits.",
-    "Je t’ai nommée Leto, en mémoire des anciens dieux,",
-    "toi, la déesse oubliée aux yeux sans larmes,",
-    "digne et farouche, logée dans le silence tu étais là,",
-    "te laissant à nos aïeux dans un dernier adieu ~*",
-    "Merci d’avoir été cette ombre mouvante,",
-    "cette preuve que l’on peut aimer sans langage,",
-    "et pleurer sans explication à nos propres introspections."
-];
-
-const tributeBtn = document.getElementById("start-tribute");
-const poemDisplay = document.getElementById("poem-display");
-let tributeTimeouts = [];
-function stopTribute() {
-    tributeTimeouts.forEach(clearTimeout);
-    tributeTimeouts = [];
-    poemDisplay.innerHTML = "";
+/* Canvas en arrière-plan sans interaction */
+#visualizer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
 }
 
-tributeBtn?.addEventListener("click", async () => {
-    if (Tone.context.state !== 'running') await Tone.start();
-    stopTribute();
-    let i = 0;
-    const notesArr = ["C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5"];
-    (function next() {
-        if (i >= tributeText.length) return;
-        const line = tributeText[i];
-        const note = notesArr[i % notesArr.length];
-        document.querySelector(`.element[data-note="${note}"]`)?.click();
-        const p = document.createElement("p");
-        p.textContent = line;
-        poemDisplay.appendChild(p);
-        tributeTimeouts.push(setTimeout(next, 2200));
-        i++;
-    })();
-});
+/* Mapping editor stylisé border: 1px solid #444;*/
+#mapping-editor {
+    background: #1a1a1a;
+    border: none;
+    margin: 0 auto;
+    padding: 1em;
+    margin: 1em auto;
+    width: 70%;
+    max-width: 200px;
+    border-radius: 12px;
+    color: white;
+    font-size: 0.8em;
+}
 
-document.getElementById("stop-tribute")?.addEventListener("click", stopTribute);
+    #mapping-editor input,
+    #mapping-editor select {
+        margin-bottom: 0.5em;
+        padding: 0.4em;
+        border-radius: 6px;
+        border: none;
+        width: 80%;
+    }
+
+    #mapping-editor button {
+        margin: auto;
+        padding: 0.5em 1em;
+        background: #333;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+    }
