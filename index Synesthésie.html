@@ -21,26 +21,14 @@
 
         <p>
             - Découvrez la correspondance entre sons, formes et couleurs -
-            <br />♪ et rejouez votre propre performance sensorielle ♫      <details id="mapping-editor">
-    <summary>🎨 Créez vos associations</summary>
-              
-                <label for="note-select">Note :</label>
-                <select id="note-select">
-                    <option value="C4">Do</option>
-                    <option value="D4">Ré</option>
-                    <option value="E4">Mi</option>
-                    <option value="F4">Fa</option>
-                    <option value="G4">Sol</option>
-                    <option value="A4">La</option>
-                    <option value="B4">Si</option>
-                    <option value="C5">Do aigu</option>
-                </select>
-                <label for="color-picker">Couleur :</label>
-                <input type="color" id="color-picker" />
-                <label for="image-url">Image (URL ou nom local) :</label>
-                <input type="text" id="image-url" placeholder="images/image1.png" />
-                <button id="update-mapping">Mettre à jour</button> 
-            </details>  <br>
+            <br />♪ et rejouez votre propre performance sensorielle ♫     
+            <details id="presets"> <summary>🌈 Thèmes</summary>
+                        <button data-preset="dream">Dream</button>
+                    <button data-preset="cosmic">Cosmic</button>
+                    <button data-preset="forest">Forest</button>
+                    <button data-preset="cyberpunk">C.77</button>
+            <button data-preset="pastel">Pastel</button>
+                </details> 
             Inspiré par :
             <a href="https://www.alternatif-art.com/art-et-synesthesie-quand-les-peintres-et-musiciens-percoivent-autrement/" target="_blank">Art et Synesthésie</a>
             +
@@ -122,13 +110,26 @@
 
                 </p>
             </div>
-                <details id="presets"> <summary>🌈 Thèmes</summary>
-                        <button data-preset="dream">Dream</button>
-                    <button data-preset="cosmic">Cosmic</button>
-                    <button data-preset="forest">Forest</button>
-                    <button data-preset="cyberpunk">C.77</button>
-            <button data-preset="pastel">Pastel</button>
-                </details> 
+                <details id="mapping-editor">
+    <summary>🎨 Créez vos associations</summary>
+              
+                <label for="note-select">Note :</label>
+                <select id="note-select">
+                    <option value="C4">Do</option>
+                    <option value="D4">Ré</option>
+                    <option value="E4">Mi</option>
+                    <option value="F4">Fa</option>
+                    <option value="G4">Sol</option>
+                    <option value="A4">La</option>
+                    <option value="B4">Si</option>
+                    <option value="C5">Do aigu</option>
+                </select>
+                <label for="color-picker">Couleur :</label>
+                <input type="color" id="color-picker" />
+                <label for="image-url">Image (URL ou nom local) :</label>
+                <input type="text" id="image-url" placeholder="images/image1.png" />
+                <button id="update-mapping">Mettre à jour</button> 
+            </details>  
         </aside>
 
 
