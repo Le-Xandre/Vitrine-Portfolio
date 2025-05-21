@@ -196,25 +196,20 @@ const stopTribute = () => {
     tributeTimeouts = [];
 };
 
-tributeBtn?.addEventListener("click", async () => {
-    if (Tone.context.state !== 'running') await Tone.start();
-    stopTribute();
-    let i = 0;
-    poemDisplay.innerHTML = "";
-    const notes = ["C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5"];
+// Référence à l’audio d’hommage
+const letoAudio = document.getElementById("letoHommage");
 
-    const next = () => {
-        if (i >= tributeText.length) return;
-        const line = tributeText[i++];
-        const note = notes[i % notes.length];
-        const el = [...document.querySelectorAll('.element')].find(e => e.dataset.note === note);
-        if (el) el.click();
-        const p = document.createElement("p");
-        p.textContent = line;
-        poemDisplay.appendChild(p);
-        const t = setTimeout(next, 2200);
-        tributeTimeouts.push(t);
-    };
+tributeBtn?.addEventListener("click", () => {
+  // Jouer / mettre en pause l'hommage WAV
+  if (letoAudio.paused) {
+    letoAudio.volume = 0.3;    // ajuste selon tes besoins
+    letoAudio.play();
+    tributeBtn.textContent = "🛑 Stop Hommage";
+  } else {
+    letoAudio.pause();
+    letoAudio.currentTime = 0;
+    tributeBtn.textContent = "✨ Hommage";
+  };
 
     // bouton d'arrêt (à ajouter dans l'HTML)
     document.getElementById("stop-tribute")?.addEventListener("click", () => {
