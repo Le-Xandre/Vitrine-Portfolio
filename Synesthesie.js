@@ -101,14 +101,14 @@ if (fsBtn) {
 // 🌈 Galerie de presets
 const presets = {
     dream: {
-        C4: ['#fbb1d3', 'images/image1.png'],
-        D4: ['#b1e3fb', 'images/image2.png'],
-        E4: ['#dbfab1', 'images/image3.png'],
-        F4: ['#e9b1fb', 'images/image4.png'],
-        G4: ['#b1fbd5', 'images/image5.png'],
-        A4: ['#fbe2b1', 'images/image6.png'],
-        B4: ['#b1ccfb', 'images/image7.png'],
-        C5: ['#fbb1b1', 'images/image8.png']
+        C4: ['#ff6666', 'images/image1.png'],
+        D4: ['#ff9966', 'images/image2.png'],
+        E4: ['#ffcc66', 'images/image3.png'],
+        F4: ['#99cc66', 'images/image4.png'],
+        G4: ['#66cccc', 'images/image5.png'],
+        A4: ['#6699ff', 'images/image6.png'],
+        B4: ['#9966cc', 'images/image7.png'],
+        C5: ['#cc66aa', 'images/image8.png']
     },
     cosmic: {
         C4: ['#ff00ff', 'images/image1.png'],
@@ -141,14 +141,15 @@ const presets = {
         C5: ['#ff0033', 'images/image8.png']
     },
     pastel: {
-        C4: ['#ff6666', 'images/image1.png'],
-        D4: ['#ff9966', 'images/image2.png'],
-        E4: ['#ffcc66', 'images/image3.png'],
-        F4: ['#99cc66', 'images/image4.png'],
-        G4: ['#66cccc', 'images/image5.png'],
-        A4: ['#6699ff', 'images/image6.png'],
-        B4: ['#9966cc', 'images/image7.png'],
-        C5: ['#cc66aa', 'images/image8.png']
+                C4: ['#fbb1d3', 'images/image1.png'],
+        D4: ['#b1e3fb', 'images/image2.png'],
+        E4: ['#dbfab1', 'images/image3.png'],
+        F4: ['#e9b1fb', 'images/image4.png'],
+        G4: ['#b1fbd5', 'images/image5.png'],
+        A4: ['#fbe2b1', 'images/image6.png'],
+        B4: ['#b1ccfb', 'images/image7.png'],
+        C5: ['#fbb1b1', 'images/image8.png']
+
     },
 };
 
