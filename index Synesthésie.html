@@ -44,7 +44,18 @@
 
             <img src="images/image1.png" alt="Illustration Synesthésie" id="illustration" />
 
-            <!-- Éditeur interactif pour customisation synesthésique -->
+          
+        </div>
+        <aside class="legend">
+            <p>💡 Sur PC, utilisez les touches <code>A-Z-E-R-T-Y-U-I</code> pour jouer les notes au clavier.</p>  <!-- 🎨 Galerie de presets -->
+                   
+                <details id="presets"> <summary>🌈 Thèmes</summary>
+                        <button data-preset="dream">Dream</button>
+                    <button data-preset="cosmic">Cosmic</button>
+                    <button data-preset="forest">Forest</button>
+                    <button data-preset="cyberpunk">C.77</button>
+            <button data-preset="pastel">Pastel</button>
+                </details>  <!-- Éditeur interactif pour customisation synesthésique -->
            
   <details id="mapping-editor">
     <summary>🎨 Créez vos associations</summary>
@@ -66,17 +77,6 @@
                 <input type="text" id="image-url" placeholder="images/image1.png" />
                 <button id="update-mapping">Mettre à jour</button> 
             </details>  
-        </div>
-        <aside class="legend">
-            <p>💡 Sur PC, utilisez les touches <code>A-Z-E-R-T-Y-U-I</code> pour jouer les notes au clavier.</p>  <!-- 🎨 Galerie de presets -->
-                   
-                <details id="presets"> <summary>🌈 Thèmes</summary>
-                        <button data-preset="dream">Dream</button>
-                    <button data-preset="cosmic">Cosmic</button>
-                    <button data-preset="forest">Forest</button>
-                    <button data-preset="cyberpunk">C.77</button>
-            <button data-preset="pastel">Pastel</button>
-                </details>
         </aside>
 
         <div class="controls">
@@ -111,7 +111,7 @@
                     <details id="leto-hommage">
                         <summary><bold>A Leto ~🕊️</bold> <br /><em>(épitaphe pour une déesse silencieuse)</em></summary>
                         <button id="start-tribute" class="echo-toggle">Lancer</button>
-                        <button id="stop-tribute" class="echo-toggle">⏹️ Arrêter</button>
+                        <button id="stop-tribute" class="echo-toggle">⏹️ Arrêter</button><hr>
                         <button id="echoModeToggle" class="echo-toggle">🌌 Mode Echo</button>
                         <div id="echoOverlay">
                             <div class="echo-visuals"><div id="poem-display"><div id="echoText"></div></div></div>
