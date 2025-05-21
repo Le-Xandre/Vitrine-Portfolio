@@ -140,7 +140,16 @@ const presets = {
         B4: ['#cc00ff', 'images/image7.png'], 
         C5: ['#ff0033', 'images/image8.png'] 
     },
-
+    pastel: {
+        C4: ['#ff6666', 'images/image1.png'],
+        D4: ['#ff9966', 'images/image2.png'],
+        E4: ['#ffcc66', 'images/image3.png'],
+        F4: ['#99cc66', 'images/image4.png'],
+        G4: ['#66cccc', 'images/image5.png'],
+        A4: ['#6699ff', 'images/image6.png'],
+        B4: ['#9966cc', 'images/image7.png'],
+        C5: ['#cc66aa', 'images/image8.png']
+    },
 };
 
 function loadPreset(name) {
