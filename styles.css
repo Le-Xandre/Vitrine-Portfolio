@@ -416,6 +416,9 @@ footer img {
     display: grid;
     flex-direction: column;
     gap: 10px;
+    
+    align-items: center;
+    text-align: center;
 }
 
     .contact-form input,
@@ -424,15 +427,24 @@ footer img {
         padding: 8px;
         border: 1px solid #ccc;
         border-radius: 5px;
+        
+    align-items: center;
+    text-align: center;
     }
 
     .contact-form button {
+        
+    display: grid;
+    flex-direction: column;
         background-color: #007BFF;
         color: gray;
         border: none;
         padding: 5px;
         cursor: pointer;
         border-radius: 5px;
+        
+    align-items: center;
+    text-align: center;
     }
 
         .contact-form button:hover {
