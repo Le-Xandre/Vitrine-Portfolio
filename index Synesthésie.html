@@ -22,13 +22,7 @@
         <p>
             - Découvrez la correspondance entre sons, formes et couleurs -
             <br />♪ et rejouez votre propre performance sensorielle ♫     
-            <details id="presets"> <summary>🌈 Thèmes</summary>
-                        <button data-preset="dream">Dream</button>
-                    <button data-preset="cosmic">Cosmic</button>
-                    <button data-preset="forest">Forest</button>
-                    <button data-preset="cyberpunk">C.77</button>
-            <button data-preset="pastel">Pastel</button>
-                </details> 
+           
             Inspiré par :
             <a href="https://www.alternatif-art.com/art-et-synesthesie-quand-les-peintres-et-musiciens-percoivent-autrement/" target="_blank">Art et Synesthésie</a>
             +
@@ -83,34 +77,22 @@
        
 
                 <!---->
-        <aside class="epitaphe"><!-- 🎨 Galerie de presets -->
-
+        <aside class="epitaphe">
 <button id="echoModeToggle" class="echo-toggle">🌌 Mode Echo</button>
-            <div class="signature">
-                <!-- 🎭 Mode hommage -->
-                <div id="echoModeContainer">
-                    <details id="leto-hommage">
-                        <summary><bold>A Leto ~🕊️</bold> <br /><em>(épitaphe pour une déesse silencieuse)</em></summary>
-                        <button id="start-tribute" class="echo-toggle">Lancer</button>
-                        <button id="stop-tribute" class="echo-toggle">⏹️ Arrêter</button><hr>
-                        
-                        <div id="echoOverlay">
-                            <div class="echo-visuals"><div id="poem-display"><div id="echoText"></div></div></div>
-
-                        </div> <audio id="letoHommage" loop>
-                            <source src="sounds/saturn dark calming piano melody 80bpm G-minor.wav" type="audio/wav">
-                            Votre navigateur ne supporte pas l’audio HTML5.
-                        </audio>
-                    </details>  
-                    </div>
-                <hr />
+            <!-- 🎨 Galerie de presets -->
+ <details id="presets"> <summary>🌈 Thèmes</summary>
+                        <button data-preset="dream">Dream</button>
+                    <button data-preset="cosmic">Cosmic</button>
+                    <button data-preset="forest">Forest</button>
+                    <button data-preset="cyberpunk">C.77</button>
+            <button data-preset="pastel">Pastel</button>
+                </details>                 
                 <p><a href="https://suno.com/s/UQQXZnEmOYvx6Alu" target="_blank">Audio Artefact</a>
                 <!-- Éditeur interactif pour customisation synesthésique -->
            
 
                 </p>
-            </div>
-                <details id="mapping-editor">
+                            <details id="mapping-editor">
     <summary>🎨 Créez vos associations</summary>
               
                 <label for="note-select">Note :</label>
@@ -130,6 +112,26 @@
                 <input type="text" id="image-url" placeholder="images/image1.png" />
                 <button id="update-mapping">Mettre à jour</button> 
             </details>  
+
+            <div class="signature">
+                <!-- 🎭 Mode hommage -->
+                <div id="echoModeContainer">
+                    <details id="leto-hommage">
+                        <summary><bold>A Leto ~🕊️</bold> <br /><em>(épitaphe pour une déesse silencieuse)</em></summary>
+                        <button id="start-tribute" class="echo-toggle">Lancer</button>
+                        <button id="stop-tribute" class="echo-toggle">⏹️ Arrêter</button><hr>
+                        
+                        <div id="echoOverlay">
+                            <div class="echo-visuals"><div id="poem-display"><div id="echoText"></div></div></div>
+
+                        </div> <audio id="letoHommage" loop>
+                            <source src="sounds/saturn dark calming piano melody 80bpm G-minor.wav" type="audio/wav">
+                            Votre navigateur ne supporte pas l’audio HTML5.
+                        </audio>
+                    </details>  
+                    </div>
+            </div>
+<hr />
         </aside>
 
 
