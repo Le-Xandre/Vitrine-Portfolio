@@ -72,7 +72,7 @@
     max-width: 400px;
     border-radius: 12px;
     color: white;
-    font-size: 0.8em;
+    font-size: 0.8em;    
     justify-content:center;
 }
 
@@ -82,13 +82,14 @@
         padding: 0.4em;
         border-radius: 6px;
         border: none;
-        width: 100%;
+        width: 100%;    display:inline-block;
+        position:relative;
     justify-content:center;
     }
 
     #mapping-editor button {
-        display:inline-block;
-        position:relative;
+
+    justify-content:center;
         margin: auto;
         padding: 0.5em 1em;
         background: #333;
