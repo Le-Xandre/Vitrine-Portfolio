@@ -94,19 +94,22 @@
 
                 <!---->
         <aside class="epitaphe">
-
+<button id="echoModeToggle" class="echo-toggle">🌌 Mode Echo</button>
             <div class="signature">
                 <!-- 🎭 Mode hommage -->
-                <details id="leto-hommage">
-<summary><bold>A Leto ~🕊️</bold> <br /><em>(épitaphe pour une déesse silencieuse)</em></summary>
-<button id="start-tribute">Lancer</button>
-<button id="stop-tribute">⏹️ Arrêter</button>
-                    <audio id="letoHommage" loop>
-  <source src="sounds/saturn dark calming piano melody 80bpm G#-minor.wav" type="audio/wav">
-  Votre navigateur ne supporte pas l’audio HTML5.
-</audio>
-<div id="poem-display"></div>
-                 </details>
+                    <details id="leto-hommage">
+                        <summary><bold>A Leto ~🕊️</bold> <br /><em>(épitaphe pour une déesse silencieuse)</em></summary>
+                        <button id="start-tribute" class="echo-toggle">Lancer</button>
+                        <button id="stop-tribute" class="echo-toggle">⏹️ Arrêter</button>
+                        
+                        <div id="echoOverlay">
+                            <div class="echo-visuals"><div id="poem-display"><div id="echoText"></div></div></div>
+
+                        </div> <audio id="letoHommage" loop>
+                            <source src="sounds/saturn dark calming piano melody 80bpm G-minor.wav" type="audio/wav">
+                            Votre navigateur ne supporte pas l’audio HTML5.
+                        </audio>
+                    </details>   
                 <hr />
                 <p><a href="https://suno.com/s/UQQXZnEmOYvx6Alu" target="_blank">Audio Artefact</a>
                 </p>
