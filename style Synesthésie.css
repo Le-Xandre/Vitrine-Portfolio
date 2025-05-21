@@ -18,7 +18,7 @@ h1 {
     margin: 2px;
 }
 h2 {
-    font-size: 1.2em;
+    font-size: 1.1em;
     color: #fff;
     margin: 2px;
 }
@@ -33,7 +33,7 @@ main {
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.5em;
-  margin-top: 0.8em;
+  margin-top: 0.5em;
   z-index: 2;
 }
 a {
@@ -125,8 +125,8 @@ a {
     top: 0;
     left: 0;
     z-index: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 90vw;
+    height: 90vh;
     pointer-events: none;
 }
 .controls {
@@ -238,8 +238,7 @@ details {
     color: white;
     max-width: 450px;
     font-family: Marcellus, serif;
-    justify-content: center;
-    text-align: center;
+
 }
 
     details summary {
@@ -247,8 +246,7 @@ details {
         font-weight: bold;
         font-size: 0.9em;
         margin-bottom: 0.1em;
-        justify-content: center;
-      text-align: center;
+
     }
 
     details input,
@@ -310,14 +308,14 @@ details {
     }
 
     #poem-display p {
-        font-size: 0.95em;
+        font-size: 0.9em;
         text-align: center;
     }
 }
 
 /* Responsive Poem Display */
 #poem-display {
-    margin-top: 1em;
+    margin-top: 0.5em;
     padding: 0.5em;
     color: white;
     font-style: italic;
@@ -327,7 +325,7 @@ details {
 }
 
     #poem-display p {
-        margin: 0.4em 0;
+        margin: 0.2em 0;
     }
 
 /* Légende et signature */
@@ -342,7 +340,7 @@ details {
 .signature {
     font-style: italic;
     opacity: 0.8;
-    margin-top: 0.3em;
+    margin-top: 0.2em;
 }
 @media screen and (max-width: 650px) {
     .container {
