@@ -130,15 +130,15 @@ const presets = {
         B4: ['#86a273', 'images/image7.png'],
         C5: ['#a3cfa4', 'images/image8.png']
     },
-    cyberpunk: { 
-        C4: ['#ff00aa', 'images/image1.png'], 
-        D4: ['#00ffaa', 'images/image2.png'], 
-        E4: ['#aa00ff', 'images/image3.png'], 
-        F4: ['#ff6600', 'images/image4.png'], 
-        G4: ['#00ccff', 'images/image5.png'], 
-        A4: ['#ffcc00', 'images/image6.png'], 
-        B4: ['#cc00ff', 'images/image7.png'], 
-        C5: ['#ff0033', 'images/image8.png'] 
+    cyberpunk: {
+        C4: ['#ff00aa', 'images/image1.png'],
+        D4: ['#00ffaa', 'images/image2.png'],
+        E4: ['#aa00ff', 'images/image3.png'],
+        F4: ['#ff6600', 'images/image4.png'],
+        G4: ['#00ccff', 'images/image5.png'],
+        A4: ['#ffcc00', 'images/image6.png'],
+        B4: ['#cc00ff', 'images/image7.png'],
+        C5: ['#ff0033', 'images/image8.png']
     },
     pastel: {
         C4: ['#ff6666', 'images/image1.png'],
@@ -170,51 +170,47 @@ document.querySelectorAll("[data-preset]").forEach(btn => {
     btn.addEventListener("click", () => loadPreset(btn.dataset.preset));
 });
 
-// 🕊️ Mode hommage poétique
+
+// 🕊️ Mode hommage poétique (version circle + splashes)
 const tributeText = [
     "Comme une ondulation dans le Temps,",
     "dans les replis tièdes de ton royaume de verre,",
     "tu as traversé les années sans bruit,",
     "en gardienne muette de mes jours & mes nuits.",
-  
     "Je t’ai nommée Leto, en mémoire des anciens dieux,",
     "toi, la déesse oubliée aux yeux sans larmes,",
     "digne et farouche, logée dans le silence tu étais là,",
     "te laissant à nos aïeux dans un dernier adieu ~*",
- 
     "Merci d’avoir été cette ombre mouvante,",
     "cette preuve que l’on peut aimer sans langage,",
-    "et pleurer sans explication à nos propres introspections.",
+    "et pleurer sans explication à nos propres introspections."
 ];
 
 const tributeBtn = document.getElementById("start-tribute");
 const poemDisplay = document.getElementById("poem-display");
-
 let tributeTimeouts = [];
-const stopTribute = () => {
+function stopTribute() {
     tributeTimeouts.forEach(clearTimeout);
     tributeTimeouts = [];
-};
+    poemDisplay.innerHTML = "";
+}
 
-// Référence à l’audio d’hommage
-const letoAudio = document.getElementById("letoHommage");
-
-tributeBtn?.addEventListener("click", () => {
-  // Jouer / mettre en pause l'hommage WAV
-  if (letoAudio.paused) {
-    letoAudio.volume = 0.3;    // ajuste selon tes besoins
-    letoAudio.play();
-    tributeBtn.textContent = "🛑 Stop Hommage";
-  } else {
-    letoAudio.pause();
-    letoAudio.currentTime = 0;
-    tributeBtn.textContent = "✨ Hommage";
-  };
-
-    // bouton d'arrêt (à ajouter dans l'HTML)
-    document.getElementById("stop-tribute")?.addEventListener("click", () => {
-        stopTribute();
-    });;
-
-    next();
+tributeBtn?.addEventListener("click", async () => {
+    if (Tone.context.state !== 'running') await Tone.start();
+    stopTribute();
+    let i = 0;
+    const notesArr = ["C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5"];
+    (function next() {
+        if (i >= tributeText.length) return;
+        const line = tributeText[i];
+        const note = notesArr[i % notesArr.length];
+        document.querySelector(`.element[data-note="${note}"]`)?.click();
+        const p = document.createElement("p");
+        p.textContent = line;
+        poemDisplay.appendChild(p);
+        tributeTimeouts.push(setTimeout(next, 2200));
+        i++;
+    })();
 });
+
+document.getElementById("stop-tribute")?.addEventListener("click", stopTribute);
