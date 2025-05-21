@@ -633,6 +633,15 @@
                 tocContainer.classList.toggle('open');
             });
 
+            // Helper function to escape HTML entities
+            function escapeHTML(str) {
+                return str.replace(/&/g, '&amp;')
+                          .replace(/</g, '&lt;')
+                          .replace(/>/g, '&gt;')
+                          .replace(/"/g, '&quot;')
+                          .replace(/'/g, '&#39;');
+            }
+
             // Génération dynamique du sommaire
             function buildTOC() {
                 const tocContainer = document.getElementById('dynamic-toc');
@@ -641,7 +650,7 @@
                 pages.forEach((page, index) => {
                     const tocItem = document.createElement('li');
                     const pageTitle = page.querySelector('h2').innerText;
-                    tocItem.innerHTML = `<a href="javascript:void(0)" onclick="goToPage(${index + 1})">${pageTitle}</a>`;
+                    tocItem.innerHTML = `<a href="javascript:void(0)" onclick="goToPage(${index + 1})">${escapeHTML(pageTitle)}</a>`;
                     tocContainer.appendChild(tocItem);
                 });
             }
