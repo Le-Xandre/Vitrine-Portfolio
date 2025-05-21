@@ -68,11 +68,12 @@
     margin: 0 auto;
     padding: 0.5em;
     margin: 0.5em auto;
-    width: 100%;
-    max-width: 600px;
+    width: 95%;
+    max-width: 400px;
     border-radius: 12px;
     color: white;
     font-size: 0.8em;
+    justify-content:center;
 }
 
     #mapping-editor input,
@@ -81,10 +82,13 @@
         padding: 0.4em;
         border-radius: 6px;
         border: none;
-        width: 80%;
+        width: 100%;
+    justify-content:center;
     }
 
     #mapping-editor button {
+        display:inline-block;
+        position:relative;
         margin: auto;
         padding: 0.5em 1em;
         background: #333;
