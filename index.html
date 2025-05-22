@@ -131,12 +131,6 @@
 
         <main>
 
-            <script>
-                function decodeInfo() {
-                    document.getElementById('display').textContent = atob('TGV4YW5kcmU4MUBvcmFuZ2UuZnI=');
-                    document.getElementById('phone').textContent = atob('MDYgNzkgNDIgODQgODA=');
-                }
-            </script>
 
             <section class="left-column">
                 <h2>📍 Informations<em> (cliquable)</em> 📍</h2>
@@ -152,17 +146,18 @@
   <h3>CV classique<a href="2025 CV.pdf" target="_blank"> (en pdf)</a></h3>
                 </div>
             </section>
+<script>
+    function showInfo() {
+        document.getElementById('display').textContent = 'xxxxx@xxxxx.fr';
+        document.getElementById('phone').textContent = '06 xx xx xx xx';
+    }
 
-            <script>
-                function showInfo() {
-                    document.getElementById('display').textContent = '..........@........fr';
-                    document.getElementById('phone').textContent = '06 xx xx xx xx';
-                }
-                function hideInfo() {
-                    document.getElementById('display').textContent = '[Masqué]';
-                    document.getElementById('phone').textContent = '[Masqué]';
-                }
-            </script>
+    function hideInfo() {
+        document.getElementById('display').textContent = '[Pour des raisons de sécurité : Masqué]';
+
+        document.getElementById('phone').textContent = '[↑ Me contacter avec les liens ci-dessus ↑]';
+    }
+</script>
 
             <section class="right-column">
                 <h2>🧘 Savoir-faire & Savoir-être 🧘</h2>
