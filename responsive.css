@@ -91,7 +91,7 @@
     }
 
     .link-list.active {
-        display: flex;
+        display: block;
     }
 }
 
