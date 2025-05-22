@@ -56,8 +56,8 @@ header {
     }
 
 .photo-container img {
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 250px;
     padding: 3px;
     border-radius: 50%;
     object-fit: cover;
@@ -94,7 +94,7 @@ img:hover {
 header h1 {
     align-items: center;
     text-align: center;
-    margin: 10px 0 5px;
+    margin: 5px 0 5px;
     font-size: 2.6rem;
     color: #2980b9;
     transition: color 0.4s;
@@ -234,10 +234,10 @@ align-items:center;
 
     flex-direction: column;
     font-family: Arial, sans-serif;
-    margin: 15px;
+    margin: 12px;
     flex: 1;
     min-width: 350px;
-    padding: 15px;
+    padding: 12px;
     background-color: #f9f9f9;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Ombre légèrement plus marquée */
