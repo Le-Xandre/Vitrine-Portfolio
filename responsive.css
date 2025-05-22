@@ -71,7 +71,10 @@
 
 
 .burger-menu {
-   display: contents;
+    display: inline-flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
     font-size: 1rem;
     background: none;
     color: white;
