@@ -131,7 +131,7 @@
 
             <script>
                 function decodeInfo() {
-                    document.getElementById('email').textContent = atob('TGV4YW5kcmU4MUBvcmFuZ2UuZnI=');
+                    document.getElementById('email-display').textContent = atob('TGV4YW5kcmU4MUBvcmFuZ2UuZnI=');
                     document.getElementById('phone').textContent = atob('MDYgNzkgNDIgODQgODA=');
                 }
             </script>
@@ -141,7 +141,7 @@
 
                 <div class="collapsible-content" onclick="decodeInfo()" onmouseover="showInfo()" onmouseout="hideInfo()">
                     <br />
-                    <p><strong>Email :</strong> <span id="email">[Cliquez pour voir]</span></p><br />
+                    <p><strong>Email :</strong> <span id="email-display">[Cliquez pour voir]</span></p><br />
                     <p><strong>Téléphone :</strong> <span id="phone">[Cliquez pour voir]</span></p><br />
                     <p><strong>Localisation :</strong> Rennes, Bretagne, France</p>
                     <br>
