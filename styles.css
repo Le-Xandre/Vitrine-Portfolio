@@ -105,7 +105,7 @@ header h1 {
     }
 
 header p {
-    font-size: 0.6rem;
+    font-size: 1.2rem;
     color: #7f8c8d;
 }
 
@@ -149,7 +149,7 @@ section.active .collapsible-content {
 p {
     max-width: 800px;
     margin: 0 auto;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
 }
 
     img:hover {
@@ -234,10 +234,10 @@ align-items:center;
 
     flex-direction: column;
     font-family: Arial, sans-serif;
-    margin: 10px;
+    margin: 15px;
     flex: 1;
-    min-width: 300px;
-    padding: 10px;
+    min-width: 350px;
+    padding: 15px;
     background-color: #f9f9f9;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Ombre légèrement plus marquée */
