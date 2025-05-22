@@ -71,7 +71,7 @@
 
 
 .burger-menu {
-   display: block;
+   display: contents;
     font-size: 1rem;
     background: none;
     color: white;
