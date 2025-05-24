@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perceptions et Illusions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Playfair+Display&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="synesthesie-style.css" />
+
+    <style>
+        :root {
+            --main-bg: #f6f1e9;
+            --accent: #003049;
+            --highlight: #f77f00;
+            --soft: #eae2b7;
+            --text: #1d1d1d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Fira Sans', sans-serif;
+            background-color: var(--main-bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+            background: var(--accent);
+            color: white;
+            padding: 0.25rem;
+        }
+
+        nav button {
+            background: transparent;
+            border: none;
+            color: white;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            margin: 0 0.25rem;
+            cursor: pointer;
+        }
+
+        .section {
+            display: none;
+            padding: 0.25rem;
+            animation: fadeIn 1s ease;
+        }
+
+            .section.active {
+                display: block;
+            }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .explainer {
+            margin-bottom: 0.25rem;
+            background: var(--soft);
+            padding: 0.25rem;
+            border-left: 5px solid var(--highlight);
+        }
+
+
+        iframe, canvas, .demo {
+            margin-top: 0.5rem;
+            max-width: 100%;
+        }
+    </style>
+
+    <link rel="stylesheet" href="Synésthesie.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="echo.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <button onclick="showSection('synesthesia')">Synesthésie</button>
+            <button onclick="showSection('thaumatrope')">Thaumatrope</button>
+            <button onclick="showSection('zootrope')">Zootrope</button>
+            <button onclick="showSection('phenakistoscope')">Phénakistiscope</button>
+            
+        </nav>
+    </header>
+
+    <main>
+        <section id="synesthesia" class="section active">
+            <h2>Synesthésie Musicale Interactive</h2>
+
+            <div class="explainer">
+                <p>
+                    La synesthésie est un phénomène neurologique dans lequel plusieurs sens sont associés :
+                    <br />voir des sons, entendre des couleurs, ressentir des formes.
+                    <br />Cette interface explore ces croisements sensoriels à travers l'image, le son et l'interaction visuelle.
+                </p>
+            </div> Inspiré par :
+            <a href="https://www.alternatif-art.com/art-et-synesthesie-quand-les-peintres-et-musiciens-percoivent-autrement/" target="_blank">Art et Synesthésie</a>
+            +
+            <a href="https://dumas.ccsd.cnrs.fr/dumas-02326368/file/2019-LU%20Experimenter.pdf" target="_blank">Étude d'immersion</a>
+
+
+            <iframe src="index Synesthésie.html" width="100%" height="800" frameborder="0"></iframe>
+        </section>
+
+        <section id="thaumatrope" class="section">
+            <h2>Thaumatrope</h2>       
+            <div class="explainer">
+                <div class="demo">
+
+                    Le thaumatrope utilise la persistance rétinienne :
+                    <br /> 2 images différentes apparaissent comme une seule lorsque le disque tourne rapidement (ex: le corbeau & le renard).
+
+                    
+                </div>
+                <iframe src="index thaumatrope.html" width="100%" height="500" frameborder="0"></iframe>
+
+
+            </div>
+
+        </section>
+
+        <section id="zootrope" class="section">
+            <h2>Zootrope</h2>
+            <div class="explainer">
+                Une bande animée est observée à travers les fentes d’un cylindre en rotation. Cela crée une illusion de mouvement fluide.
+            </div>
+            <div class="demo">
+                <img src="img/zootrope-example.gif" alt="Zootrope Demo" style="width: 300px; height: auto;">
+            </div>
+        </section>
+
+        <section id="phenakistoscope" class="section">
+            <h2>Phénakistiscope & Praxinoscope</h2>
+            <div class="explainer">
+                Ces dispositifs utilisent des disques illustrés ou des miroirs pour projeter une animation continue lors de la rotation.
+            </div>
+            <div class="demo">
+                <img src="img/phenakistiscope-example.gif" alt="Phénakistiscope Demo" style="width: 300px; height: auto;">
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function showSection(id) {
+            document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+
+    </script>
+
+
+</body>
+</html >
