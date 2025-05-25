@@ -85,9 +85,9 @@ header nav button {
 
 section {
     display: none;
-    padding: 20px 5px 5px;
+    padding: 10px 5px 5px;
     min-height: auto;
-    max-width: auto;
+    max-width: 100%;
     margin: 0.5rem auto;
     text-align: center;
     justify-content: center;
@@ -120,7 +120,7 @@ section h2 {
     justify-content: center;
 }
     .gallery figure {
-        max-width: 200px;
+        max-width: 250px;
         text-align: center;
        align-items: center;
        justify-content: center;
