@@ -71,25 +71,25 @@
         </section>
 
         <section id="phenakistiscope" class="section tab">
-            <h2>Phénakistiscope</h2><button id="echoModeToggle" class="echo-toggle">🕊️ Mode Echo 🌌</button>  
+            <h2>Phénakistiscope</h2><button id="echoModeToggle" class="echo-toggle">🕊️ Mode Echo 🌌</button>   <div id="echoVolumeControl" class="echo-volume hidden">
+                <label for="echoVolume">Volume 🎧</label>
+                <input type="range" id="echoVolume" min="0" max="1" step="0.01" value="0.3">
+            </div>  
             <div class="phenakistiscope">
                                                 <p>
                                         Un mode immersif inspiré de l'œuvre "Myth of Man" et des Rotoreliefs de Duchamp,
                                         <br />mêlant sons doux, vibrations lentes et textes évanescents.
-                                    </p>
-                <img src="img/phenakistiscope-disque-animation.gif" class="disc" alt="Phénakistiscope" />
-            </div>  
-                
-            <div id="echoVolumeControl" class="echo-volume hidden">
-                <label for="echoVolume">Volume 🎧</label>
-                <input type="range" id="echoVolume" min="0" max="1" step="0.01" value="0.3"><audio id="letoHommage" loop>
+                                    </p><div class="echo-content hidden">
+                <div id="echoModeContainer"> 
+          <canvas id="rotoCanvas" width="300" height="300"> <img src="img/phenakistiscope-disque-animation.gif" class="disc" alt="Phénakistiscope" /></canvas>     </div>
+                </div>
+               <audio id="letoHommage" loop>
                                 <source src="sounds/saturn dark calming piano melody 80bpm G-minor.wav" type="audio/wav">
                                 Votre navigateur ne supporte pas l’audio HTML5.
                             </audio>
-            </div>  <div class="echo-content hidden">
-                <div id="echoModeContainer"> 
-          <canvas id="rotoCanvas" width="300" height="300"></canvas>     </div>
-                </div>
+            </div>  
+                
+           
                     <!-- 🎭 Mode hommage
                 <details id="leto-hommage">
                     <summary><bold>A Leto ~🕊️</bold> <br /><em>(épitaphe pour une déesse silencieuse)</em></summary>
