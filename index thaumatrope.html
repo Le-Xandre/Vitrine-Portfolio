@@ -54,7 +54,7 @@
             <button data-target="intro" class="active">Thaumatrope</button>
             <button data-target="phenakistiscope">Phénakistiscope</button>
             <button data-target="praxinoscope">Praxinoscope</button>
-            <button data-target="interaction">Interaction</button>  
+            <button data-target="rotoreliefs">rotoreliefs</button>  
 
         </nav>
         <section id="intro" class="section tab active">
@@ -75,20 +75,13 @@
         </section>
 
         <section id="phenakistiscope" class="section tab">
-            <h2>Phénakistiscope</h2><button id="echoModeToggle" class="echo-toggle">🕊️ Echo ♫ 🌌
-                <audio id="letoHommage" loop>
-                                <source src="sounds/saturn dark calming piano melody 80bpm G-minor.wav" type="audio/wav">
-                                Votre navigateur ne supporte pas l’audio HTML5.
-                            </audio></button>  
-            <div id="echoVolumeControl" class="echo-volume hidden">
-                <label for="echoVolume">Volume 🎧</label>
-                <input type="range" id="echoVolume" min="0" max="1" step="0.01" value="0.3">
-            </div>  
+            <h2>Phénakistiscope</h2>
             <div class="phenakistiscope">
-                                                <p>
+                        <img src="img/phenakistiscope-disque-animation.gif" class="disc" alt="Phénakistiscope" />                       
+                <p>
                                         Un mode immersif inspiré de l'œuvre "Myth of Man" et des Rotoreliefs de Duchamp,
                                         <br />mêlant sons doux, vibrations lentes et textes évanescents.
-                                     <img src="img/phenakistiscope-disque-animation.gif" class="disc" alt="Phénakistiscope" /></p>
+                                     </p>
             
                
             </div>  
@@ -120,6 +113,23 @@
             </div>-->
 
 
+        </section>
+
+        <section id="praxinoscope" class="section tab">
+            <h2>Praxinoscope</h2>
+            <div class="praxinoscope-container">
+                <div class="praxinoscope-strip" style="background-image: url('img/zootrope 03.png'); "></div>
+                <div class="mirror-ring"></div>
+            </div>
+        </section>
+
+        <section id="rotoreliefs" class="section tab">
+            <h2>rotoreliefs</h2>
+            <p class="interaction">
+                Dans la spirale de sons et de lumières, un écho silencieux persiste.
+                <br />Il ondule, comme un souvenir inscrit dans chaque vibration.
+                <br />Il n'est pas visible pour tous, mais présent pour qui sait écouter ♫
+            </p>
 
             <div id="rotoreliefs">
                 <!--                 <img src="images/imgS1.jpg" alt="Rotorelief 1" />
@@ -168,23 +178,6 @@
                 <img src="images/imgS (46).jpg" alt="Rotorelief 33" />
                 <img src="images/imgS (24).png" alt="Rotorelief 26" />
             </div>
-        </section>
-
-        <section id="praxinoscope" class="section tab">
-            <h2>Praxinoscope</h2>
-            <div class="praxinoscope-container">
-                <div class="praxinoscope-strip" style="background-image: url('img/zootrope 03.png'); "></div>
-                <div class="mirror-ring"></div>
-            </div>
-        </section>
-
-        <section id="interaction" class="section tab">
-            <h2>Fragment</h2>
-            <p class="interaction">
-                Dans la spirale de sons et de lumières, un écho silencieux persiste.
-                <br />Il ondule, reptile ancien et discret, comme un souvenir inscrit dans chaque vibration.
-                <br />Il n'est pas visible pour tous, mais présent pour qui sait écouter. Ce fragment est pour lui.
-            </p>
             <h2>Clavier Couleur</h2>
             <div id="keyboard-zone">
                 <p>Tapez AZERTYUI pour activer des couleurs sonores !</p>
