@@ -55,14 +55,7 @@
             <button data-target="phenakistiscope">Phénakistiscope</button>
             <button data-target="praxinoscope">Praxinoscope</button>
             <button data-target="interaction">Interaction</button>  
-<button id="echoModeToggle" class="echo-toggle">🕊️ Mode Echo 🌌</button>                  
-            <div id="echoVolumeControl" class="echo-volume hidden">
-                <label for="echoVolume">Volume 🎧</label>
-                <input type="range" id="echoVolume" min="0" max="1" step="0.01" value="0.3"><audio id="letoHommage" loop>
-                                <source src="sounds/saturn dark calming piano melody 80bpm G-minor.wav" type="audio/wav">
-                                Votre navigateur ne supporte pas l’audio HTML5.
-                            </audio>
-            </div> 
+
         </nav>
         <section id="intro" class="section tab active">
             <h2>Comprendre le thaumatrope</h2>
@@ -86,7 +79,14 @@
                                     </p>
                 <img src="img/phenakistiscope-disque-animation.gif" class="disc" alt="Phénakistiscope" />
             </div>  
-
+<button id="echoModeToggle" class="echo-toggle">🕊️ Mode Echo 🌌</button>                  
+            <div id="echoVolumeControl" class="echo-volume hidden">
+                <label for="echoVolume">Volume 🎧</label>
+                <input type="range" id="echoVolume" min="0" max="1" step="0.01" value="0.3"><audio id="letoHommage" loop>
+                                <source src="sounds/saturn dark calming piano melody 80bpm G-minor.wav" type="audio/wav">
+                                Votre navigateur ne supporte pas l’audio HTML5.
+                            </audio>
+            </div> 
           
                     <!--  <div class="echo-content hidden">
                 <div id="echoModeContainer"> 🎭 Mode hommage
