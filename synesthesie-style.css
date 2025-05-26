@@ -194,6 +194,15 @@ section h2 {
 }
 
 /* -----------------------------
+   Hommage
+   ----------------------------- */
+.rotoreliefs {
+  font-style: italic;
+  border-left: 4px solid var(--accent);
+  padding-left: 1rem;
+}
+
+/* -----------------------------
    Rotorelief canvas
    ----------------------------- */
 #rotoCanvas {
@@ -211,15 +220,6 @@ canvas {
     left: 0;
     z-index: 0;
 }
-/* -----------------------------
-   Hommage
-   ----------------------------- */
-.rotoreliefs {
-  font-style: italic;
-  border-left: 4px solid var(--accent);
-  padding-left: 1rem;
-}
-
 /* -----------------------------
    Footer
    ----------------------------- */
