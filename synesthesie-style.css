@@ -237,7 +237,10 @@ footer {
     width: 100%;
     max-width: 100%;
   }
-  
+    .iframe-container {
+    padding-top: 75%; /* Ratio 4:3 pour les écrans plus petits */
+  }
+
   iframe {
     width: 100%;
     height: auto;
