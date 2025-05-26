@@ -213,5 +213,4 @@ tributeBtn?.addEventListener("click", async () => {
         i++;
     })();
 });
-
 document.getElementById("stop-tribute")?.addEventListener("click", stopTribute);
