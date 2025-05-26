@@ -85,13 +85,14 @@ header nav button {
 
 section {
     display: none;
-    padding: 10px 5px 5px;
     min-height: auto;
-    max-width: 100%;
-    margin: 0.5rem auto;
     text-align: center;
     justify-content: center;
-    width: 1725px;
+    width: 100%;
+    max-width: 1725px;
+    padding: 10px 5px 5px;
+    margin: 0.5rem auto;
+    box-sizing: border-box;
     height: 100%;
     background: var(--bg-dark);
     color: var(--text-dark);
@@ -229,3 +230,17 @@ footer {
   font-size: 0.9rem;
   color: #666;
 }
+
+@media (max-width: 768px) {
+  section {
+    padding: 1rem;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  iframe {
+    width: 100%;
+    height: auto;
+  }
+}
+
