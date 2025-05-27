@@ -10,6 +10,15 @@
     <link rel="stylesheet" href="synesthesie-style.css" />
     
     <style>
+    
+    body {
+      background: #0c0c0c;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
 
         .thaumatrope-container {
             position: relative;
@@ -41,37 +50,56 @@
 
         .back {
             transform: rotateX(180deg);
-        }    
-        
-        .video-wrapper {
-  position: relative;
-  display: inline-block;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 0 20px rgba(0,255,255,0.3);
-}
+        }
+    .video-wrapper {
+      position: relative;
+      display: inline-block;
+      border-radius: 16px;
+      overflow: hidden;
+      z-index: 0;
+    }
 
-.video-wrapper::before {
-  content: '';
-  position: absolute;
-  top: -5px; left: -5px; right: -5px; bottom: -5px;
-  border-radius: 16px;
-  background: conic-gradient(from 0deg, 
-    #00fff7, #ff00f7, #00fff7);
-  animation: rotateHalo 6s linear infinite;
-  z-index: -1;
-  filter: blur(10px);
-}
+    /* Halo rotatif flou */
+    .video-wrapper::before {
+      content: '';
+      position: absolute;
+      top: -8px; left: -8px; right: -8px; bottom: -8px;
+      border-radius: 20px;
+      background: conic-gradient(from 0deg, #00fff7, #ff00f7, #00fff7);
+      animation: rotateHalo 8s linear infinite;
+      filter: blur(12px);
+      z-index: -1;
+      transition: background 2s ease;
+    }
 
-@keyframes rotateHalo {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
+    @keyframes rotateHalo {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
 
-iframe {
-  border: none;
-  display: block;
-  border-radius: 12px;
+    iframe {
+      border: none;
+      display: block;
+      border-radius: 12px;
+    }
+
+    /* ✨ Étoile volante */
+    .glow-dot {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: #ffffffaa;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #ffffffcc;
+      animation: orbit 6s linear infinite;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    @keyframes orbit {
+      0%   { transform: rotate(0deg) translateX(280px) rotate(0deg); }
+      100% { transform: rotate(360deg) translateX(280px) rotate(-360deg); }
+    }
     </style>
 
     <link rel="stylesheet" href="responsive.css" />
@@ -136,17 +164,15 @@ Jean de La Fontaine
             <div class="phenakistiscope">
                           <p>
                                         Un mode immersif inspiré de l'œuvre "Myth of Man" et des Rotoreliefs de Duchamp,
-                                        <br />mêlant sons doux, vibrations lentes et textes évanescents.<br>
-                <div class="video-wrapper">
-                <iframe width="560" height="315"
-    src="https://www.youtube.com/embed/_MnOG-sHz4U?autoplay=1&mute=1&rel=0"
-    title="YouTube video player"
-    frameborder="0"
+                                        <br />mêlant sons doux, vibrations lentes et textes évanescents.<br><br>
+<div class="video-wrapper" id="videoBox">
+  <span class="glow-dot">✨</span>
+  <iframe width="560" height="315"
+    src="https://www.youtube.com/embed/_MnOG-sHz4U?autoplay=1&mute=1&rel=0&modestbranding=1"
     allow="autoplay; encrypted-media"
-    allowfullscreen
-    style="max-width: 100%;padding:0.5em; margin: auto; display: block;">
-</iframe> 
-             </div>    
+    allowfullscreen>
+  </iframe>
+</div>
                                      </p> <br>
                 <img src="img/phenakistiscope-disque-animation.gif" class="disc" alt="Phénakistiscope" />
                 <img src="img/phenakistiscope-example 03.gif" style="border-radius:100%;width:200px; height:200px;" class="disc" alt="Phénakistiscope" />
@@ -292,7 +318,21 @@ Jean de La Fontaine
         }, 80); // toutes les x ms (10), soit x fps (25)
     </script>
 
-   
+   <script>
+  // 🎨 Génère des couleurs aléatoires pour le halo
+  const wrapper = document.getElementById('videoBox');
+  const updateGradient = () => {
+    const randomColor1 = `hsl(${Math.floor(Math.random()*360)}, 100%, 65%)`;
+    const randomColor2 = `hsl(${Math.floor(Math.random()*360)}, 100%, 65%)`;
+    const gradient = `conic-gradient(from 0deg, ${randomColor1}, ${randomColor2}, ${randomColor1})`;
+    wrapper.style.setProperty('--halo-gradient', gradient);
+    wrapper.querySelector('::before'); // force reflow
+    wrapper.style.setProperty('--halo-gradient', gradient);
+    wrapper.querySelector('::before').style.background = gradient;
+  };
+
+  setInterval(updateGradient, 5000); // Changement toutes les 5s
+</script>
 
 
     <script src="script3.js"></script>
