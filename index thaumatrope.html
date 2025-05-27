@@ -90,8 +90,11 @@
       margin: 0.20em;
       border-radius: 50%;
       color: transparent;
-      text-shadow: 0 0 0 conic-gradient(from 180deg, #00fff7, #ff00f7, #00fff7);
-      filter: blur(1px);
+      
+  filter: invert(9%) sepia(80%) saturate(3916%) hue-rotate(313deg) brightness(82%) contrast(94%);
+
+      text-shadow: 0 0 0 conic-gradient(from 0deg, #00fff7, #ff00f7, #00fff7);
+      
       animation: moveAround 10s linear infinite;
       z-index: 2;
     }
