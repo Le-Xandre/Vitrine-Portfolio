@@ -10,7 +10,35 @@
     <link rel="stylesheet" href="synesthesie-style.css" />
     
     <style>
-    
+    .video-wrapper {
+  position: relative;
+  display: inline-block;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0,255,255,0.3);
+}
+
+.video-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -5px; left: -5px; right: -5px; bottom: -5px;
+  border-radius: 16px;
+  background: conic-gradient(from 0deg, 
+    #00fff7, #ff00f7, #00fff7);
+  animation: rotateHalo 6s linear infinite;
+  z-index: -1;
+  filter: blur(10px);
+}
+
+@keyframes rotateHalo {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+iframe {
+  border: none;
+  display: block;
+  border-radius: 12px;
         .thaumatrope-container {
             position: relative;
             display: inline-block;
@@ -108,6 +136,7 @@ Jean de La Fontaine
                                         Un mode immersif inspiré de l'œuvre "Myth of Man" et des Rotoreliefs de Duchamp,
                                         <br />mêlant sons doux, vibrations lentes et textes évanescents.
                                      </p>
+                <div class="video-wrapper">
                 <iframe width="560" height="315"
     src="https://www.youtube.com/embed/_MnOG-sHz4U?autoplay=1&mute=1&rel=0"
     title="YouTube video player"
@@ -116,7 +145,7 @@ Jean de La Fontaine
     allowfullscreen
     style="max-width: 100%;padding:0.5em; margin: auto; display: block;">
 </iframe> 
-                
+             </div>     
                 <img src="img/phenakistiscope-disque-animation.gif" class="disc" alt="Phénakistiscope" />
                 <img src="img/phenakistiscope-example 03.gif" style="border-radius:100%;width:200px; height:200px;" class="disc" alt="Phénakistiscope" />
                 <img src="img/phenakistiscope-example 01.gif" class="disc" alt="Phénakistiscope" />
