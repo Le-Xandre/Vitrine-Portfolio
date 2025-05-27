@@ -87,13 +87,13 @@
       position: absolute;
       font-size: 36px;
     padding: 0.10em;
-        color:blue;
+        text-color:blue;
 margin: 0.10em;
       border-radius: 50%;
-      filter: blur(2px);
+      filter: blur(1px);
       background-color: conic-gradient(from 0deg, #00fff7, #ff00f7, #00fff7);
-      
-      animation: moveAround 10s linear infinite;
+      box-shadow: 0 0 10px #ffffffcc;
+      animation: moveAround 10s orbit 6s linear infinite;
       z-index: 2;
     }
 
@@ -105,6 +105,10 @@ margin: 0.10em;
       100% { top: -24px; left: 0; }
     }
 
+    @keyframes orbit {
+      0%   { transform: rotate(0deg) translateX(280px) rotate(0deg); }
+      100% { transform: rotate(360deg) translateX(280px) rotate(-360deg); }
+    }
     /* Assure la taille du cadre pour l’emoji */
     .video-container {
       position: relative;
