@@ -55,7 +55,7 @@
       position: relative;
       display: inline-block;
       border-radius: 16px;
-      overflow: hidden;
+      overflow: visible;
       z-index: 0;
     }
 
@@ -63,13 +63,12 @@
     .video-wrapper::before {
       content: '';
       position: absolute;
-      top: -8px; left: -8px; right: -8px; bottom: -8px;
+      top: -10px; left: -10px; right: -10px; bottom: -10px;
       border-radius: 20px;
       background: conic-gradient(from 0deg, #00fff7, #ff00f7, #00fff7);
       animation: rotateHalo 8s linear infinite;
       filter: blur(12px);
       z-index: -1;
-      transition: background 2s ease;
     }
 
     @keyframes rotateHalo {
@@ -83,22 +82,27 @@
       border-radius: 12px;
     }
 
-    /* ✨ Étoile volante */
-    .glow-dot {
+    /* ✨ Emoji qui suit le bord */
+    .emoji-orbit {
       position: absolute;
-      width: 12px;
-      height: 12px;
-      background: #ffffffaa;
-      border-radius: 50%;
-      box-shadow: 0 0 10px #ffffffcc;
-      animation: orbit 6s linear infinite;
-      pointer-events: none;
+      font-size: 24px;
+      animation: moveAround 10s linear infinite;
       z-index: 2;
     }
 
-    @keyframes orbit {
-      0%   { transform: rotate(0deg) translateX(280px) rotate(0deg); }
-      100% { transform: rotate(360deg) translateX(280px) rotate(-360deg); }
+    @keyframes moveAround {
+      0%   { top: -24px; left: 0; }
+      25%  { top: 0; right: -24px; left: auto; }
+      50%  { bottom: -24px; left: 100%; top: auto; right: auto; transform: translateX(-100%); }
+      75%  { bottom: 0; left: -24px; transform: none; }
+      100% { top: -24px; left: 0; }
+    }
+
+    /* Assure la taille du cadre pour l’emoji */
+    .video-container {
+      position: relative;
+      width: 560px;
+      height: 315px;
     }
     </style>
 
@@ -165,13 +169,15 @@ Jean de La Fontaine
                           <p>
                                         Un mode immersif inspiré de l'œuvre "Myth of Man" et des Rotoreliefs de Duchamp,
                                         <br />mêlant sons doux, vibrations lentes et textes évanescents.<br><br>
-<div class="video-wrapper" id="videoBox">
-  <span class="glow-dot">✨</span>
-  <iframe width="560" height="315"
-    src="https://www.youtube.com/embed/_MnOG-sHz4U?autoplay=1&mute=1&rel=0&modestbranding=1"
-    allow="autoplay; encrypted-media"
-    allowfullscreen>
-  </iframe>
+<div class="video-wrapper">
+  <div class="video-container">
+    <iframe width="560" height="315"
+      src="https://www.youtube.com/embed/_MnOG-sHz4U?autoplay=1&mute=1&rel=0&modestbranding=1"
+      allow="autoplay; encrypted-media"
+      allowfullscreen>
+    </iframe>
+    <div class="emoji-orbit">✨</div>
+  </div>
 </div>
                                      </p> <br>
                 <img src="img/phenakistiscope-disque-animation.gif" class="disc" alt="Phénakistiscope" />
@@ -318,21 +324,6 @@ Jean de La Fontaine
         }, 80); // toutes les x ms (10), soit x fps (25)
     </script>
 
-   <script>
-  // 🎨 Génère des couleurs aléatoires pour le halo
-  const wrapper = document.getElementById('videoBox');
-  const updateGradient = () => {
-    const randomColor1 = `hsl(${Math.floor(Math.random()*360)}, 100%, 65%)`;
-    const randomColor2 = `hsl(${Math.floor(Math.random()*360)}, 100%, 65%)`;
-    const gradient = `conic-gradient(from 0deg, ${randomColor1}, ${randomColor2}, ${randomColor1})`;
-    wrapper.style.setProperty('--halo-gradient', gradient);
-    wrapper.querySelector('::before'); // force reflow
-    wrapper.style.setProperty('--halo-gradient', gradient);
-    wrapper.querySelector('::before').style.background = gradient;
-  };
-
-  setInterval(updateGradient, 5000); // Changement toutes les 5s
-</script>
 
 
     <script src="script3.js"></script>
