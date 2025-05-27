@@ -10,35 +10,7 @@
     <link rel="stylesheet" href="synesthesie-style.css" />
     
     <style>
-    .video-wrapper {
-  position: relative;
-  display: inline-block;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 0 20px rgba(0,255,255,0.3);
-}
 
-.video-wrapper::before {
-  content: '';
-  position: absolute;
-  top: -5px; left: -5px; right: -5px; bottom: -5px;
-  border-radius: 16px;
-  background: conic-gradient(from 0deg, 
-    #00fff7, #ff00f7, #00fff7);
-  animation: rotateHalo 6s linear infinite;
-  z-index: -1;
-  filter: blur(10px);
-}
-
-@keyframes rotateHalo {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-
-iframe {
-  border: none;
-  display: block;
-  border-radius: 12px;
         .thaumatrope-container {
             position: relative;
             display: inline-block;
@@ -69,7 +41,37 @@ iframe {
 
         .back {
             transform: rotateX(180deg);
-        }
+        }    
+        
+        .video-wrapper {
+  position: relative;
+  display: inline-block;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0,255,255,0.3);
+}
+
+.video-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -5px; left: -5px; right: -5px; bottom: -5px;
+  border-radius: 16px;
+  background: conic-gradient(from 0deg, 
+    #00fff7, #ff00f7, #00fff7);
+  animation: rotateHalo 6s linear infinite;
+  z-index: -1;
+  filter: blur(10px);
+}
+
+@keyframes rotateHalo {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+iframe {
+  border: none;
+  display: block;
+  border-radius: 12px;
     </style>
 
     <link rel="stylesheet" href="responsive.css" />
