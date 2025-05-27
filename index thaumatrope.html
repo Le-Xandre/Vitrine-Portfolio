@@ -66,15 +66,15 @@
       top: -10px; left: -10px; right: -10px; bottom: -10px;
       border-radius: 20px;
       background: conic-gradient(from 0deg, #00fff7, #ff00f7, #00fff7);
-      animation: rotateHalo 8s linear infinite;
+      /* animation: rotateHalo 8s linear infinite; */
       filter: blur(12px);
       z-index: -1;
     }
-
+/* 
     @keyframes rotateHalo {
       from { transform: rotate(0deg); }
       to   { transform: rotate(360deg); }
-    }
+    } */
 
     iframe {
       border: none;
@@ -86,6 +86,12 @@
     .emoji-orbit {
       position: absolute;
       font-size: 24px;
+    padding: 0.10em;
+margin: 0.10em;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, #00fff7, #ff00f7, #00fff7);
+      /* animation: rotateHalo 8s linear infinite; */
+      filter: blur(12px);
       animation: moveAround 10s linear infinite;
       z-index: 2;
     }
