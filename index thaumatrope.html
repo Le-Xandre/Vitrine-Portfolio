@@ -194,7 +194,7 @@ Jean de La Fontaine
                                         Un mode immersif inspiré de l'œuvre "Myth of Man" et des Rotoreliefs de Duchamp,
                                         <br />mêlant sons doux, vibrations lentes et textes évanescents.
                 <br> 
-              
+              <button onclick="toggleVideo()">Afficher la playlist</button>
                 
 </p>
                <br><img src="img/phenakistiscope-example 01.gif" class="disc" alt="Phénakistiscope" /> 
@@ -214,14 +214,16 @@ Jean de La Fontaine
               --><img src="img/phenakistiscope-example 05.gif" style="border-radius:100%;width:200px; height:200px;" class="disc" alt="Phénakistiscope" /> 
 <img src="img/phenakistiscope-disque-animation.gif" class="disc" alt="Phénakistiscope" /><br> 
     
-<button onclick="toggleVideo()">Afficher la playlist</button>
+
 <div id="videoPlayer" style="display:none;">
-  <!-- Code de l'iframe ici --> <div class="video-container"><iframe src="https://www.youtube.com/embed/videoseries?list=PL7XN2x8uRCXd0ggnyVR32xh5VzD4U8s6-&autoplay=0&loop=1&rel=0&modestbranding=1&playlist=PL7XN2x8uRCXd0ggnyVR32xh5VzD4U8s6-"
+  <!-- Code de l'iframe ici -->
+    <div class="video-wrapper">
+        <div class="video-container"><iframe src="https://www.youtube.com/embed/videoseries?list=PL7XN2x8uRCXd0ggnyVR32xh5VzD4U8s6-&autoplay=0&loop=1&rel=0&modestbranding=1&playlist=PL7XN2x8uRCXd0ggnyVR32xh5VzD4U8s6-"
     title="Playlist YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     allowfullscreen>
   </iframe></div>
 </div>              
-               
+   </div>            
   
 
 
