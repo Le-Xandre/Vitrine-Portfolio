@@ -222,7 +222,175 @@
         }
 
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const canvas = document.getElementById('bg');
+            const ctx = canvas.getContext('2d');
+            const styleSelector = document.getElementById('styleSelector');
+            const toggleBtn = document.getElementById('toggleAnimation');
 
+            let animationOn = true;
+            let leaves = [];
+            let currentStyle = 'classic';
+
+            const neonColors = [
+                'rgba(255,105,180,0.6)',  // rose fluo
+                'rgba(0,255,255,0.6)',    // cyan
+                'rgba(255,255,0,0.6)',    // jaune
+                'rgba(255,0,255,0.6)',    // magenta
+                'rgba(0,255,120,0.6)'     // vert doux
+            ];
+
+            function addHoverEffect(elements) {
+                elements.forEach(el => {
+                    el.addEventListener('mouseenter', () => {
+                        const glow = neonColors[Math.floor(Math.random() * neonColors.length)];
+                        el.style.boxShadow = `0 0 18px ${glow}, 0 0 6px ${glow}`;
+                        el.style.borderColor = glow;
+                    });
+                    el.addEventListener('mouseleave', () => {
+                        el.style.boxShadow = 'none';
+                        el.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                    });
+                });
+            }
+
+            document.addEventListener("DOMContentLoaded", () => {
+                addHoverEffect(document.querySelectorAll('.link'));
+                addHoverEffect(document.querySelectorAll('.avatar'));
+            });
+            document.querySelectorAll('.link').forEach(link => {
+                link.addEventListener('mouseenter', () => {
+                    const glow = neonColors[Math.floor(Math.random() * neonColors.length)];
+                    link.style.boxShadow = `0 0 18px ${glow}, 0 0 6px ${glow}`;
+                    link.style.borderColor = glow;
+                });
+                link.addEventListener('mouseleave', () => {
+                    link.style.boxShadow = 'none';
+                    link.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                });
+            });
+
+            document.querySelectorAll('.avatar').forEach(avatar => {
+                avatar.addEventListener('mouseenter', () => {
+                    const glow = neonColors[Math.floor(Math.random() * neonColors.length)];
+                    avatar.style.boxShadow = `0 0 18px ${glow}, 0 0 6px ${glow}`;
+                    avatar.style.borderColor = glow;
+                });
+                avatar.addEventListener('mouseleave', () => {
+                    avatar.style.boxShadow = 'none';
+                    avatar.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                });
+            });
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            class Leaf {
+                constructor() {
+                    this.reset();
+                }
+
+                reset() {
+                    const sizes = [8, 12, 16, 20, 24, 28];
+                    this.size = sizes[Math.floor(Math.random() * sizes.length)];
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * -canvas.height;
+                    this.speedY = 0.5 + Math.random() * 1.2;
+                    this.speedX = -0.3 + Math.random() * 0.6;
+                    this.alpha = 0.3 + Math.random() * 0.5;
+
+                    const r = Math.floor(150 + Math.random() * 105);
+                    const g = Math.floor(150 + Math.random() * 105);
+                    const b = Math.floor(150 + Math.random() * 105);
+                    this.color = `rgba(${r},${g},${b},${this.alpha})`;
+
+                    this.symbols = ['🍃', '✦', '❈', '✨', '🍂', '🍁', '🌺', '🌿', '🪷'];
+                    this.symbol = this.symbols[Math.floor(Math.random() * this.symbols.length)];
+
+                    this.emojis = ['❤️', '💀', '🤖', '♥', '☠️', '👾', '💘', '𖠌', '✘', '🖤', '✖', '✚', '♡', '𓏵'];
+                    this.emoji = this.emojis[Math.floor(Math.random() * this.emojis.length)];
+
+                    this.fishes = ['🐠', '🐟', '🐡', '🦑', '🦐', '🐙', '🐠'];
+                    this.fish = this.fishes[Math.floor(Math.random() * this.fishes.length)];
+                }
+
+                update() {
+                    this.y += this.speedY;
+                    this.x += this.speedX;
+                    if (this.y > canvas.height + this.size) this.reset();
+                }
+
+                draw() {
+                    ctx.font = `${this.size}px serif`;
+                    ctx.globalAlpha = this.alpha;
+                    ctx.fillStyle = this.color;
+
+                    if (currentStyle === 'symbol') {
+                        ctx.fillText(this.symbol, this.x, this.y);
+                    } else if (currentStyle === 'emoji') {
+                        ctx.fillText(this.emoji, this.x, this.y);
+                    } else if (currentStyle === 'glow') {
+                        const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 0.8);
+                        gradient.addColorStop(0, 'white');
+                        gradient.addColorStop(1, this.color);
+                        ctx.fillStyle = gradient;
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.size * 0.8, 0, Math.PI * 2);
+                        ctx.fill();
+
+                    } else if (currentStyle === 'aquarium') {
+                        ctx.font = `${this.size}px serif`;
+                        ctx.globalAlpha = this.alpha;
+                        ctx.fillStyle = this.color;
+                        ctx.fillText(this.fish, this.x, this.y);
+                        ctx.globalAlpha = 1.0;
+                    } else {
+                        ctx.beginPath();
+                        ctx.fillStyle = this.color;
+                        ctx.arc(this.x, this.y, this.size * 0.5, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+
+                    ctx.globalAlpha = 1;
+                }
+            }
+
+            function generateLeaves() {
+                leaves = [];
+                for (let i = 0; i < 60; i++) {
+                    leaves.push(new Leaf());
+                }
+            }
+            generateLeaves();
+
+            function animate() {
+                if (!animationOn) return;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                leaves.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                requestAnimationFrame(animate);
+            }
+            animate();
+
+            styleSelector.addEventListener('change', () => {
+                currentStyle = styleSelector.value;
+            });
+
+            toggleBtn.addEventListener('click', () => {
+                animationOn = !animationOn;
+                if (animationOn) animate();
+                else ctx.clearRect(0, 0, canvas.width, canvas.height);
+            });
+
+        });
+    </script>
 
 </body>
 </html >
