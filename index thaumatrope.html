@@ -6,6 +6,127 @@
     <title>Page Synesthésie</title>
 
 
+    <link rel="stylesheet" href="responsive.css" />
+        <link rel="stylesheet" href="style Optiques.css" />   
+       <link rel="stylesheet" href="synesthesie-style.css" />  <link rel="stylesheet" href="Synesthesie.css" />
+    <style>
+    
+    body {
+      background: #0c0c0c;
+      display: block;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+        .thaumatrope-container {
+            position: relative;
+            display: inline-block;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            padding: 0.25em;
+            margin: 0.2em;
+            transform-style: preserve-3d;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 50%;
+        }
+
+            .face img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 50%;
+            }
+
+        .back {
+            transform: rotateX(180deg);
+        }
+
+    .video-wrapper {
+      position: relative;
+      display: inline-block;
+      border-radius: 16px;
+      overflow: visible;
+      z-index: 0;
+    }
+
+    /* Halo rotatif flou */
+    .video-wrapper::before {
+      content: '';
+      position: absolute;
+      top: -10px; left: -10px; right: -10px; bottom: -10px;
+      border-radius: 20px;
+      background: conic-gradient(from 0deg, #00fff7, #ff00f7, #00fff7);
+      /* animation: rotateHalo 8s linear infinite; */
+      filter: blur(12px);
+      z-index: -1;
+    }
+/* 
+    @keyframes rotateHalo {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    } */
+
+    iframe {
+      border: none;
+      display: block;
+      border-radius: 12px;
+    }
+
+    /* ✨ Emoji qui suit le bord */
+    .emoji-orbit {
+      position: relative;
+      font-size: 36px;
+      padding: 0.20em;
+      margin: 0.20em;
+      border-radius: 50%;
+      
+  filter: invert(9%) sepia(80%) saturate(3916%) hue-rotate(313deg) brightness(82%) contrast(94%);
+
+      text-shadow: 0 0 0 conic-gradient(from 0deg, #00fff7, #ff00f7, #00fff7);
+      
+      animation: moveAround 10s linear infinite;
+      z-index: 2;
+    }
+
+    @keyframes moveAround {
+      0%   { top: -24px; left: 0; }
+      25%  { top: 0; right: -24px; left: auto; }
+      50%  { bottom: -24px; left: 100%; top: auto; right: auto; transform: translateX(-100%); }
+      75%  { bottom: 0; left: -24px; transform: none; }
+      100% { top: -24px; left: 0; }
+    }
+
+    /* Assure la taille du cadre pour l’emoji */
+    .video-container {
+      position: relative;
+      width: 560px;
+      height: 315px;
+  padding-bottom: 56.25%; /* Ratio 16:9 */
+  padding-top: 25px;
+  height: 0;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+    </style>
+
 
     <style>
         body, html {
@@ -458,127 +579,6 @@ font-size: 0.85rem;
             box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
             background: rgba(255, 255, 255, 0.2);
         }
-    </style>
-
-    <link rel="stylesheet" href="responsive.css" />
-        <link rel="stylesheet" href="style Optiques.css" />   
-       <link rel="stylesheet" href="synesthesie-style.css" />  <link rel="stylesheet" href="Synesthesie.css" />
-    <style>
-    
-    body {
-      background: #0c0c0c;
-      display: block;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-
-        .thaumatrope-container {
-            position: relative;
-            display: inline-block;
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            padding: 0.25em;
-            margin: 0.2em;
-            transform-style: preserve-3d;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .face {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            border-radius: 50%;
-        }
-
-            .face img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                border-radius: 50%;
-            }
-
-        .back {
-            transform: rotateX(180deg);
-        }
-
-    .video-wrapper {
-      position: relative;
-      display: inline-block;
-      border-radius: 16px;
-      overflow: visible;
-      z-index: 0;
-    }
-
-    /* Halo rotatif flou */
-    .video-wrapper::before {
-      content: '';
-      position: absolute;
-      top: -10px; left: -10px; right: -10px; bottom: -10px;
-      border-radius: 20px;
-      background: conic-gradient(from 0deg, #00fff7, #ff00f7, #00fff7);
-      /* animation: rotateHalo 8s linear infinite; */
-      filter: blur(12px);
-      z-index: -1;
-    }
-/* 
-    @keyframes rotateHalo {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    } */
-
-    iframe {
-      border: none;
-      display: block;
-      border-radius: 12px;
-    }
-
-    /* ✨ Emoji qui suit le bord */
-    .emoji-orbit {
-      position: relative;
-      font-size: 36px;
-      padding: 0.20em;
-      margin: 0.20em;
-      border-radius: 50%;
-      
-  filter: invert(9%) sepia(80%) saturate(3916%) hue-rotate(313deg) brightness(82%) contrast(94%);
-
-      text-shadow: 0 0 0 conic-gradient(from 0deg, #00fff7, #ff00f7, #00fff7);
-      
-      animation: moveAround 10s linear infinite;
-      z-index: 2;
-    }
-
-    @keyframes moveAround {
-      0%   { top: -24px; left: 0; }
-      25%  { top: 0; right: -24px; left: auto; }
-      50%  { bottom: -24px; left: 100%; top: auto; right: auto; transform: translateX(-100%); }
-      75%  { bottom: 0; left: -24px; transform: none; }
-      100% { top: -24px; left: 0; }
-    }
-
-    /* Assure la taille du cadre pour l’emoji */
-    .video-container {
-      position: relative;
-      width: 560px;
-      height: 315px;
-  padding-bottom: 56.25%; /* Ratio 16:9 */
-  padding-top: 25px;
-  height: 0;
-}
-
-.video-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
     </style>
 
 
