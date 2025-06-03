@@ -147,7 +147,44 @@
 
 </head>
 <body>
-    <header>
+    <canvas id="bg"></canvas>
+
+    <header>    <p>
+        LinkTree animé
+    <svg width="40" height="40" viewBox="0 0 60 45" xmlns="http://www.w3.org/2000/svg" class="tree-svg" style="">
+
+
+        <circle class="leaf leaf1" cx="32" cy="20" r="12" fill="#4CAF50" />
+        <circle class="leaf leaf2" cx="22" cy="28" r="10" fill="#81C784" />
+        <circle class="leaf leaf3" cx="42" cy="28" r="10" fill="#66BB6A" />
+        <rect x="28" y="32" width="8" height="20" rx="2" fill="#8D6E63" />
+
+        <!-- Tree trunk -->
+        <rect x="70" y="100" width="15" height="60" fill="#8D6E63" />
+
+        <!-- Tree foliage -->
+        <circle cx="75" cy="80" r="30" fill="#4CAF50" />
+
+        <!-- Falling leaves -->
+        <circle class="leaf" cx="65" cy="60" r="4" />
+        <circle class="leaf" cx="85" cy="55" r="4" />
+        <circle class="leaf" cx="75" cy="50" r="4" />
+        <circle class="leaf" cx="95" cy="45" r="4" />
+
+    </svg>
+
+    <select id="styleSelector">
+        <option value="classic">Lueurs extérieures</option>
+        <option value="glow">Lueurs intérieures</option>
+        <option value="symbol">Jardin flottant</option>
+        <option value="aquarium">Aquarium</option>
+        <option value="emoji">Love, Death & Robots</option>
+    </select>
+    </p>
+
+         <div id="toggleAnimation" title="Activer/Désactiver l'animation" role="button" tabindex="0">
+            <img class="avatar" src="https://le-xandre.github.io/Vitrine-Portfolio/MyLogoTube.png" alt="Avatar">
+            </div>
         <nav>
             <button onclick="showSection('synesthesie')">Synesthésie</button>
             <button onclick="showSection('thaumatrope')">Thaumatrope</button>
