@@ -21,39 +21,44 @@ html, body {
   color: #fff;
   font-family: sans-serif;
   overflow: hidden;
+  position: relative; /* important pour le stacking */
 }
 
-  bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-  z-index: 0; /* ou plus bas encore si tu veux vraiment qu’il reste en fond */
-  pointer-events: none; /* pour éviter les clics sur le canvas */
+/* Canvas animé en arrière-plan */
+canvas#bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1; /* derrière tout */
+  pointer-events: none;
 }
-    
+
 /* Header et navigation */
 header {
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
+  height: 60px; /* hauteur fixe pour compenser dans le main */
   background: rgba(0, 0, 0, 0.5);
   padding: 10px;
   z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 /* Barre de navigation centrée et responsive */
 nav {
   display: flex;
-  flex-wrap: wrap;         /* Permet le retour à la ligne sur petits écrans */
-  justify-content: center; /* Centre horizontalement */
-  align-items: center;     /* Centre verticalement */
-  gap: 1rem;               /* Espacement entre les boutons */
-  margin: 1rem auto;
-  padding: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
 
-/* Styles de base des boutons de nav */
 nav button,
 nav select {
   font-size: 1rem;
@@ -74,14 +79,9 @@ nav select:hover {
 
 #toggleAnimation {
   cursor: pointer;
-  margin-left: 1rem;
-  display: flex;
-  align-items: center;  
-    margin: 0;
   font-size: 0.9rem;
   color: #fff;
 }
-
 
 /* Responsive - petits écrans : empile verticalement */
 @media (max-width: 600px) {
@@ -91,9 +91,8 @@ nav select:hover {
   }
 }
 
-
 #styleSelector {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -102,8 +101,11 @@ nav select:hover {
 
 /* Sections */
 main {
-  padding: 50px 30px 30px;
-  height: 100vh;
+  position: relative;
+  z-index: 1; /* au-dessus du canvas */
+  margin-top: 60px; /* hauteur du header */
+  padding: 30px 20px;
+  height: calc(100vh - 60px); /* ajuste la hauteur en fonction du header */
   overflow-y: auto;
 }
 
@@ -140,8 +142,8 @@ main {
 
 .iframe-container {
   width: 100%;
-  max-width: 1200px;   /* Limite sur desktop */
-  height: 80vh;        /* Hauteur dynamique */
+  max-width: 1200px;
+  height: 80vh;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -159,30 +161,28 @@ main {
 @media (max-width: 768px) {
   .iframe-container {
     height: 60vh;
-      /* Réduit un peu la hauteur pour les écrans plus petits */
   }
 }
 
 /* Styles pour les écrans très petits */
 @media (max-width: 480px) {
   .iframe-container {
-    height: 50vh;      /* Encore plus réduit sur mobile */
+    height: 50vh;
   }
 }
-
 
 img {
   max-width: 100%;
   height: auto;
-    border: none;
+  border: none;
   border-radius: 5px;
 }
 
-/* Améliorations pour les images rondes (Phénakistiscope) */
 img.disc {
   border-radius: 100%;
 }
-</style>    
+</style>
+ 
 
 </head>
 <body>
@@ -202,12 +202,6 @@ img.disc {
           <circle class="leaf leaf2" cx="22" cy="28" r="10" fill="#81C784" />
           <circle class="leaf leaf3" cx="42" cy="28" r="10" fill="#66BB6A" />
           <rect x="28" y="32" width="8" height="20" rx="2" fill="#8D6E63" />
-          <!-- Additional foliage -->
-          <circle cx="75" cy="80" r="30" fill="#4CAF50" />
-          <circle class="leaf" cx="65" cy="60" r="4" />
-          <circle class="leaf" cx="85" cy="55" r="4" />
-          <circle class="leaf" cx="75" cy="50" r="4" />
-          <circle class="leaf" cx="95" cy="45" r="4" />
         </svg>
         <select id="styleSelector">
           <option value="classic">Lueurs extérieures</option>
@@ -222,49 +216,8 @@ img.disc {
 </header>
 
 <main>
-  <section id="synesthesie" class="section active">
-    <div class="explainer">
-      <p>La synesthésie est un phénomène neurologique dans lequel plusieurs sens sont associés : voir des sons, entendre des couleurs, ressentir des formes. Cette interface explore ces croisements sensoriels à travers l'image, le son et l'interaction visuelle.</p>
-    </div>
-    <div class="demo">
-      <div class="iframe-wrapper">
-        <div class="iframe-container">
-          <iframe src="index Synesthésie.html" allowfullscreen></iframe>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="thaumatrope" class="section">
-    <div class="demo">
-      <div class="iframe-wrapper">
-        <div class="iframe-container">
-          <iframe src="index thaumatrope.html" allowfullscreen></iframe>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="zootrope" class="section">
-    <h2>Zootrope</h2>
-    <div class="explainer">Une bande animée est observée à travers les fentes d’un cylindre en rotation. Cela crée une illusion de mouvement fluide.</div>
-    <div class="demo">
-      <img src="img/zootrope-example.gif" alt="Zootrope Demo">
-    </div>
-  </section>
-
-  <section id="phenakistoscope" class="section">
-    <h2>Phénakistiscope & Praxinoscope</h2>
-    <div class="explainer">Ces dispositifs utilisent des disques illustrés ou des miroirs pour projeter une animation continue lors de la rotation.</div>
-    <div class="demo">
-      <img src="images/spinning-wheel.gif" alt="spinning-wheel" style="border-radius:100%; height:200px;">
-      <img src="img/phenakistiscope-example 04.gif" class="disc" alt="Phénakistiscope" style="height:200px;">
-      <img src="img/phenakistiscope-example.gif" alt="Phénakistiscope Demo" style="height:200px;">
-      <img src="img/phenakistiscope-example 05.gif" class="disc" alt="Phénakistiscope" style="height:200px;">
-      <img src="img/phenakistiscope-example 01.gif" class="disc" alt="Phénakistiscope" style="height:200px;">
-      <img src="img/phenakistiscope-disque-animation.gif" class="disc" alt="Phénakistiscope" style="height:200px;">
-    </div>
-  </section>
+  <!-- tes sections inchangées -->
+  ... [mets ici ton contenu <section> comme déjà fourni] ...
 </main>
 
 <script>
@@ -282,8 +235,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let animationOn = true;
   let leaves = [];
   let currentStyle = 'classic';
-
-  const neonColors = ['rgba(255,105,180,0.6)', 'rgba(0,255,255,0.6)', 'rgba(255,255,0,0.6)', 'rgba(255,0,255,0.6)', 'rgba(0,255,120,0.6)'];
 
   function resizeCanvas() {
     canvas.width = window.innerWidth;
@@ -320,7 +271,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ctx.font = `${this.size}px serif`;
       ctx.globalAlpha = this.alpha;
       ctx.fillStyle = this.color;
-        
+
       if (currentStyle === 'symbol') ctx.fillText(this.symbol, this.x, this.y);
       else if (currentStyle === 'emoji') ctx.fillText(this.emoji, this.x, this.y);
       else if (currentStyle === 'glow') {
