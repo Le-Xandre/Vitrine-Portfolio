@@ -41,35 +41,57 @@ header {
   padding: 10px;
   z-index: 10;
 }
-
+/* Barre de navigation centrée et responsive */
 nav {
   display: flex;
-  gap: 10px;
-  align-items: center;
+  flex-wrap: wrap;         /* Permet le retour à la ligne sur petits écrans */
+  justify-content: center; /* Centre horizontalement */
+  align-items: center;     /* Centre verticalement */
+  gap: 1rem;               /* Espacement entre les boutons */
+  margin: 1rem auto;
+  padding: 0.5rem;
 }
 
-nav button {
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.2);
+/* Styles de base des boutons de nav */
+nav button,
+nav select {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 4px;
   color: #fff;
-  padding: 5px 10px;
   cursor: pointer;
-  border-radius: 5px;
+  transition: background 0.3s, box-shadow 0.3s;
 }
 
-nav button:hover {
-  background: rgba(255,255,255,0.2);
+nav button:hover,
+nav select:hover {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
 #toggleAnimation {
+  cursor: pointer;
+  margin-left: 1rem;
   display: flex;
   align-items: center;
-  gap: 10px;
-  cursor: pointer;
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 5px;
-  padding: 5px;
 }
+
+#toggleAnimation p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #fff;
+}
+
+/* Responsive - petits écrans : empile verticalement */
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
 
 #styleSelector {
   background: rgba(255,255,255,0.1);
