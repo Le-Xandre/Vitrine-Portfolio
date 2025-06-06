@@ -55,12 +55,11 @@
     pointer-events: none; /* 👈 déjà bien fait */
         }
          #bg {
-            position: fixed;
+
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            z-index: 0; /* <-- assure que le fond passe sous tout */
             pointer-events: none;
         }
             header {
@@ -534,14 +533,7 @@ font-size: 0.85rem;
         </section>
     </main>
 
-    <script>
-        function showSection(id) {
-            document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-        }
-
-    </script>
-    <script>
+<script>
         document.addEventListener("DOMContentLoaded", () => {
             const canvas = document.getElementById('bg');
             const ctx = canvas.getContext('2d');
@@ -564,7 +556,7 @@ font-size: 0.85rem;
                 elements.forEach(el => {
                     el.addEventListener('mouseenter', () => {
                         const glow = neonColors[Math.floor(Math.random() * neonColors.length)];
-                        el.style.boxShadow = 0 0 18px ${glow}, 0 0 6px ${glow};
+                        el.style.boxShadow = `0 0 18px ${glow}, 0 0 6px ${glow}`;
                         el.style.borderColor = glow;
                     });
                     el.addEventListener('mouseleave', () => {
@@ -581,7 +573,7 @@ font-size: 0.85rem;
             document.querySelectorAll('.link').forEach(link => {
                 link.addEventListener('mouseenter', () => {
                     const glow = neonColors[Math.floor(Math.random() * neonColors.length)];
-                    link.style.boxShadow = 0 0 18px ${glow}, 0 0 6px ${glow};
+                    link.style.boxShadow = `0 0 18px ${glow}, 0 0 6px ${glow}`;
                     link.style.borderColor = glow;
                 });
                 link.addEventListener('mouseleave', () => {
@@ -593,7 +585,7 @@ font-size: 0.85rem;
             document.querySelectorAll('.avatar').forEach(avatar => {
                 avatar.addEventListener('mouseenter', () => {
                     const glow = neonColors[Math.floor(Math.random() * neonColors.length)];
-                    avatar.style.boxShadow = 0 0 18px ${glow}, 0 0 6px ${glow};
+                    avatar.style.boxShadow = `0 0 18px ${glow}, 0 0 6px ${glow}`;
                     avatar.style.borderColor = glow;
                 });
                 avatar.addEventListener('mouseleave', () => {
@@ -626,7 +618,7 @@ font-size: 0.85rem;
                     const r = Math.floor(150 + Math.random() * 105);
                     const g = Math.floor(150 + Math.random() * 105);
                     const b = Math.floor(150 + Math.random() * 105);
-                    this.color = rgba(${r},${g},${b},${this.alpha});
+                    this.color = `rgba(${r},${g},${b},${this.alpha})`;
 
                     this.symbols = ['🍃', '✦', '❈', '✨', '🍂', '🍁', '🌺', '🌿', '🪷'];
                     this.symbol = this.symbols[Math.floor(Math.random() * this.symbols.length)];
@@ -645,7 +637,7 @@ font-size: 0.85rem;
                 }
 
                 draw() {
-                    ctx.font = ${this.size}px serif;
+                    ctx.font = `${this.size}px serif`;
                     ctx.globalAlpha = this.alpha;
                     ctx.fillStyle = this.color;
 
@@ -663,7 +655,7 @@ font-size: 0.85rem;
                         ctx.fill();
 
                     } else if (currentStyle === 'aquarium') {
-                        ctx.font = ${this.size}px serif;
+                        ctx.font = `${this.size}px serif`;
                         ctx.globalAlpha = this.alpha;
                         ctx.fillStyle = this.color;
                         ctx.fillText(this.fish, this.x, this.y);
@@ -710,6 +702,15 @@ font-size: 0.85rem;
 
         });
     </script>
+    
+    <script>
+        function showSection(id) {
+            document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+
+    </script>
+  
 
 </body>
 </html >
