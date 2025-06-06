@@ -765,6 +765,16 @@ img.disc {
 
     </script>
   
-
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const iframes = document.querySelectorAll("iframe");
+    iframes.forEach(iframe => {
+      iframe.addEventListener("load", () => {
+        const contentHeight = iframe.contentWindow.document.body.scrollHeight;
+        iframe.style.height = contentHeight + "px";
+      });
+    });
+  });
+</script>
 </body>
 </html >
