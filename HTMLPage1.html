@@ -23,15 +23,16 @@ html, body {
   overflow: hidden;
 }
 
-  canvas {
+  bg {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-  z-index: -1; /* ou plus bas encore si tu veux vraiment qu’il reste en fond */
+  z-index: 1; /* ou plus bas encore si tu veux vraiment qu’il reste en fond */
   pointer-events: none; /* pour éviter les clics sur le canvas */
 }
+    
 /* Header et navigation */
 header {
   position: fixed;
@@ -75,14 +76,12 @@ nav select:hover {
   cursor: pointer;
   margin-left: 1rem;
   display: flex;
-  align-items: center;
-}
-
-#toggleAnimation p {
-  margin: 0;
+  align-items: center;  
+    margin: 0;
   font-size: 0.9rem;
   color: #fff;
 }
+
 
 /* Responsive - petits écrans : empile verticalement */
 @media (max-width: 600px) {
@@ -98,12 +97,12 @@ nav select:hover {
   color: #fff;
   border: none;
   border-radius: 5px;
-  padding: 2px 5px;
+  padding: 2px 2px;
 }
 
 /* Sections */
 main {
-  padding: 60px 20px 20px;
+  padding: 50px 30px 30px;
   height: 100vh;
   overflow-y: auto;
 }
