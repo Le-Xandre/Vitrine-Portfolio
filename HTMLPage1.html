@@ -113,38 +113,57 @@ main {
   margin: 10px 0;
 }
 
-.iframe-wrapper,
-/* Pour le conteneur de l'iframe */
-.iframe-container {
+/* Style de base : centré et large */
+.iframe-wrapper {
   display: flex;
-  justify-content: center;   /* Centre horizontalement */
-  align-items: center;       /* Centre verticalement (si tu veux aussi) */
-  width: 100%;               /* Prend toute la largeur de la page */
-  overflow: hidden;          /* Cache le débordement éventuel */
-  margin: 0 auto;            /* Centre le conteneur si nécessaire */
-  box-sizing: border-box;    /* Pour inclure padding/border dans la largeur */
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
-/* Pour l'iframe lui-même */
+.iframe-container {
+  width: 100%;
+  max-width: 1200px;   /* Limite sur desktop */
+  height: 80vh;        /* Hauteur dynamique */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .iframe-container iframe {
-  max-width: 100%;       /* Limite la largeur à celle du conteneur */
-  width: 100%;           /* Occupe toute la largeur disponible */
-  height: auto;          /* Ajuste la hauteur automatiquement */
-  border: none;          /* Pas de bordure inutile */
-  display: block;        /* Pour supprimer les marges inline par défaut */
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* Styles pour les petits écrans */
+@media (max-width: 768px) {
+  .iframe-container {
+    height: 60vh;
+      /* Réduit un peu la hauteur pour les écrans plus petits */
+  }
+}
+
+/* Styles pour les écrans très petits */
+@media (max-width: 480px) {
+  .iframe-container {
+    height: 50vh;      /* Encore plus réduit sur mobile */
+  }
 }
 
 
 img {
   max-width: 100%;
   height: auto;
-  border: 1px solid rgba(255,255,255,0.2);
+    border: none;
   border-radius: 5px;
 }
 
 /* Améliorations pour les images rondes (Phénakistiscope) */
 img.disc {
-  border-radius: 50%;
+  border-radius: 100%;
 }
 </style>
 
