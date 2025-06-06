@@ -51,7 +51,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            z-index: 1;
+            z-index: 10;
     pointer-events: none; /* 👈 déjà bien fait */
         }
          #bg {
@@ -412,7 +412,55 @@ font-size: 0.85rem;
     padding-top: 75%; /* Ratio 4:3 pour les écrans plus petits */
   }
 }
+/* Style de base : centré et large */
+.iframe-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
 
+.iframe-container {
+  width: 100%;
+  max-width: 1200px;
+  height: 80vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.iframe-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* Styles pour les petits écrans */
+@media (max-width: 768px) {
+  .iframe-container {
+    height: 60vh;
+  }
+}
+
+/* Styles pour les écrans très petits */
+@media (max-width: 480px) {
+  .iframe-container {
+    height: 50vh;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border: none;
+  border-radius: 5px;
+}
+
+img.disc {
+  border-radius: 100%;
+}
     </style>
         
    <link rel="stylesheet" href="synesthesie-style.css" />
