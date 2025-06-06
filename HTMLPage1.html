@@ -101,11 +101,13 @@ nav select:hover {
 
 /* Sections */
 main {
-  position: relative;
-  z-index: 1; /* au-dessus du canvas */
-  margin-top: 60px; /* hauteur du header */
-  padding: 30px 20px;
-  height: calc(100vh - 60px); /* ajuste la hauteur en fonction du header */
+  display: flex;
+  flex-direction: column;  /* Empile verticalement */
+  align-items: center;     /* Centre horizontalement */
+  justify-content: center; /* Centre verticalement si possible */
+  text-align: center;      /* Texte centré pour titres et paragraphes */
+  padding: 50px 30px 30px;
+  height: 100vh;
   overflow-y: auto;
 }
 
