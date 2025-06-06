@@ -299,6 +299,46 @@ img.disc {
   border-left: 5px solid var(--highlight);
 }
 
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  nav {
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+
+  main {
+    padding: 0.5rem;
+  }
+
+  .section {
+    padding: 0.5rem;
+  }
+
+  .iframe-container {
+    padding-top: 75%; /* 4:3 ratio for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+    padding: 0.25rem;
+  }
+
+  nav button {
+    font-size: 0.9rem;
+  }
+
+  .iframe-container {
+    padding-top: 100%; /* square aspect for very small screens */
+  }
+}
     </style>
         
    <link rel="stylesheet" href="synesthesie-style.css" />
