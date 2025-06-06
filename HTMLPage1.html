@@ -309,10 +309,10 @@ img.disc {
 
 
         <nav>
-            <button onclick="showSection('synesthesie')">Synesthésie</button>
-            <button onclick="showSection('thaumatrope')">Thaumatrope</button>
-            <button onclick="showSection('zootrope')">Zootrope</button>
-            <button onclick="showSection('phenakistoscope')">Phénakistiscope</button>
+            <button data-target="synesthesie" onclick="showSection('synesthesie')">Synesthésie</button>
+            <button data-target="thaumatrope" onclick="showSection('thaumatrope')">Thaumatrope</button>
+            <button data-target="zootrope" onclick="showSection('zootrope')">Zootrope</button>
+            <button data-target="phenakistoscope" onclick="showSection('phenakistoscope')">Phénakistiscope</button>
                      <div id="toggleAnimation" title="Activer/Désactiver l'animation" role="button" tabindex="0">
             <p>
         LinkTree animé
@@ -586,6 +586,29 @@ img.disc {
         });
     </script>
     
+<script>
+  // On attend que la page soit prête
+  document.addEventListener('DOMContentLoaded', function () {
+    // On sélectionne tous les boutons de navigation
+    const navButtons = document.querySelectorAll('nav button');
+    // Et toutes les sections
+    const sections = document.querySelectorAll('.section');
 
+    navButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const target = button.getAttribute('data-target');
+
+        // On cache toutes les sections
+        sections.forEach(section => section.classList.remove('active'));
+
+        // On affiche la section ciblée
+        const targetSection = document.getElementById(target);
+        if (targetSection) {
+          targetSection.classList.add('active');
+        }
+      });
+    });
+  });
+</script>
 </body>
 </html >
