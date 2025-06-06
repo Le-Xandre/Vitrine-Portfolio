@@ -253,6 +253,7 @@ footer {
   width: 100%;
   max-width: 1200px;
   height: 90vh;
+    max-height: auto;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -269,11 +270,13 @@ footer {
 }
 
 @media (max-width: 768px) {
-  .iframe-container { height: 60vh; }
+  .iframe-container {
+    max-height: auto; height: 60vh; }
 }
 
 @media (max-width: 480px) {
-  .iframe-container { height: 50vh; }
+  .iframe-container {
+    max-height: auto; height: 50vh; }
 }
 
 img {
