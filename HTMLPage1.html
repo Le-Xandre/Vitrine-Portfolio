@@ -5,347 +5,897 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Perceptions et Illusions</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Playfair+Display&display=swap" rel="stylesheet">
-<link rel="icon" type="image/svg" href="https://le-xandre.github.io/Vitrine-Portfolio/assets/images/loading.svg">      
-    
-<style>
-/* Reset de base */
-* {
-  margin: 0;
-  padding: 0;
+<link rel="icon" type="image/svg" href="https://le-xandre.github.io/Vitrine-Portfolio/assets/images/loading.svg"> 
+
+    <style>
+        :root {
+            --main-bg: #f6f1e9;
+            --accent: #003049;
+            --highlight: #f77f00;
+            --soft: #eae2b7;
+            --text: #1d1d1d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+    body, html {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #1a1a1a, #2d2d2d);
+            font-family: 'Montserrat', sans-serif;
+            color: #f0f0f0;
+            display: block;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            height: 100%;
+            min-height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            box-sizing: border-box;            
+        font-family: 'Fira Sans', sans-serif;
+            background-color: var(--main-bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 0;
+    pointer-events: none; /* 👈 déjà bien fait */
+        }
+
+
+        .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 0 1rem;
+  max-width: 100%;
   box-sizing: border-box;
+        }
+
+        .avatar {
+            width: 480px;
+            height: 480px;
+            object-fit: contain;
+            align-items: center;
+            border: none;
+            border-radius: 50%;
+            margin-bottom: 1px;
+            margin: 0.5px;
+            padding: 0.5px;
+            opacity: 0.8;
+            filter: drop-shadow(0 0 10px rgba(255, 105, 180, 0.6)) brightness(1) saturate(1.5);
+            transition: filter 0.5s ease, opacity 0.5s ease;
+        }
+
+        /* Ajout d'une animation de pulsation pour l'avatar */
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(0.8);
+            }
+        }
+
+        .avatar:hover {
+            opacity: 0.9;
+            filter: drop-shadow(0 0 10px rgb(105, 177, 255, 0.9)) brightness(1.2) saturate(1.5);
+            transition: filter 0.8s ease, opacity 0.8s ease;
+            animation: pulse 6s infinite;
+        }
+
+        h1 {
+            margin: 1px;
+            padding: 1px;
+            font-size: 2.2rem;
+            font-family:inherit;
+        }
+
+        p {
+            margin: 0 0 6px;
+            font-size: 0.75rem;
+            opacity: 0.9;
+        }
+
+        #soundToggle {
+            margin: 1px;
+            padding: 1px;
+            font-size: 1rem;
+            opacity: 0.8;
+            filter: drop-shadow(0 0 2px rgba(175, 125, 160, 0.8)) brightness(1) saturate(1);
+            transition: filter 0.4s ease, opacity 0.4s ease;
+        }
+
+
+            #soundToggle:hover {
+                filter: drop-shadow(0 0 4px rgb(105, 177, 255, 1)) brightness(1.8) saturate(1.4);
+                transition: filter 0.4s ease, opacity 0.4s ease;
+            }
+
+
+        .leaf {
+            transition: transform 0.2s ease-in-out;
+            transform-origin: center;
+            fill: #66bb6a;
+            animation: fall 4s ease-in infinite;
+        }
+
+        .tree-svg:hover .leaf1 {
+            transform: rotate(-5deg) translateY(-2px);
+        }
+
+        .tree-svg:hover .leaf2 {
+            transform: rotate(3deg) translateY(-1px);
+        }
+
+        .tree-svg:hover .leaf3 {
+            transform: rotate(-4deg) translateY(-3px);
+        }
+
+
+        .leaf:nth-child(2) {
+            animation-delay: 1s;
+        }
+
+        .leaf:nth-child(3) {
+            animation-delay: 2s;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(80px) rotate(180deg);
+                opacity: 0;
+            }
+        }
+
+        #styleSelector {
+            width: 80%;
+            max-width: 150px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 0.5px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+            animation: shimmer 1.5s ease-in-out forwards;
+            filter: drop-shadow(0 0 2px rgb(105, 177, 255, 0.9)) brightness(1.2);
+            transition: transform 0.20s ease, box-shadow 0.6s ease,filter 0.8s ease, opacity 0.8s ease;
+        }
+
+        .burger-menu {
+    display: none;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+}
+        
+        .link {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            max-width: 240px;
+            margin: 4px 4px;
+            padding: 2px 2px;
+            background: rgba(51, 51, 51, 0.6);
+            border-radius: 12px;
+            backdrop-filter: blur(6px);
+            color: white;
+            text-decoration: none;
+            font-weight: lighter;
+            font-size: 0.9rem;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0.9;
+            filter: drop-shadow(0 0 2px rgba(255, 105, 180, 0.4)) brightness(1.2);
+            transition: transform 0.24s ease, box-shadow 0.6s ease,filter 0.8s ease, opacity 0.8s ease;
+              touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+        }
+
+            .link::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -75%;
+                width: 50%;
+                height: 100%;
+                background: linear-gradient( 120deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.1) 100% );
+                transform: skewX(-20deg);
+                pointer-events: none;
+            }
+
+            .link:hover::before {
+                animation: shimmer 1.5s ease-in-out forwards;
+            }
+
+            /* Ajout d'une transition plus fluide pour les liens */
+            .link:hover {
+                transform: scale(1.05);
+                box-shadow: 0 0 10px rgba(255, 105, 180, 0.6), 0 0 12px rgba(255, 105, 180, 0.8);
+            }
+
+        @keyframes shimmer {
+            0% {
+                left: -75%;
+            }
+
+            100% {
+                left: 125%;
+            }
+        }
+        
+              a {
+font-size: 0.85rem;
+}
+        
+        footer {
+            margin-top: 6px;
+            padding: 2px;
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+
+        /* Discret bouton toggle */
+
+        #toggleAnimation {
+            display: inline-block;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            margin-bottom: 10px;
+            outline: none;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+        }
+
+        /* Lecteur vinyle avancé */
+        #nowPlaying {
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: filter 0.4s ease, opacity 0.4s ease;
+            top: 38%;
+            right: 100px;
+            transform: translateY(-50%);
+            width: 320px;
+            background: rgba(30,30,30,0.4);
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 0 12px rgba(255,255,255,0.1);
+            filter: drop-shadow(0 0 10px rgb(105, 177, 255, 0.5)) brightness(1.2) saturate(1.2);
+            transition: filter 0.8s ease, opacity 0.8s ease;
+            backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+#nowPlaying > div:first-child {
+  position: relative;
+  width: 100%;
+  max-width: 240px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-html, body {
-  height: 100%;
-  background: #000;
-  color: #fff;
-  font-family: sans-serif;
-  overflow: hidden;
-  position: relative; /* important pour le stacking */
+            #nowPlaying.visible {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            #nowPlaying.hidden {
+                opacity: 0;
+                pointer-events: none;
+            }
+#disc-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: auto;
 }
 
-/* Canvas animé en arrière-plan */
-canvas#bg {
-  position: fixed;
+        #disc {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 6px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 8px rgba(255, 105, 180, 0.9);
+            animation: spin 5s linear infinite paused;
+            position: relative;
+  margin: 0 auto;
+              z-index: 1;
+        }
+
+            #disc::after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 20px;
+                height: 20px;
+                background: black;
+                border-radius: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 2;
+            }
+
+        #cover {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #tonearm {
+  position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1; /* derrière tout */
+  width: 90px;
+  height: 90px;
   pointer-events: none;
-}
-
-/* Header et navigation */
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 60px; /* hauteur fixe pour compenser dans le main */
-  background: rgba(0, 0, 0, 0.5);
-  padding: 10px;
-  z-index: 10;
   display: flex;
   justify-content: center;
   align-items: center;
-}
+    transform-origin: 26px 26px; /* exact point du socle dans le SVG */
+  transform: rotate(-70deg); /* position "repos" */
+  transition: transform 0.6s ease;
+  z-index: 3;
+        }
 
-/* Barre de navigation centrée et responsive */
-nav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
+            #tonearm.active {
+                transform: rotate(0deg);
+                  animation: floatArm 3s ease-in-out infinite;
+            }
+@keyframes floatArm {
+  0%, 100% { transform: rotate(-25deg); }
+  50% { transform: rotate(-23deg); }
 }
+        #title {
+            margin-top: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #acdbff;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 100%;
+            text-overflow: ellipsis;
+        }
 
-nav button,
-nav select {
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 4px;
-  color: #fff;
-  cursor: pointer;
-  transition: background 0.3s, box-shadow 0.3s;
+
+        #controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .control-btn {
+            background: rgba(255, 255, 255, 0.55);
+            border: 2px solid rgba(255, 255, 255, 0.55);
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            color: #fff;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(4px);
+        }
+
+            .control-btn:hover {
+                background: rgba(255, 255, 255, 0.12);
+                box-shadow: 0 0 8px rgba(255, 105, 180, 0.6);
+                transform: scale(1.1);
+            }
+
+        #timer {
+            margin-top: 10px;
+            font-size: 0.7rem;
+            opacity: 0.7;
+        }
+
+        #playlist li {
+            position: relative;
+            display: list-item;
+            width: auto;
+            height: auto;
+            margin: 1px;
+            padding: 1px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+        }
+
+            #playlist li:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+                    #nowPlaying:hover #discOverlay {
+                        opacity: 0;
+                    }
+
+                    .control-btn.toggle-on {
+                        transform: translateY(2px);
+                        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+                        background: rgba(255, 255, 255, 0.2);
+                    }
+        #bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1; /* <-- assure que le fond passe sous tout */
+            pointer-events: none;
+        }
+        
+.tree-svg,
+.leaf {
+    pointer-events: none;
 }
+        .control-btn.toggle-on {
+            transform: translateY(2px);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        header {
+            display: flex;
+            justify-content: center;
+            background: var(--accent);
+            color: white;
+            padding: 0.25rem;
+        }
 
-nav button:hover,
-nav select:hover {
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-}
+        nav button {
+            background: transparent;
+            border: none;
+            color: white;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            margin: 0 0.25rem;
+            cursor: pointer;
+        }
+    
 
-#toggleAnimation {
-  cursor: pointer;
-  font-size: 0.9rem;
-  color: #fff;
-}
+        .section {
+            display: none;
+            
+            height: 100%;
+            width: 100%;
+  max-width: 1725px;
+            justify-content:center;
+            align-items:center;
+  margin: 0.5rem auto;
+  padding: 10px 5px 5px;
+  box-sizing: border-box;
+            animation: fadeIn 1s ease;
+        }
 
-/* Responsive - petits écrans : empile verticalement */
-@media (max-width: 600px) {
-  nav {
-    flex-direction: column;
-    gap: 0.5rem;
+            .section.active {
+                display: block;
+                            height: 100%;
+            width: 100%;
+  max-width: 1725px;
+            justify-content:center;
+            align-items:center;
+  margin: 0.5rem auto;
+  padding: 10px 5px 5px;
+  box-sizing: border-box;
+            }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    
+     .iframe-wrapper {
+            height: 100%;
+      width: 1725px;
+    aspect-ratio: 16 / 9; /* ou 4/3 selon ton contenu */
+    position: relative;
+         justify-content:center;
+         align-items:center;
   }
-}
 
-#styleSelector {
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 2px 2px;
-}
+  .iframe-wrapper iframe {
+    position: absolute;
+    top: 0; left: 0;
+         justify-content:center;
+         align-items:center;
+    border: none;
+  }
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
 
-/* Sections */
-main {
-  display: flex;
-  flex-direction: column;  /* Empile verticalement */
-  align-items: center;     /* Centre horizontalement */
-  justify-content: center; /* Centre verticalement si possible */
-  text-align: center;      /* Texte centré pour titres et paragraphes */
-  padding: 50px 30px 30px;
-  height: 100vh;
-  overflow-y: auto;
-}
+        .explainer {
+            margin-bottom: 0.25rem;
+            background: var(--soft);
+            padding: 0.25rem;
+            border-left: 5px solid var(--highlight);
+        }
 
-.section {
-  display: none;
-  margin-bottom: 30px;
-}
 
-.section.active {
-  display: block;
-}
-
-.section h2 {
-  margin-bottom: 10px;
-}
-
-.explainer {
-  margin: 10px 0;
-  font-size: 0.9rem;
-  color: #ccc;
-}
-
-.demo {
-  margin: 10px 0;
-}
-
-/* Style de base : centré et large */
-.iframe-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+        iframe, canvas, .demo {
+            margin-top: 0.5rem;
+            
+            height: 100%;
+            width: 100%;
+  max-width: 1725px;
+            justify-content:center;
+            align-items:center;
+        }
+        .iframe-container {
+  position: relative;
   width: 100%;
-}
-
-.iframe-container {
-  width: 100%;
-  max-width: 1200px;
-  height: 80vh;
+  padding-top: 56.25%; /* Ratio 16:9 */
   overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .iframe-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  border: none;
-  display: block;
+  border: 0;
 }
 
-/* Styles pour les petits écrans */
-@media (max-width: 768px) {
-  .iframe-container {
-    height: 60vh;
+     @media (max-width: 768px) {
+  section {
+    padding: 1rem;
+    max-width: 100%;
+  }
+
+  .iframe-wrapper {
+    padding-top: 75%; /* Ratio 4:3 pour les écrans plus petits */
   }
 }
 
-/* Styles pour les écrans très petits */
-@media (max-width: 480px) {
-  .iframe-container {
-    height: 50vh;
-  }
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  border: none;
-  border-radius: 5px;
-}
-
-img.disc {
-  border-radius: 100%;
-}
-</style>
- 
+    </style>
+        
+   <link rel="stylesheet" href="synesthesie-style.css" />
+<link rel="stylesheet" href="Synesthesie.css" />
+    <link rel="stylesheet" href="echo.css">
+    <link rel="stylesheet" href="responsive.css">
 
 </head>
 <body>
-<canvas id="bg"></canvas>
+    <canvas id="bg"></canvas>
 
-<header>
-  <nav>
-    <button onclick="showSection('synesthesie')">Synesthésie</button>
-    <button onclick="showSection('thaumatrope')">Thaumatrope</button>
-    <button onclick="showSection('zootrope')">Zootrope</button>
-    <button onclick="showSection('phenakistoscope')">Phénakistiscope</button>
-    <div id="toggleAnimation" title="Activer/Désactiver l'animation" role="button" tabindex="0">
-      <p>
+    <header>  
+
+
+        <nav>
+            <button onclick="showSection('synesthesie')">Synesthésie</button>
+            <button onclick="showSection('thaumatrope')">Thaumatrope</button>
+            <button onclick="showSection('zootrope')">Zootrope</button>
+            <button onclick="showSection('phenakistoscope')">Phénakistiscope</button>
+                     <div id="toggleAnimation" title="Activer/Désactiver l'animation" role="button" tabindex="0">
+            <p>
         LinkTree animé
-        <svg width="40" height="40" viewBox="0 0 60 45" xmlns="http://www.w3.org/2000/svg" class="tree-svg">
-          <circle class="leaf leaf1" cx="32" cy="20" r="12" fill="#4CAF50" />
-          <circle class="leaf leaf2" cx="22" cy="28" r="10" fill="#81C784" />
-          <circle class="leaf leaf3" cx="42" cy="28" r="10" fill="#66BB6A" />
-          <rect x="28" y="32" width="8" height="20" rx="2" fill="#8D6E63" />
-        </svg>
-        <select id="styleSelector">
-          <option value="classic">Lueurs extérieures</option>
-          <option value="glow">Lueurs intérieures</option>
-          <option value="symbol">Jardin flottant</option>
-          <option value="aquarium">Aquarium</option>
-          <option value="emoji">Love, Death & Robots</option>
-        </select>
-      </p>
-    </div>
-  </nav>
-</header>
+    <svg width="40" height="40" viewBox="0 0 60 45" xmlns="http://www.w3.org/2000/svg" class="tree-svg" style="">
 
-<main>
-  <section id="synesthesie" class="section active">
-    <div class="explainer">
-      <p>La synesthésie est un phénomène neurologique dans lequel plusieurs sens sont associés : voir des sons, entendre des couleurs, ressentir des formes. Cette interface explore ces croisements sensoriels à travers l'image, le son et l'interaction visuelle.</p>
-    </div>
-    <div class="demo">
-      <div class="iframe-wrapper">
-        <div class="iframe-container">
-          <iframe src="index Synesthésie.html" allowfullscreen></iframe>
+
+        <circle class="leaf leaf1" cx="32" cy="20" r="12" fill="#4CAF50" />
+        <circle class="leaf leaf2" cx="22" cy="28" r="10" fill="#81C784" />
+        <circle class="leaf leaf3" cx="42" cy="28" r="10" fill="#66BB6A" />
+        <rect x="28" y="32" width="8" height="20" rx="2" fill="#8D6E63" />
+
+        <!-- Tree trunk -->
+        <rect x="70" y="100" width="15" height="60" fill="#8D6E63" />
+
+        <!-- Tree foliage -->
+        <circle cx="75" cy="80" r="30" fill="#4CAF50" />
+
+        <!-- Falling leaves -->
+        <circle class="leaf" cx="65" cy="60" r="4" />
+        <circle class="leaf" cx="85" cy="55" r="4" />
+        <circle class="leaf" cx="75" cy="50" r="4" />
+        <circle class="leaf" cx="95" cy="45" r="4" />
+
+    </svg>
+
+    <select id="styleSelector">
+        <option value="classic">Lueurs extérieures</option>
+        <option value="glow">Lueurs intérieures</option>
+        <option value="symbol">Jardin flottant</option>
+        <option value="aquarium">Aquarium</option>
+        <option value="emoji">Love, Death & Robots</option>
+    </select>
+    </p>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="synesthesie" class="section active">
+            <div class="explainer">
+                <p>
+                    La synesthésie est un phénomène neurologique dans lequel plusieurs sens sont associés : 
+<br>voir des sons, entendre des couleurs, ressentir des formes.
+                    <br>Cette interface explore ces croisements sensoriels à travers l'image, le son et l'interaction visuelle.       
+
+                </p>
+            </div>
+
+        <div class="demo">   
+            <div class="iframe-wrapper">
+                <div class="iframe-container">
+  <iframe src="index Synesthésie.html" frameborder="0" allowfullscreen></iframe>
         </div>
-      </div>
-    </div>
-  </section>
+                </div>
+</div>
+    
 
-  <section id="thaumatrope" class="section">
-    <div class="demo">
-      <div class="iframe-wrapper">
-        <div class="iframe-container">
-          <iframe src="index thaumatrope.html" allowfullscreen></iframe>
-        </div>
-      </div>
-    </div>
-  </section>
+             
+        </section>
 
-  <section id="zootrope" class="section">
-    <h2>Zootrope</h2>
-    <div class="explainer">Une bande animée est observée à travers les fentes d’un cylindre en rotation. Cela crée une illusion de mouvement fluide.</div>
-    <div class="demo">
-      <img src="img/zootrope-example.gif" alt="Zootrope Demo">
-    </div>
-  </section>
+        <section id="thaumatrope" class="section">
 
-  <section id="phenakistoscope" class="section">
-    <h2>Phénakistiscope & Praxinoscope</h2>
-    <div class="explainer">Ces dispositifs utilisent des disques illustrés ou des miroirs pour projeter une animation continue lors de la rotation.</div>
-    <div class="demo">
-      <img src="images/spinning-wheel.gif" alt="spinning-wheel" style="border-radius:100%; height:200px;">
-      <img src="img/phenakistiscope-example 04.gif" class="disc" alt="Phénakistiscope" style="height:200px;">
-      <img src="img/phenakistiscope-example.gif" alt="Phénakistiscope Demo" style="height:200px;">
-      <img src="img/phenakistiscope-example 05.gif" class="disc" alt="Phénakistiscope" style="height:200px;">
-      <img src="img/phenakistiscope-example 01.gif" class="disc" alt="Phénakistiscope" style="height:200px;">
-      <img src="img/phenakistiscope-disque-animation.gif" class="disc" alt="Phénakistiscope" style="height:200px;">
-    </div>
-  </section>
-</main>
+                    
+<div class="demo">
+                    <div class="iframe-wrapper">
+                        <div class="iframe-container">
+ <iframe src="index thaumatrope.html" frameborder="0" allowfullscreen></iframe>
+                  </div>          
+</div>
+         </div>
 
-<script>
-function showSection(id) {
-  document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-}
+        </section>
 
-document.addEventListener("DOMContentLoaded", () => {
-  const canvas = document.getElementById('bg');
-  const ctx = canvas.getContext('2d');
-  const styleSelector = document.getElementById('styleSelector');
-  const toggleBtn = document.getElementById('toggleAnimation');
+        <section id="zootrope" class="section">
+            <h2>Zootrope</h2>
+            <div class="explainer">
+                Une bande animée est observée à travers les fentes d’un cylindre en rotation. Cela crée une illusion de mouvement fluide.
+            </div>
+            <div class="demo">
+                <img src="img/zootrope-example.gif" alt="Zootrope Demo" style="width: 300px; height: auto;">
+            </div>
+        </section>
 
-  let animationOn = true;
-  let leaves = [];
-  let currentStyle = 'classic';
+        <section id="phenakistoscope" class="section">
+            <h2>Phénakistiscope & Praxinoscope</h2>
+            <div class="explainer">
+                Ces dispositifs utilisent des disques illustrés ou des miroirs pour projeter une animation continue lors de la rotation.
+            </div>
+            <div class="demo">
+  
+                    <img src="images/spinning-wheel.gif"style="border-radius:100%;width:auto; height:200px;" alt="spinning-wheel"> 
+                 <img src="img/phenakistiscope-example 04.gif" style="border-radius:100%;width:auto; height:200px;" class="disc" alt="Phénakistiscope" />
+                     
+                <img src="img/phenakistiscope-example.gif" alt="Phénakistiscope Demo" style="width:auto; height:200px;">
+              <img src="img/phenakistiscope-example 05.gif" style="border-radius:100%;width:auto; height:200px;" class="disc" alt="Phénakistiscope" /> 
+<img src="img/phenakistiscope-example 01.gif" style="border-radius:100%;width:auto; height:200px;" class="disc" alt="Phénakistiscope" /> 
+                <img src="img/phenakistiscope-disque-animation.gif" style="border-radius:100%;width:auto; height:200px;" class="disc" alt="Phénakistiscope" />
+</div>
+        </section>
+    </main>
 
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  window.addEventListener('resize', resizeCanvas);
-  resizeCanvas();
+    <script>
+        function showSection(id) {
+            document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
 
-  class Leaf {
-    constructor() { this.reset(); }
-    reset() {
-      const sizes = [8,12,16,20,24,28];
-      this.size = sizes[Math.floor(Math.random()*sizes.length)];
-      this.x = Math.random()*canvas.width;
-      this.y = Math.random()*-canvas.height;
-      this.speedY = 0.5 + Math.random()*1.2;
-      this.speedX = -0.3 + Math.random()*0.6;
-      this.alpha = 0.3 + Math.random()*0.5;
-      const r = 150 + Math.random()*105|0, g = 150 + Math.random()*105|0, b = 150 + Math.random()*105|0;
-      this.color = `rgba(${r},${g},${b},${this.alpha})`;
-      this.symbols = ['🍃', '✦', '❈', '✨', '🍂', '🍁', '🌺', '🌿', '🪷'];
-      this.symbol = this.symbols[Math.floor(Math.random()*this.symbols.length)];
-      this.emojis = ['❤️', '💀', '🤖', '♥', '☠️', '👾', '💘', '𖠌', '✘', '🖤', '✖', '✚', '♡', '𓏵'];
-      this.emoji = this.emojis[Math.floor(Math.random()*this.emojis.length)];
-      this.fishes = ['🐠', '🐟', '🐡', '🦑', '🦐', '🐙', '🐠'];
-      this.fish = this.fishes[Math.floor(Math.random()*this.fishes.length)];
-    }
-    update() {
-      this.y += this.speedY;
-      this.x += this.speedX;
-      if (this.y > canvas.height+this.size) this.reset();
-    }
-    draw() {
-      ctx.font = `${this.size}px serif`;
-      ctx.globalAlpha = this.alpha;
-      ctx.fillStyle = this.color;
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const canvas = document.getElementById('bg');
+            const ctx = canvas.getContext('2d');
+            const styleSelector = document.getElementById('styleSelector');
+            const toggleBtn = document.getElementById('toggleAnimation');
 
-      if (currentStyle === 'symbol') ctx.fillText(this.symbol, this.x, this.y);
-      else if (currentStyle === 'emoji') ctx.fillText(this.emoji, this.x, this.y);
-      else if (currentStyle === 'glow') {
-        const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size*0.8);
-        grad.addColorStop(0, 'white'); grad.addColorStop(1, this.color);
-        ctx.fillStyle = grad; ctx.beginPath(); ctx.arc(this.x, this.y, this.size*0.8, 0, Math.PI*2); ctx.fill();
-      } else if (currentStyle === 'aquarium') ctx.fillText(this.fish, this.x, this.y);
-      else { ctx.beginPath(); ctx.arc(this.x, this.y, this.size*0.5, 0, Math.PI*2); ctx.fill(); }
-      ctx.globalAlpha = 1;
-    }
-  }
+            let animationOn = true;
+            let leaves = [];
+            let currentStyle = 'classic';
 
-  function generateLeaves() {
-    leaves = []; for (let i=0; i<60; i++) leaves.push(new Leaf());
-  }
-  generateLeaves();
+            const neonColors = [
+                'rgba(255,105,180,0.6)',  // rose fluo
+                'rgba(0,255,255,0.6)',    // cyan
+                'rgba(255,255,0,0.6)',    // jaune
+                'rgba(255,0,255,0.6)',    // magenta
+                'rgba(0,255,120,0.6)'     // vert doux
+            ];
 
-  function animate() {
-    if (!animationOn) return;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    leaves.forEach(p => { p.update(); p.draw(); });
-    requestAnimationFrame(animate);
-  }
-  animate();
+            function addHoverEffect(elements) {
+                elements.forEach(el => {
+                    el.addEventListener('mouseenter', () => {
+                        const glow = neonColors[Math.floor(Math.random() * neonColors.length)];
+                        el.style.boxShadow = 0 0 18px ${glow}, 0 0 6px ${glow};
+                        el.style.borderColor = glow;
+                    });
+                    el.addEventListener('mouseleave', () => {
+                        el.style.boxShadow = 'none';
+                        el.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                    });
+                });
+            }
 
-  styleSelector.addEventListener('change', () => { currentStyle = styleSelector.value; });
-  toggleBtn.addEventListener('click', () => {
-    animationOn = !animationOn;
-    if (animationOn) animate(); else ctx.clearRect(0, 0, canvas.width, canvas.height);
-  });
-});
-</script>
+            document.addEventListener("DOMContentLoaded", () => {
+                addHoverEffect(document.querySelectorAll('.link'));
+                addHoverEffect(document.querySelectorAll('.avatar'));
+            });
+            document.querySelectorAll('.link').forEach(link => {
+                link.addEventListener('mouseenter', () => {
+                    const glow = neonColors[Math.floor(Math.random() * neonColors.length)];
+                    link.style.boxShadow = 0 0 18px ${glow}, 0 0 6px ${glow};
+                    link.style.borderColor = glow;
+                });
+                link.addEventListener('mouseleave', () => {
+                    link.style.boxShadow = 'none';
+                    link.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                });
+            });
+
+            document.querySelectorAll('.avatar').forEach(avatar => {
+                avatar.addEventListener('mouseenter', () => {
+                    const glow = neonColors[Math.floor(Math.random() * neonColors.length)];
+                    avatar.style.boxShadow = 0 0 18px ${glow}, 0 0 6px ${glow};
+                    avatar.style.borderColor = glow;
+                });
+                avatar.addEventListener('mouseleave', () => {
+                    avatar.style.boxShadow = 'none';
+                    avatar.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                });
+            });
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            class Leaf {
+                constructor() {
+                    this.reset();
+                }
+
+                reset() {
+                    const sizes = [8, 12, 16, 20, 24, 28];
+                    this.size = sizes[Math.floor(Math.random() * sizes.length)];
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * -canvas.height;
+                    this.speedY = 0.5 + Math.random() * 1.2;
+                    this.speedX = -0.3 + Math.random() * 0.6;
+                    this.alpha = 0.3 + Math.random() * 0.5;
+
+                    const r = Math.floor(150 + Math.random() * 105);
+                    const g = Math.floor(150 + Math.random() * 105);
+                    const b = Math.floor(150 + Math.random() * 105);
+                    this.color = rgba(${r},${g},${b},${this.alpha});
+
+                    this.symbols = ['🍃', '✦', '❈', '✨', '🍂', '🍁', '🌺', '🌿', '🪷'];
+                    this.symbol = this.symbols[Math.floor(Math.random() * this.symbols.length)];
+
+                    this.emojis = ['❤️', '💀', '🤖', '♥', '☠️', '👾', '💘', '𖠌', '✘', '🖤', '✖', '✚', '♡', '𓏵'];
+                    this.emoji = this.emojis[Math.floor(Math.random() * this.emojis.length)];
+
+                    this.fishes = ['🐠', '🐟', '🐡', '🦑', '🦐', '🐙', '🐠'];
+                    this.fish = this.fishes[Math.floor(Math.random() * this.fishes.length)];
+                }
+
+                update() {
+                    this.y += this.speedY;
+                    this.x += this.speedX;
+                    if (this.y > canvas.height + this.size) this.reset();
+                }
+
+                draw() {
+                    ctx.font = ${this.size}px serif;
+                    ctx.globalAlpha = this.alpha;
+                    ctx.fillStyle = this.color;
+
+                    if (currentStyle === 'symbol') {
+                        ctx.fillText(this.symbol, this.x, this.y);
+                    } else if (currentStyle === 'emoji') {
+                        ctx.fillText(this.emoji, this.x, this.y);
+                    } else if (currentStyle === 'glow') {
+                        const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 0.8);
+                        gradient.addColorStop(0, 'white');
+                        gradient.addColorStop(1, this.color);
+                        ctx.fillStyle = gradient;
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.size * 0.8, 0, Math.PI * 2);
+                        ctx.fill();
+
+                    } else if (currentStyle === 'aquarium') {
+                        ctx.font = ${this.size}px serif;
+                        ctx.globalAlpha = this.alpha;
+                        ctx.fillStyle = this.color;
+                        ctx.fillText(this.fish, this.x, this.y);
+                        ctx.globalAlpha = 1.0;
+                    } else {
+                        ctx.beginPath();
+                        ctx.fillStyle = this.color;
+                        ctx.arc(this.x, this.y, this.size * 0.5, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+
+                    ctx.globalAlpha = 1;
+                }
+            }
+
+            function generateLeaves() {
+                leaves = [];
+                for (let i = 0; i < 60; i++) {
+                    leaves.push(new Leaf());
+                }
+            }
+            generateLeaves();
+
+            function animate() {
+                if (!animationOn) return;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                leaves.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                requestAnimationFrame(animate);
+            }
+            animate();
+
+            styleSelector.addEventListener('change', () => {
+                currentStyle = styleSelector.value;
+            });
+
+            toggleBtn.addEventListener('click', () => {
+                animationOn = !animationOn;
+                if (animationOn) animate();
+                else ctx.clearRect(0, 0, canvas.width, canvas.height);
+            });
+
+        });
+    </script>
+
 </body>
-</html>
+</html >
